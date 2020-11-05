@@ -51,6 +51,9 @@ export default function App() {
     }, []);
 
     return (
-        <div>Hello world!</div>
+        <div>
+            <h1>Exoplanets Archive</h1>
+            <h3>Smaller header</h3>
+        </div>
     )
 }
