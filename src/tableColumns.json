@@ -1,0 +1,68 @@
+[
+    {
+        "databaseColumnName": "pl_name",
+        "tableLabel": "Planet Name",
+        "description": "Planet name most commonly used in the literature",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "hostname",
+        "tableLabel": "Host Name",
+        "description": "Stellar name most commonly used in the literature",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "disc_facility",
+        "tableLabel": "Discovery Facility",
+        "description": "Name of facility of planet discovery observations",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "discoverymethod",
+        "tableLabel": "Discovery Method",
+        "description": "Method by which the planet was first identified",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "disc_year",
+        "tableLabel": "Discovery Year",
+        "description": "Year the planet was discovered",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "pl_orbper",
+        "tableLabel": "Orbital Period [days]",
+        "description": "Time the planet takes to make a complete orbit around the host star or system",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "pl_orbsmax",
+        "tableLabel": "Orbit Semi-Major Axis [au]",
+        "description": "The longest radius of an elliptic orbit, or, for exoplanets detected via gravitational microlensing or direct imaging, the projected separation in the plane of the sky",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "pl_masse",
+        "tableLabel": "Planet Mass [Earth Mass]",
+        "description": "Amount of matter contained in the planet, measured in units of masses of the Earth",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "pl_rade",
+        "tableLabel": "Planet Radius [Earth Radius]",
+        "description": "Length of a line segment from the center of the planet to its surface, measured in units of radius of the Earth",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "pl_dens",
+        "tableLabel": "Planet Density [g/cm**3]",
+        "description": "Amount of mass per unit of volume of the planet",
+        "usedInQuery": true
+    },
+    {
+        "databaseColumnName": "releasedate",
+        "tableLabel": "Release Date",
+        "description": "Date that the given planet parameter set was publicly released by the NASA Exoplanet Archive",
+        "usedInQuery": true
+    }
+]
