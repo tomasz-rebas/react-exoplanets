@@ -36,12 +36,9 @@ export default function App() {
     //     ['pl_dens', 'Planet Density [g/cm**3]'],
     //     ['releasedate', 'Release Date']
     // ];
-    
-    // Also, add descriptions to tableColumns. And consider making it an array of objects, for readability.
-    // And move it to a separate file.
 
     useEffect(() => {
-        fetch(`${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns)}&format=csv`)
+        fetch(`${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`)
         .then(response => response.text())
         .then(data => {
             const convertedData = csvToObject(data);
