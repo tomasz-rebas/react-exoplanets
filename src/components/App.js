@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import buildQuery from '../functions/buildQuery';
 import csvToObject from '../functions/csvToObject';
+import keepUniquePlanets from '../functions/keepUniquePlanets';
 import tableColumns from '../tableColumns.json';
 import Form from './Form';
 
@@ -43,8 +44,9 @@ export default function App() {
         .then(response => response.text())
         .then(data => {
             const convertedData = csvToObject(data);
-            console.log(convertedData);
-            setPlanetaryData(convertedData);
+            const strippedData = keepUniquePlanets(convertedData);
+            console.log(strippedData);
+            setPlanetaryData(strippedData);
         })
         .catch(error => {
             console.error('The error occured. ' + error);
