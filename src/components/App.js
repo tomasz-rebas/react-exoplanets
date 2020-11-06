@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import buildQuery from '../functions/buildQuery';
 import csvToObject from '../functions/csvToObject';
 import tableColumns from '../tableColumns.json';
+import Form from './Form';
 
 export default function App() {
 
@@ -54,6 +55,7 @@ export default function App() {
         <div>
             <h1>Exoplanets Archive</h1>
             <h3>Smaller header</h3>
+            <Form/>
         </div>
     )
 }
