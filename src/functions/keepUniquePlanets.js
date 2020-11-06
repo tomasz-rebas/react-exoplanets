@@ -19,6 +19,5 @@ export default function keepUniquePlanets(data) {
         }
     }
 
-    console.log('Testing keepUniquePlanets function...');
-    console.log(strippedData);
+    return strippedData;
 }
