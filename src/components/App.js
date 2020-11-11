@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
 import buildQuery from '../functions/buildQuery';
 import csvToObject from '../functions/csvToObject';
 import keepUniquePlanets from '../functions/keepUniquePlanets';
+
 import tableColumns from '../tableColumns.json';
-import Form from './Form';
+
+import Header from './Header';
+import PlanetBrowser from './PlanetBrowser';
+import FetchAlert from './FetchAlert';
 
 export default function App() {
 
@@ -22,6 +27,7 @@ export default function App() {
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+column_name,description+from+TAP_SCHEMA.columns+where+table_name+like+'ps'&format=csv
 
     const [planetaryData, setPlanetaryData] = useState();
+    const [didFetchFail, setDidFetchFail] = useState(false);
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
@@ -40,7 +46,9 @@ export default function App() {
     // ];
 
     useEffect(() => {
-        fetch(`${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`)
+        const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
+        console.log(url);
+        fetch(url)
         .then(response => response.text())
         .then(data => {
             const convertedData = csvToObject(data);
@@ -50,14 +58,18 @@ export default function App() {
         })
         .catch(error => {
             console.error('The error occured. ' + error);
+            setDidFetchFail(true);
         });
     }, []);
 
     return (
         <div>
-            <h1>Exoplanets Archive</h1>
-            <h3>Smaller header</h3>
-            <Form/>
+            <Header/>
+            {
+                planetaryData ? 
+                <PlanetBrowser planetaryData={planetaryData}/> :
+                <FetchAlert didFetchFail={didFetchFail}/>
+            }
         </div>
     )
 }
