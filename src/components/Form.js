@@ -8,9 +8,13 @@ export default function Form( { planetaryData } ) {
     tableColumns.forEach(element => {
         if (element.usedInForm) {
             if (element.dataType === 'text') {
-                console.log('This is text.');
-                console.log('This is ' + planetaryData[0].pl_name);
-                console.log('This is ' + planetaryData[1].pl_name);
+                let labels = [];
+                planetaryData.forEach(planet => {
+                    if (!labels.includes(planet[element.databaseColumnName])) {
+                        labels.push(planet[element.databaseColumnName]);
+                    }
+                });
+                console.log(labels);
             } else if (element.dataType === 'number') {
                 console.log('This is number.');
             }
