@@ -9,8 +9,8 @@ export default function Form( { planetaryData } ) {
         if (element.usedInForm) {
             if (element.dataType === 'text') {
                 console.log('This is text.');
-                console.log('This is ' + planetaryData[0].name);
-                console.log('This is ' + planetaryData[1].name);
+                console.log('This is ' + planetaryData[0].pl_name);
+                console.log('This is ' + planetaryData[1].pl_name);
             } else if (element.dataType === 'number') {
                 console.log('This is number.');
             }

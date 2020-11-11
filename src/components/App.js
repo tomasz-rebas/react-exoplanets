@@ -5,6 +5,7 @@ import csvToObject from '../functions/csvToObject';
 import keepUniquePlanets from '../functions/keepUniquePlanets';
 
 import tableColumns from '../tableColumns.json';
+import fallbackData from '../fallbackData.json';
 
 import Header from './Header';
 import PlanetBrowser from './PlanetBrowser';
@@ -59,6 +60,7 @@ export default function App() {
         .catch(error => {
             console.error('The error occured. ' + error);
             setDidFetchFail(true);
+            setPlanetaryData(fallbackData);
         });
     }, []);
 
