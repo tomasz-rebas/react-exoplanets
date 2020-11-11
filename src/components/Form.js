@@ -23,7 +23,7 @@ export default function Form( { planetaryData } ) {
                     </label>
                 );
                 input = (
-                    <div>
+                    <div key={element.databaseColumnName + '_label'}>
                         <hr/>
                         <div>{element.tableLabel}</div>
                         <div>{checkboxes}</div>
