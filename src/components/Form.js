@@ -3,10 +3,11 @@ import tableColumns from '../tableColumns.json';
 
 export default function Form( { planetaryData } ) {
 
-    let inputs;
+    let inputs = [];
 
     tableColumns.forEach(element => {
         if (element.usedInForm) {
+            let input;
             if (element.dataType === 'text') {
                 let labels = [];
                 planetaryData.forEach(planet => {
@@ -15,13 +16,27 @@ export default function Form( { planetaryData } ) {
                     }
                 });
                 console.log(labels);
+                let checkboxes = labels.map((label, index) =>
+                    <label key={element.databaseColumnName + '_' + index}>
+                        <input type="checkbox" name={label}/>
+                        {label}
+                    </label>
+                );
+                input = (
+                    <div>
+                        <hr/>
+                        <div>{element.tableLabel}</div>
+                        <div>{checkboxes}</div>
+                    </div>
+                );
             } else if (element.dataType === 'number') {
                 console.log('This is number.');
             }
+            inputs.push(input);
         }
     });
 
     return (
-        <form>Form</form>
+        <form>{inputs}</form>
     );
 }
