@@ -40,6 +40,6 @@ export default function Form( { planetaryData } ) {
     });
 
     return (
-        <form>{inputs}</form>
+        <div>{inputs}</div>
     );
 }
