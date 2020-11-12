@@ -3,3 +3,26 @@ body {
     color: #ddd;
     background-color: #333;
 }
+
+.checkboxes-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+@media (max-width: 1200px) {
+    .checkboxes-container {
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .checkboxes-container {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (max-width: 700px) {
+    .checkboxes-container {
+        grid-template-columns: auto;
+    }
+}

@@ -26,7 +26,7 @@ export default function Form( { planetaryData } ) {
                     <div key={element.databaseColumnName + '_label'}>
                         <hr/>
                         <div>{element.tableLabel}</div>
-                        <div>{checkboxes}</div>
+                        <div className="checkboxes-container">{checkboxes}</div>
                     </div>
                 );
             } else if (element.dataType === 'number') {
