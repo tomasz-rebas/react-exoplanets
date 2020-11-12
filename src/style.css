@@ -27,6 +27,11 @@ hr {
     opacity: 0.2;
 }
 
+.select-all-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .input-container {
     padding-top: 10px;
     padding-bottom: 10px;
