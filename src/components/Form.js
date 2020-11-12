@@ -7,7 +7,6 @@ export default function Form( { planetaryData } ) {
 
     tableColumns.forEach(element => {
         if (element.usedInForm) {
-            let input;
             if (element.dataType === 'text') {
                 let labels = [];
                 planetaryData.forEach(planet => {

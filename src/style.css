@@ -23,6 +23,10 @@ h3 {
     text-align: center;
 }
 
+hr {
+    opacity: 0.15;
+}
+
 @media (max-width: 1200px) {
     .checkboxes-container {
         grid-template-columns: auto auto auto;
