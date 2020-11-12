@@ -6,7 +6,7 @@ export default function PlanetBrowser( { planetaryData } ) {
     return (
         <main>
             <Form planetaryData={planetaryData}/>
-            <PlanetList/>
+            <PlanetList planetaryData={planetaryData}/>
         </main>
     );
 }
