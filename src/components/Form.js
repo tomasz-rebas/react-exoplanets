@@ -22,8 +22,7 @@ export default function Form( { planetaryData } ) {
                     </label>
                 );
                 inputs.unshift(
-                    <div key={element.databaseColumnName + '_label'}>
-                        <hr/>
+                    <div key={element.databaseColumnName + '_label'} className="input-container">
                         <h4>{element.tableLabel}</h4>
                         <div className="checkboxes-container">{checkboxes}</div>
                     </div>
@@ -31,7 +30,6 @@ export default function Form( { planetaryData } ) {
             } else if (element.dataType === 'number') {
                 inputs.push(
                     <div key={element.databaseColumnName + '_label'}>
-                        <hr/>
                         <h4>{element.tableLabel}</h4>
                         <input type="number"/>
                     </div>
