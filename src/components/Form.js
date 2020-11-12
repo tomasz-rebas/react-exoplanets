@@ -22,17 +22,22 @@ export default function Form( { planetaryData } ) {
                         {label}
                     </label>
                 );
-                input = (
+                inputs.unshift(
                     <div key={element.databaseColumnName + '_label'}>
                         <hr/>
-                        <div>{element.tableLabel}</div>
+                        <h4>{element.tableLabel}</h4>
                         <div className="checkboxes-container">{checkboxes}</div>
                     </div>
                 );
             } else if (element.dataType === 'number') {
-                console.log('This is number.');
+                inputs.push(
+                    <div key={element.databaseColumnName + '_label'}>
+                        <hr/>
+                        <h4>{element.tableLabel}</h4>
+                        <input type="number"/>
+                    </div>
+                );
             }
-            inputs.push(input);
         }
     });
 

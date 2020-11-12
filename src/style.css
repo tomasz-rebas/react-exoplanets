@@ -9,6 +9,20 @@ body {
     grid-template-columns: auto auto auto auto;
 }
 
+label {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
 @media (max-width: 1200px) {
     .checkboxes-container {
         grid-template-columns: auto auto auto;
