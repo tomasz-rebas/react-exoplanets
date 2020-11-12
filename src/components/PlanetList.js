@@ -6,7 +6,7 @@ export default function PlanetList( { planetaryData }) {
 
     for (let i = 0; i < 100; i++) {
         planets.push(
-            <div>
+            <div key={planetaryData[i].pl_name}>
                 {planetaryData[i].pl_name}
             </div>
         )
