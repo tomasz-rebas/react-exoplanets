@@ -1,35 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
-    font-family: 'Calibri';
+    font-family: 'Roboto', 'Calibri';
     color: #ddd;
     background-color: #333;
 }
 
-.checkboxes-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-}
-
 label {
+    display: block;
     padding-top: 5px;
     padding-bottom: 5px;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-h1,
-h3 {
-    text-align: center;
-}
-
-hr {
-    opacity: 0.2;
-}
-
-.select-all-button {
-    margin-top: 15px;
-    margin-bottom: 15px;
 }
 
 .input-container {

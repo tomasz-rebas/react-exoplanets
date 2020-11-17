@@ -1,4 +1,7 @@
 import React from 'react';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/core/Slider';
 import tableColumns from '../tableColumns.json';
 
 export default function Form( { planetaryData } ) {
@@ -24,15 +27,21 @@ export default function Form( { planetaryData } ) {
                 inputs.unshift(
                     <div key={element.databaseColumnName + '_label'} className="input-container">
                         <h4>{element.tableLabel}</h4>
-                        <div className="checkboxes-container">{checkboxes}</div>
-                        <button className="select-all-button">Select All</button>
+                        <div>{checkboxes}</div>
+                        <Button variant="contained">Select All</Button>
                     </div>
                 );
             } else if (element.dataType === 'number') {
                 inputs.push(
                     <div key={element.databaseColumnName + '_label'}>
                         <h4>{element.tableLabel}</h4>
-                        <input type="number"/>
+                        <Slider
+                            defaultValue={[34,69]}
+                            // onChange={}
+                            valueLabelDisplay="auto"
+                            // aria-labelledby=""
+                            // getAriaValueText={}
+                        />
                     </div>
                 );
             }
@@ -40,6 +49,10 @@ export default function Form( { planetaryData } ) {
     });
 
     return (
-        <div>{inputs}</div>
+        <Drawer 
+            variant="permanent"
+        >
+            {inputs}
+        </Drawer>
     );
 }

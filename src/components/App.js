@@ -8,7 +8,8 @@ import tableColumns from '../tableColumns.json';
 import fallbackData from '../fallbackData.json';
 
 import Header from './Header';
-import PlanetBrowser from './PlanetBrowser';
+import Filters from './Filters';
+import PlanetList from './PlanetList';
 import FetchAlert from './FetchAlert';
 
 export default function App() {
@@ -47,7 +48,7 @@ export default function App() {
     // ];
 
     useEffect(() => {
-        const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
+        /*const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
         console.log(url);
         fetch(url)
         .then(response => response.text())
@@ -59,19 +60,20 @@ export default function App() {
         })
         .catch(error => {
             console.error('The error occured. ' + error);
-            setDidFetchFail(true);
-            setPlanetaryData(fallbackData);
-        });
+            setDidFetchFail(true);*/
+            setTimeout(() => {setPlanetaryData(fallbackData)}, 1000);
+        /*});*/
     }, []);
 
     return (
+        planetaryData ?
         <div>
-            <Header/>
-            {
-                planetaryData ? 
-                <PlanetBrowser planetaryData={planetaryData}/> :
-                <FetchAlert didFetchFail={didFetchFail}/>
-            }
-        </div>
+            <Filters planetaryData={planetaryData}/>
+            <div className="banana">
+                <Header/>
+                <PlanetList planetaryData={planetaryData}/>
+            </div>
+        </div> :
+        <FetchAlert didFetchFail={didFetchFail}/>
     )
 }
