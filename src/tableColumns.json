@@ -37,7 +37,10 @@
         "description": "Year the planet was discovered",
         "usedInQuery": true,
         "usedInForm": true,
-        "dataType": "number"
+        "dataType": "number",
+        "minValue": 1970,
+        "maxValue": 2020,
+        "scaleStep": 1
     },
     {
         "databaseColumnName": "pl_orbper",
@@ -45,7 +48,10 @@
         "description": "Time the planet takes to make a complete orbit around the host star or system",
         "usedInQuery": true,
         "usedInForm": true,
-        "dataType": "number"
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 500,
+        "scaleStep": 0.5
     },
     {
         "databaseColumnName": "pl_orbsmax",
@@ -53,7 +59,10 @@
         "description": "The longest radius of an elliptic orbit, or, for exoplanets detected via gravitational microlensing or direct imaging, the projected separation in the plane of the sky",
         "usedInQuery": true,
         "usedInForm": true,
-        "dataType": "number"
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 300,
+        "scaleStep": 0.5
     },
     {
         "databaseColumnName": "pl_masse",
@@ -61,7 +70,10 @@
         "description": "Amount of matter contained in the planet, measured in units of masses of the Earth",
         "usedInQuery": true,
         "usedInForm": true,
-        "dataType": "number"
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 500,
+        "scaleStep": 0.5
     },
     {
         "databaseColumnName": "pl_rade",
@@ -69,7 +81,10 @@
         "description": "Length of a line segment from the center of the planet to its surface, measured in units of radius of the Earth",
         "usedInQuery": true,
         "usedInForm": true,
-        "dataType": "number"
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 20,
+        "scaleStep": 0.25
     },
     {
         "databaseColumnName": "pl_dens",
@@ -77,7 +92,10 @@
         "description": "Amount of mass per unit of volume of the planet",
         "usedInQuery": true,
         "usedInForm": true,
-        "dataType": "number"
+        "dataType": "number",
+        "minValue": 0,
+        "maxValue": 10,
+        "scaleStep": 0.1
     },
     {
         "databaseColumnName": "releasedate",

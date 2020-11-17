@@ -13,6 +13,6 @@ export default function PlanetList( { planetaryData }) {
     }
 
     return (
-        <div>{planets}</div>
+        <main>{planets}</main>
     );
 }

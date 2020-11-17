@@ -32,15 +32,20 @@ export default function Form( { planetaryData } ) {
                     </div>
                 );
             } else if (element.dataType === 'number') {
+                const min = element.minValue;
+                const max = element.maxValue;
                 inputs.push(
                     <div key={element.databaseColumnName + '_label'}>
                         <h4>{element.tableLabel}</h4>
                         <Slider
-                            defaultValue={[34,69]}
+                            defaultValue={[min, max]}
                             // onChange={}
                             valueLabelDisplay="auto"
                             // aria-labelledby=""
                             // getAriaValueText={}
+                            step={element.scaleStep}
+                            min={min}
+                            max={max}
                         />
                     </div>
                 );
