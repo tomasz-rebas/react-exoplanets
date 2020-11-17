@@ -12,6 +12,14 @@ import Filters from './Filters';
 import PlanetList from './PlanetList';
 import FetchAlert from './FetchAlert';
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    // banana: {
+    //     marginLeft: '300px'
+    // }
+});
+
 export default function App() {
 
     // https://cors-anywhere.herokuapp.com/
@@ -30,6 +38,8 @@ export default function App() {
 
     const [planetaryData, setPlanetaryData] = useState();
     const [didFetchFail, setDidFetchFail] = useState(false);
+
+    const classes = useStyles();
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
@@ -69,7 +79,7 @@ export default function App() {
         planetaryData ?
         <div>
             <Filters planetaryData={planetaryData}/>
-            <div className="banana">
+            <div className={classes.banana}>
                 <Header/>
                 <PlanetList planetaryData={planetaryData}/>
             </div>

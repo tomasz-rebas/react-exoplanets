@@ -1,10 +1,19 @@
 import React from 'react';
+import tableColumns from '../tableColumns.json';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
-import tableColumns from '../tableColumns.json';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default function Form( { planetaryData } ) {
+const useStyles = makeStyles({
+    root: {
+        padding: '30px'
+    }
+});
+
+export default function Filters( { planetaryData } ) {
+
+    const classes = useStyles();
 
     let inputs = [];
 
@@ -56,6 +65,7 @@ export default function Form( { planetaryData } ) {
     return (
         <Drawer 
             variant="permanent"
+            className={classes.root}
         >
             {inputs}
         </Drawer>
