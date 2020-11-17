@@ -6,8 +6,8 @@ import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-    root: {
-        padding: '30px'
+    drawerPaper: {
+        padding: '20px'
     }
 });
 
@@ -65,7 +65,9 @@ export default function Filters( { planetaryData } ) {
     return (
         <Drawer 
             variant="permanent"
-            className={classes.root}
+            classes={{
+                paper: classes.drawerPaper
+            }}
         >
             {inputs}
         </Drawer>
