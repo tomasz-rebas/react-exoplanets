@@ -14,12 +14,26 @@ export default function PlanetCard( { data } ) {
 
     const classes = useStyles();
 
+    const {
+        disc_facility,
+        disc_year,
+        discoverymethod,
+        hostname,
+        pl_dens,
+        pl_masse,
+        pl_name,
+        pl_orbper,
+        pl_orbsmax,
+        pl_rade,
+        releasedate
+    } = data;
+
     return (
         <Card 
             variant="outlined"
             className={classes.card}
         >
-            {data.pl_name}
+            {pl_name}
         </Card>
     );
 }

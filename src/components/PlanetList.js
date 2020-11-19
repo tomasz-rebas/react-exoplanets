@@ -21,7 +21,10 @@ export default function PlanetList( { planetaryData }) {
     for (let i = 0; i < 100; i++) {
         console.log(planetaryData[i]);
         planets.push(
-            <PlanetCard data={planetaryData[i]}/>
+            <PlanetCard 
+                data={planetaryData[i]}
+                key={planetaryData[i].pl_name}
+            />
         )
     }
 
