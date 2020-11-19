@@ -7,7 +7,8 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        marginTop: '100px'
     }
 });
 
@@ -20,9 +21,6 @@ export default function PlanetList( { planetaryData }) {
     for (let i = 0; i < 100; i++) {
         console.log(planetaryData[i]);
         planets.push(
-            // <div key={planetaryData[i].pl_name}>
-            //     {planetaryData[i].pl_name}
-            // </div>
             <PlanetCard data={planetaryData[i]}/>
         )
     }
