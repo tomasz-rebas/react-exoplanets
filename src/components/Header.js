@@ -7,6 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     toolbar: {
         justifyContent: 'space-between'
+    },
+    filterIcon: {
+        cursor: 'pointer'
     }
 });
 
@@ -17,12 +20,13 @@ export default function Header( { isSidebarOpened, setIsSidebarOpened } ) {
     return (
         <AppBar>
             <Toolbar className={classes.toolbar}>
-                    <Icon
-                        onClick={() => {setIsSidebarOpened(!isSidebarOpened)}}
-                        fontSize="large"
-                    >
-                        filter_list
-                    </Icon>
+                <Icon
+                    onClick={() => {setIsSidebarOpened(!isSidebarOpened)}}
+                    fontSize="large"
+                    className={classes.filterIcon}
+                >
+                    filter_list
+                </Icon>
                 <h3>Exoplanets Archive</h3>
                 {/* <p>Browse through hundreds of exoplanets discovered in the last decades. Adjust form parameters for specific results.</p> */}
             </Toolbar>
