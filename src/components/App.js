@@ -38,6 +38,7 @@ export default function App() {
 
     const [planetaryData, setPlanetaryData] = useState();
     const [didFetchFail, setDidFetchFail] = useState(false);
+    const [isSidebarOpened, setIsSidebarOpened] = useState(false);
 
     const classes = useStyles();
 
@@ -78,9 +79,9 @@ export default function App() {
     return (
         planetaryData ?
         <div>
-            <Filters planetaryData={planetaryData}/>
+            <Filters planetaryData={planetaryData} isSidebarOpened={isSidebarOpened} setIsSidebarOpened={setIsSidebarOpened}/>
             <div className={classes.banana}>
-                <Header/>
+                <Header isSidebarOpened={isSidebarOpened} setIsSidebarOpened={setIsSidebarOpened}/>
                 <PlanetList planetaryData={planetaryData}/>
             </div>
         </div> :

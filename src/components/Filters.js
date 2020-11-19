@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Filters( { planetaryData } ) {
+export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarOpened } ) {
 
     const classes = useStyles();
 
@@ -64,7 +64,9 @@ export default function Filters( { planetaryData } ) {
 
     return (
         <Drawer 
-            variant="permanent"
+            anchor="left"
+            open={isSidebarOpened}
+            onClose={() => {setIsSidebarOpened(!isSidebarOpened)}}
             classes={{
                 paper: classes.drawerPaper
             }}
