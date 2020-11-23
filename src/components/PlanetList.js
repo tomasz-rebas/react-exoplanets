@@ -12,7 +12,9 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        paddingTop: '20px',
+        paddingBottom: '20px'
     }
 });
 
