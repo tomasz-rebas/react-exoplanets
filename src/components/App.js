@@ -11,6 +11,7 @@ import Header from './Header';
 import Filters from './Filters';
 import PlanetList from './PlanetList';
 import FetchAlert from './FetchAlert';
+import Footer from './Footer';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -83,22 +84,7 @@ export default function App() {
             <div className={classes.banana}>
                 <Header isSidebarOpened={isSidebarOpened} setIsSidebarOpened={setIsSidebarOpened}/>
                 <PlanetList planetaryData={planetaryData}/>
-                <footer>
-                    <span>Icons made by </span>
-                    <a 
-                        href="https://www.flaticon.com/authors/freepik"
-                        title="Freepik"
-                    >
-                        Freepik
-                    </a>
-                    <span> from </span>
-                    <a 
-                        href="https://www.flaticon.com/"
-                        title="Flaticon"
-                    >
-                        www.flaticon.com
-                    </a>
-                </footer>
+                <Footer/>
             </div>
         </div> :
         <FetchAlert didFetchFail={didFetchFail}/>
