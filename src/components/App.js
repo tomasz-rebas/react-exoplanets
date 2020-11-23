@@ -13,14 +13,6 @@ import PlanetList from './PlanetList';
 import FetchAlert from './FetchAlert';
 import Footer from './Footer';
 
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-    // banana: {
-    //     marginLeft: '300px'
-    // }
-});
-
 export default function App() {
 
     // https://cors-anywhere.herokuapp.com/
@@ -40,8 +32,6 @@ export default function App() {
     const [planetaryData, setPlanetaryData] = useState();
     const [didFetchFail, setDidFetchFail] = useState(false);
     const [isSidebarOpened, setIsSidebarOpened] = useState(false);
-
-    const classes = useStyles();
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
@@ -80,12 +70,17 @@ export default function App() {
     return (
         planetaryData ?
         <div>
-            <Filters planetaryData={planetaryData} isSidebarOpened={isSidebarOpened} setIsSidebarOpened={setIsSidebarOpened}/>
-            <div className={classes.banana}>
-                <Header isSidebarOpened={isSidebarOpened} setIsSidebarOpened={setIsSidebarOpened}/>
-                <PlanetList planetaryData={planetaryData}/>
-                <Footer/>
-            </div>
+            <Header 
+                isSidebarOpened={isSidebarOpened}
+                setIsSidebarOpened={setIsSidebarOpened}
+            />
+            <Filters 
+                planetaryData={planetaryData}
+                isSidebarOpened={isSidebarOpened}
+                setIsSidebarOpened={setIsSidebarOpened}
+            />
+            <PlanetList planetaryData={planetaryData}/>
+            <Footer/>
         </div> :
         <FetchAlert didFetchFail={didFetchFail}/>
     )
