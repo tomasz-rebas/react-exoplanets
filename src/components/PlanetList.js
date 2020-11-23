@@ -1,9 +1,10 @@
 import React from 'react';
 import PlanetCard from './PlanetCard';
+import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-    main: {
+    planetList: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -18,7 +19,7 @@ export default function PlanetList( { planetaryData }) {
 
     let planets = [];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
         console.log(planetaryData[i]);
         planets.push(
             <PlanetCard 
@@ -29,6 +30,12 @@ export default function PlanetList( { planetaryData }) {
     }
 
     return (
-        <main className={classes.main}>{planets}</main>
+        <main>
+            <div className={classes.planetList}>{planets}</div>
+            <Pagination 
+                count={10}
+                color="primary"
+            />
+        </main>
     );
 }
