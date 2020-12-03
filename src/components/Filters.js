@@ -29,7 +29,11 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                 console.log(labels);
                 let checkboxes = labels.map((label, index) =>
                     <label key={element.databaseColumnName + '_' + index}>
-                        <input type="checkbox" name={label}/>
+                        <input 
+                            type="checkbox"
+                            name={label}
+                            defaultChecked="checked"
+                        />
                         {label}
                     </label>
                 );
