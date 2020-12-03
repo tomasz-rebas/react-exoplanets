@@ -53,7 +53,7 @@ export default function PlanetCard( { data } ) {
                     className={classes.planetIcon}
                 />
             }
-            {pl_name}
+            <h4>{pl_name}</h4>
         </Card>
     );
 }
