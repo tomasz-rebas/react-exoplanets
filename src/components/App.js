@@ -35,20 +35,6 @@ export default function App() {
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
-    // const tableColumns = [
-    //     ['pl_name', 'Planet Name'],
-    //     ['hostname', 'Host Name'],
-    //     ['disc_facility', 'Discovery Facility'],
-    //     ['discoverymethod', 'Discovery Method'],
-    //     ['disc_year', 'Discovery Year'],
-    //     ['pl_orbper', 'Orbital Period'],
-    //     ['pl_orbsmax', 'Orbit Semi-Major Axis [au]'],
-    //     ['pl_masse', 'Planet Mass'],
-    //     ['pl_rade', 'Planet Radius [Earth Radius]'],
-    //     ['pl_dens', 'Planet Density [g/cm**3]'],
-    //     ['releasedate', 'Release Date']
-    // ];
-
     useEffect(() => {
         /*const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
         console.log(url);
