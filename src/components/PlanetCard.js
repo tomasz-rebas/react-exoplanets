@@ -34,12 +34,6 @@ export default function PlanetCard( { data } ) {
         for (let i = 0; i < tableColumns.length; i++) {
             if (tableColumns[i].databaseColumnName === property && 
                 tableColumns[i].databaseColumnName !== 'pl_name') {
-                // dataForDisplay.push({
-                //     value: data[property],
-                //     label: tableColumns[i].tableLabel,
-                //     description: tableColumns[i].description,
-                //     unit: tableColumns[i].unit
-                // });
                 let value;
                 if (tableColumns[i].dataType === 'number') {
                     value = roundValue(data[property]);
@@ -48,7 +42,7 @@ export default function PlanetCard( { data } ) {
                 }
                 
                 const label = tableColumns[i].tableLabel;
-                const description = tableColumns[i].description;
+                //const description = tableColumns[i].description;
                 const unit = tableColumns[i].unit;
                 dataForDisplay.push(
                     <div className={classes.dataRow}>
@@ -60,19 +54,7 @@ export default function PlanetCard( { data } ) {
         }
     }
 
-    const {
-        disc_facility,
-        disc_year,
-        discoverymethod,
-        hostname,
-        pl_dens,
-        pl_masse,
-        pl_name,
-        pl_orbper,
-        pl_orbsmax,
-        pl_rade,
-        releasedate
-    } = data;
+    const { pl_dens, pl_name } = data;
 
     return (
         <Card 
