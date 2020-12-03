@@ -8,6 +8,18 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     drawerPaper: {
         padding: '20px'
+    },
+    label: {
+        display: 'block',
+        paddingTop: '5px',
+        paddingBottom: '5px',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+    },
+    inputContainer: {
+        paddingTop: '10px',
+        paddingBottom: '10px'
     }
 });
 
@@ -28,7 +40,10 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                 });
                 console.log(labels);
                 let checkboxes = labels.map((label, index) =>
-                    <label key={element.databaseColumnName + '_' + index}>
+                    <label 
+                        key={element.databaseColumnName + '_' + index}
+                        className={classes.label}
+                    >
                         <input 
                             type="checkbox"
                             name={label}

@@ -6,11 +6,13 @@ import roundValue from '../functions/roundValue';
 
 const useStyles = makeStyles({
     card: {
+        width: '250px',
         padding: '10px',
         margin: '10px',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        textAlign: 'center'
     },
     planetIcon: {
         width: '70px',
