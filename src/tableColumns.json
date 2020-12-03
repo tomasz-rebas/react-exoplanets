@@ -76,7 +76,7 @@
         "minValue": 0,
         "maxValue": 500,
         "scaleStep": 0.5,
-        "unit": "Earth Mass"
+        "unit": "M⊕"
     },
     {
         "databaseColumnName": "pl_rade",
@@ -88,7 +88,7 @@
         "minValue": 0,
         "maxValue": 20,
         "scaleStep": 0.25,
-        "unit": "Earth Radius"
+        "unit": "R⊕"
     },
     {
         "databaseColumnName": "pl_dens",
