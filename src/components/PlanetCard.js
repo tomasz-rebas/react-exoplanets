@@ -45,7 +45,10 @@ export default function PlanetCard( { data } ) {
                 //const description = tableColumns[i].description;
                 const unit = tableColumns[i].unit;
                 dataForDisplay.push(
-                    <div className={classes.dataRow}>
+                    <div 
+                        className={classes.dataRow}
+                        key={label}
+                    >
                         <strong>{label}: </strong>
                         <span>{value} {unit}</span>
                     </div>
@@ -67,11 +70,13 @@ export default function PlanetCard( { data } ) {
                     /*src="https://www.flaticon.com/svg/static/icons/svg/3336/3336008.svg"*/
                     src="gas-giant.svg"
                     className={classes.planetIcon}
+                    alt="Planet"
                 /> :  
                 <img
                     /*src="https://www.flaticon.com/svg/static/icons/svg/1197/1197992.svg"*/
                     src="rocky-planet.svg"
                     className={classes.planetIcon}
+                    alt="Planet"
                 />
             }
             <h4>{pl_name}</h4>
