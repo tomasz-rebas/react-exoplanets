@@ -44,25 +44,27 @@
     },
     {
         "databaseColumnName": "pl_orbper",
-        "tableLabel": "Orbital Period [days]",
+        "tableLabel": "Orbital Period",
         "description": "Time the planet takes to make a complete orbit around the host star or system",
         "usedInQuery": true,
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
         "maxValue": 500,
-        "scaleStep": 0.5
+        "scaleStep": 0.5,
+        "unit": "days"
     },
     {
         "databaseColumnName": "pl_orbsmax",
-        "tableLabel": "Orbit Semi-Major Axis [au]",
+        "tableLabel": "Orbit Semi-Major Axis",
         "description": "The longest radius of an elliptic orbit, or, for exoplanets detected via gravitational microlensing or direct imaging, the projected separation in the plane of the sky",
         "usedInQuery": true,
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
         "maxValue": 300,
-        "scaleStep": 0.5
+        "scaleStep": 0.5,
+        "unit": "AU"
     },
     {
         "databaseColumnName": "pl_masse",
@@ -73,29 +75,32 @@
         "dataType": "number",
         "minValue": 0,
         "maxValue": 500,
-        "scaleStep": 0.5
+        "scaleStep": 0.5,
+        "unit": "Earth Mass"
     },
     {
         "databaseColumnName": "pl_rade",
-        "tableLabel": "Planet Radius [Earth Radius]",
+        "tableLabel": "Planet Radius",
         "description": "Length of a line segment from the center of the planet to its surface, measured in units of radius of the Earth",
         "usedInQuery": true,
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
         "maxValue": 20,
-        "scaleStep": 0.25
+        "scaleStep": 0.25,
+        "unit": "Earth Radius"
     },
     {
         "databaseColumnName": "pl_dens",
-        "tableLabel": "Planet Density [g/cm**3]",
+        "tableLabel": "Planet Density",
         "description": "Amount of mass per unit of volume of the planet",
         "usedInQuery": true,
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
         "maxValue": 10,
-        "scaleStep": 0.1
+        "scaleStep": 0.1,
+        "unit": "g/cm³"
     },
     {
         "databaseColumnName": "releasedate",
