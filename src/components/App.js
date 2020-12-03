@@ -35,22 +35,28 @@ export default function App() {
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
+    const isInDevelopment = true;
+
     useEffect(() => {
-        /*const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
-        console.log(url);
-        fetch(url)
-        .then(response => response.text())
-        .then(data => {
-            const convertedData = csvToObject(data);
-            const strippedData = keepUniquePlanets(convertedData);
-            console.log(strippedData);
-            setPlanetaryData(strippedData);
-        })
-        .catch(error => {
-            console.error('The error occured. ' + error);
-            setDidFetchFail(true);*/
+        if (isInDevelopment) {
             setTimeout(() => {setPlanetaryData(fallbackData)}, 1000);
-        /*});*/
+        } else {
+            const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
+            console.log(url);
+            fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                const convertedData = csvToObject(data);
+                const strippedData = keepUniquePlanets(convertedData);
+                console.log(strippedData);
+                setPlanetaryData(strippedData);
+            })
+            .catch(error => {
+                console.error('The error occured. ' + error);
+                setDidFetchFail(true);
+                setTimeout(() => {setPlanetaryData(fallbackData)}, 1000);
+            });
+        }
     }, []);
 
     return (
