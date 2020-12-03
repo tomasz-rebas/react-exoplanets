@@ -38,7 +38,6 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                         labels.push(planet[element.databaseColumnName]);
                     }
                 });
-                console.log(labels);
                 let checkboxes = labels.map((label, index) =>
                     <label 
                         key={element.databaseColumnName + '_' + index}
