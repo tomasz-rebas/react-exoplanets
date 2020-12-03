@@ -54,7 +54,7 @@ export default function App() {
             .catch(error => {
                 console.error('The error occured. ' + error);
                 setDidFetchFail(true);
-                setTimeout(() => {setPlanetaryData(fallbackData)}, 1000);
+                setPlanetaryData(fallbackData);
             });
         }
     }, [isInDevelopment]);
