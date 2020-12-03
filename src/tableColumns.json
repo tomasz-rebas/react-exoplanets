@@ -68,7 +68,7 @@
     },
     {
         "databaseColumnName": "pl_masse",
-        "tableLabel": "Planet Mass [Earth Mass]",
+        "tableLabel": "Planet Mass",
         "description": "Amount of matter contained in the planet, measured in units of masses of the Earth",
         "usedInQuery": true,
         "usedInForm": true,
