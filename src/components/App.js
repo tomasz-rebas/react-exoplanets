@@ -32,6 +32,7 @@ export default function App() {
     const [planetaryData, setPlanetaryData] = useState();
     const [didFetchFail, setDidFetchFail] = useState(false);
     const [isSidebarOpened, setIsSidebarOpened] = useState(false);
+    const [filters, setFilters] = useState([]);
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
@@ -70,6 +71,8 @@ export default function App() {
                 planetaryData={planetaryData}
                 isSidebarOpened={isSidebarOpened}
                 setIsSidebarOpened={setIsSidebarOpened}
+                filters={filters}
+                setFilters={setFilters}
             />
             <PlanetList planetaryData={planetaryData}/>
             <Footer/>

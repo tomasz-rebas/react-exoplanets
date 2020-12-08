@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import tableColumns from '../tableColumns.json';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -26,21 +26,32 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarOpened } ) {
+export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarOpened, filters, setFilters } ) {
 
     const classes = useStyles();
 
     let inputs = [];
+    let filterSettings = [];
 
     tableColumns.forEach(element => {
+
         if (element.usedInForm) {
+
             if (element.dataType === 'text') {
+
                 let labels = [];
+                let checkboxValues = [];
+
                 planetaryData.forEach(planet => {
                     if (!labels.includes(planet[element.databaseColumnName])) {
                         labels.push(planet[element.databaseColumnName]);
+                        checkboxValues.push({
+                            name: planet[element.databaseColumnName],
+                            isChecked: true
+                        });
                     }
                 });
+
                 let checkboxes = labels.map((label, index) =>
                     <label 
                         key={element.databaseColumnName + '_' + index}
@@ -50,10 +61,35 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                             type="checkbox"
                             name={label}
                             defaultChecked="checked"
+                            onChange={event => {  
+                                const { name } = event.target;
+                                setFilters(previousState => 
+                                    previousState.map(filter => {
+                                        if (filter.name === element.databaseColumnName) {
+                                            return {
+                                                name: filter.name,
+                                                values: filter.values.map(checkbox => {
+                                                    if (checkbox.name === name) {
+                                                        return {
+                                                            name: checkbox.name,
+                                                            isChecked: !checkbox.isChecked
+                                                        }
+                                                    } else {
+                                                        return checkbox;
+                                                    }
+                                                })
+                                            }
+                                        } else {
+                                            return filter;
+                                        }
+                                    })
+                                );
+                            }}
                         />
                         {label}
                     </label>
                 );
+
                 inputs.unshift(
                     <div key={element.databaseColumnName + '_label'} className="input-container">
                         <h4>{element.tableLabel}</h4>
@@ -66,9 +102,18 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                         </Button>
                     </div>
                 );
-            } else if (element.dataType === 'number') {
+
+                filterSettings.push({
+                    name: element.databaseColumnName,
+                    values: checkboxValues
+                });
+            } 
+
+            else if (element.dataType === 'number') {
+
                 const min = element.minValue;
                 const max = element.maxValue;
+
                 inputs.push(
                     <div key={element.databaseColumnName + '_label'}>
                         <h4>{element.tableLabel}</h4>
@@ -81,12 +126,40 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                             step={element.scaleStep}
                             min={min}
                             max={max}
+                            onChangeCommitted={(event, value) => {
+                                const newMin = value[0];
+                                const newMax = value[1];
+                                setFilters(previousState => 
+                                    previousState.map(filter => {
+                                        if (filter.name === element.databaseColumnName) {
+                                            return {
+                                                name: filter.name,
+                                                minValue: newMin,
+                                                maxValue: newMax
+                                            }
+                                        } else {
+                                            return filter;
+                                        }
+                                    })
+                                );
+                            }}
                         />
                     </div>
                 );
+                
+                filterSettings.push({
+                    name: element.databaseColumnName,
+                    minValue: min,
+                    maxValue: max
+                });
             }
         }
     });
+
+    useEffect(() => {
+        setFilters(filterSettings);
+        console.log('filters set');
+    }, []);
 
     return (
         <Drawer 
