@@ -117,7 +117,10 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
 
                 inputs.push(
                     <div key={element.databaseColumnName + '_label'}>
-                        <h4>{element.tableLabel}</h4>
+                        <h4>
+                            {element.tableLabel}
+                            {element.unit ? ' [' + element.unit + ']' : ''}
+                        </h4>
                         <Slider
                             defaultValue={[min, max]}
                             // onChange={}
