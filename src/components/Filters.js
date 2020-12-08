@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarOpened, filters, setFilters } ) {
+export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarOpened, activeFilters, setActiveFilters } ) {
 
     const classes = useStyles();
 
@@ -63,7 +63,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                             defaultChecked="checked"
                             onChange={event => {  
                                 const { name } = event.target;
-                                setFilters(previousState => 
+                                setActiveFilters(previousState => 
                                     previousState.map(filter => {
                                         if (filter.name === element.databaseColumnName) {
                                             return {
@@ -136,7 +136,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                             onChangeCommitted={(event, value) => {
                                 const newMin = value[0];
                                 const newMax = value[1];
-                                setFilters(previousState => 
+                                setActiveFilters(previousState => 
                                     previousState.map(filter => {
                                         if (filter.name === element.databaseColumnName) {
                                             return {
@@ -164,7 +164,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
     });
 
     useEffect(() => {
-        setFilters(filterSettings);
+        setActiveFilters(filterSettings);
     }, []);
 
     return (
