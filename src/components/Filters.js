@@ -77,7 +77,14 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                                                     } else {
                                                         return checkbox;
                                                     }
-                                                })
+                                                }),
+                                                // values: [
+                                                //     ...filter.values,
+                                                //     {
+                                                //         name: name,
+                                                //         isChecked: false 
+                                                //     }
+                                                // ]
                                             }
                                         } else {
                                             return filter;
@@ -158,7 +165,6 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
 
     useEffect(() => {
         setFilters(filterSettings);
-        console.log('filters set');
     }, []);
 
     return (
