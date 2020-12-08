@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     inputContainer: {
         paddingTop: '10px',
         paddingBottom: '10px'
+    },
+    selectAllButton: {
+        marginTop: '15px'
     }
 });
 
@@ -55,7 +58,12 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                     <div key={element.databaseColumnName + '_label'} className="input-container">
                         <h4>{element.tableLabel}</h4>
                         <div>{checkboxes}</div>
-                        <Button variant="contained">Select All</Button>
+                        <Button 
+                            variant="contained"
+                            className={classes.selectAllButton}
+                        >
+                            Select All
+                        </Button>
                     </div>
                 );
             } else if (element.dataType === 'number') {
