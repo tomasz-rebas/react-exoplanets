@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     drawerPaper: {
-        padding: '20px'
+        padding: '20px',
+        width: '600px'
     },
     label: {
         display: 'block',
@@ -158,7 +159,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
 
     useEffect(() => {
         setActiveFilters(filterSettings);
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Drawer 
