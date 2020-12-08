@@ -38,7 +38,7 @@
         "usedInQuery": true,
         "usedInForm": true,
         "dataType": "number",
-        "minValue": 1970,
+        "minValue": 1998,
         "maxValue": 2020,
         "scaleStep": 1
     },
@@ -50,8 +50,8 @@
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
-        "maxValue": 500,
-        "scaleStep": 0.5,
+        "maxValue": 350,
+        "scaleStep": 0.1,
         "unit": "days"
     },
     {
@@ -62,8 +62,8 @@
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
-        "maxValue": 300,
-        "scaleStep": 0.5,
+        "maxValue": 1.5,
+        "scaleStep": 0.005,
         "unit": "AU"
     },
     {
@@ -74,7 +74,7 @@
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
-        "maxValue": 500,
+        "maxValue": 9000,
         "scaleStep": 0.5,
         "unit": "M⊕"
     },
@@ -86,7 +86,7 @@
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
-        "maxValue": 20,
+        "maxValue": 25,
         "scaleStep": 0.25,
         "unit": "R⊕"
     },
@@ -98,7 +98,7 @@
         "usedInForm": true,
         "dataType": "number",
         "minValue": 0,
-        "maxValue": 10,
+        "maxValue": 35,
         "scaleStep": 0.1,
         "unit": "g/cm³"
     },

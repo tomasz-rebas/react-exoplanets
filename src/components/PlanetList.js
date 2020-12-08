@@ -20,13 +20,11 @@ const useStyles = makeStyles({
 export default function PlanetList( { planetaryData, activeFilters }) {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(24);
+    const [itemsPerPage] = useState(24);
 
     const classes = useStyles();
 
     function shouldBeFilteredOut(data) {
-        //console.log(data);
-        //console.log(activeFilters);
 
         let shouldBeFilteredOut = false;
 
@@ -45,21 +43,23 @@ export default function PlanetList( { planetaryData, activeFilters }) {
         return shouldBeFilteredOut;
     }
 
-    const numberOfPages = parseInt(planetaryData.length / itemsPerPage + 1);
+    let planetaryDataAfterFiltering = planetaryData.filter(element => !shouldBeFilteredOut(element));
+
+    // console.log('planetaryData = ' + planetaryData.length);
+    // console.log('planetaryDataAfterFiltering = ' + planetaryDataAfterFiltering.length);
+
+    const numberOfPages = parseInt(planetaryDataAfterFiltering.length / itemsPerPage + 1);
+
     let planets = [];
 
     for (let i = (currentPage - 1) * itemsPerPage; i < currentPage * itemsPerPage; i++) {
-        console.log(shouldBeFilteredOut(planetaryData[i]));
-        if (i < planetaryData.length && !shouldBeFilteredOut(planetaryData[i])) {
-            console.log(planetaryData[i].pl_name + " won't be filtered out.");
+        if (i < planetaryDataAfterFiltering.length) {
             planets.push(
                 <PlanetCard 
-                    data={planetaryData[i]}
-                    key={planetaryData[i].pl_name}
+                    data={planetaryDataAfterFiltering[i]}
+                    key={planetaryDataAfterFiltering[i].pl_name + '_' + i}
                 />
             )
-        } else {
-            console.log(planetaryData[i].pl_name + " will not appear.");
         }
     }
 

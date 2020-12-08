@@ -77,14 +77,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                                                     } else {
                                                         return checkbox;
                                                     }
-                                                }),
-                                                // values: [
-                                                //     ...filter.values,
-                                                //     {
-                                                //         name: name,
-                                                //         isChecked: false 
-                                                //     }
-                                                // ]
+                                                })
                                             }
                                         } else {
                                             return filter;
