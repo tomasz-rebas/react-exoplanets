@@ -74,7 +74,10 @@ export default function App() {
                 filters={filters}
                 setFilters={setFilters}
             />
-            <PlanetList planetaryData={planetaryData}/>
+            <PlanetList 
+                planetaryData={planetaryData}
+                filters={filters}
+            />
             <Footer/>
         </div> :
         <FetchAlert didFetchFail={didFetchFail}/>

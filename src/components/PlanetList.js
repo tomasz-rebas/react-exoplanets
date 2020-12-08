@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlanetCard from './PlanetCard';
 import Paging from './Paging';
 import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
 
 const useStyles = makeStyles({
     main: {
@@ -18,18 +17,36 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetList( { planetaryData }) {
+export default function PlanetList( { planetaryData, filters }) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(24);
 
     const classes = useStyles();
+
+    function shouldBeFilteredOut(data) {
+        //console.log(data);
+        filters.forEach(property => {
+            //console.log(property);
+            if (data.[property.name] >= property.minValue && data.[property.name] <= property.maxValue) {
+                return false;
+            } else if (property.values) {
+                property.values.forEach(checkbox => {
+                    if (checkbox.name === data.[property.name] && checkbox.isChecked) {
+                        return false;
+                    }
+                });
+            } else {
+                return true;
+            }
+        });
+    }
+
     const numberOfPages = parseInt(planetaryData.length / itemsPerPage + 1);
     let planets = [];
 
     for (let i = (currentPage - 1) * itemsPerPage; i < currentPage * itemsPerPage; i++) {
-        //console.log(planetaryData[i]);
-        if (i < planetaryData.length) {
+        if (i < planetaryData.length && !shouldBeFilteredOut(planetaryData[i])) {
             planets.push(
                 <PlanetCard 
                     data={planetaryData[i]}
