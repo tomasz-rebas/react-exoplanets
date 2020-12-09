@@ -32,15 +32,18 @@ export default function App() {
     const [planetaryData, setPlanetaryData] = useState();
     const [didFetchFail, setDidFetchFail] = useState(false);
     const [isSidebarOpened, setIsSidebarOpened] = useState(false);
-    const [activeFilters, setActiveFilters] = useState([]);
+    const [activeFilters, setActiveFilters] = useState();
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-
     const isInDevelopment = true;
 
+    // Fetch the data.
     useEffect(() => {
         if (isInDevelopment) {
-            setTimeout(() => {setPlanetaryData(fallbackData)}, 1000);
+            setTimeout(() => {
+                setPlanetaryData(fallbackData);
+                // setActiveFilters([]);
+            }, 1000);
         } else {
             const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
             console.log(url);
@@ -60,8 +63,39 @@ export default function App() {
         }
     }, [isInDevelopment]);
 
+    // Initialize active filters' state.
+    useEffect(() => {
+        if (planetaryData) {
+            let initiallyActiveFilters = [];
+            tableColumns.forEach(element => {
+                const { usedInForm, dataType, databaseColumnName, minValue, maxValue } = element;
+                if (usedInForm) {
+                    if (dataType === 'number') {
+                        initiallyActiveFilters.push({
+                            name: databaseColumnName,
+                            minValue,
+                            maxValue
+                        });
+                    } else {
+                        let values = [];
+                        planetaryData.forEach(entry => {
+                            if (!values.includes(entry.[databaseColumnName])) {
+                                values.push(entry.[databaseColumnName]);
+                            }
+                        });
+                        initiallyActiveFilters.push({
+                            name: databaseColumnName,
+                            values
+                        });
+                    }
+                }
+            });
+            setActiveFilters(initiallyActiveFilters);
+        }
+    }, [planetaryData]);
+
     return (
-        planetaryData ?
+        planetaryData && activeFilters ?
         <div>
             <Header 
                 isSidebarOpened={isSidebarOpened}
@@ -73,7 +107,7 @@ export default function App() {
                 setIsSidebarOpened={setIsSidebarOpened}
                 activeFilters={activeFilters}
                 setActiveFilters={setActiveFilters}
-            />
+            />}
             <PlanetList 
                 planetaryData={planetaryData}
                 activeFilters={activeFilters}
