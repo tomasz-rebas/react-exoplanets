@@ -79,8 +79,17 @@ export default function App() {
                     } else {
                         let values = [];
                         planetaryData.forEach(entry => {
-                            if (!values.includes(entry.[databaseColumnName])) {
-                                values.push(entry.[databaseColumnName]);
+                            let isInArray = false;
+                            values.forEach(value => {
+                                if (value.name === entry.[databaseColumnName]) {
+                                    isInArray = true;
+                                }
+                            });
+                            if (!isInArray) {
+                                values.push({
+                                    name: entry.[databaseColumnName],
+                                    isActive: true
+                                });
                             }
                         });
                         initiallyActiveFilters.push({

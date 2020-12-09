@@ -33,7 +33,7 @@ export default function PlanetList( { planetaryData, activeFilters }) {
                 shouldBeFilteredOut = true;
             } else if (property.values) {
                 property.values.forEach(checkbox => {
-                    if (checkbox.name === data.[property.name] && !checkbox.isChecked) {
+                    if (checkbox.name === data.[property.name] && !checkbox.isActive) {
                         shouldBeFilteredOut = true;
                     }
                 });

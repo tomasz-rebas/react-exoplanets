@@ -48,7 +48,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                         labels.push(planet[element.databaseColumnName]);
                         checkboxValues.push({
                             name: planet[element.databaseColumnName],
-                            isChecked: true
+                            isActive: true
                         });
                     }
                 });
@@ -73,7 +73,7 @@ export default function Filters( { planetaryData, isSidebarOpened, setIsSidebarO
                                                     if (checkbox.name === name) {
                                                         return {
                                                             name: checkbox.name,
-                                                            isChecked: !checkbox.isChecked
+                                                            isActive: !checkbox.isActive
                                                         }
                                                     } else {
                                                         return checkbox;
