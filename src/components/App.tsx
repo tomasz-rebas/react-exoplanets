@@ -13,6 +13,8 @@ import PlanetList from './PlanetList';
 import FetchAlert from './FetchAlert';
 import Footer from './Footer';
 
+import { Entry } from '../interfaces/Entry';
+
 export default function App() {
 
     // https://cors-anywhere.herokuapp.com/
@@ -29,10 +31,6 @@ export default function App() {
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps&format=csv
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+column_name,description+from+TAP_SCHEMA.columns+where+table_name+like+'ps'&format=csv
 
-    interface RawEntry {
-        [key: string]: string
-    }
-
     interface ActiveFilterList {
         name: string,
         isActive: boolean
@@ -45,7 +43,7 @@ export default function App() {
         values?: ActiveFilterList[]
     }
 
-    const [planetaryData, setPlanetaryData] = useState<Array<RawEntry>>();
+    const [planetaryData, setPlanetaryData] = useState<Array<Entry>>();
     const [didFetchFail, setDidFetchFail] = useState<boolean>(false);
     const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
     const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();

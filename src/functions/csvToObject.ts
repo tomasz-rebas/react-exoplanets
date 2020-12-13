@@ -1,6 +1,4 @@
-interface RawEntry {
-    [key: string]: string
-}
+import { Entry } from '../interfaces/Entry';
 
 export default function csvToObject(text: string) {
 
@@ -12,7 +10,7 @@ export default function csvToObject(text: string) {
 
     const convertedData = rows.map(row => {
 
-        let newElement: RawEntry = {};
+        let newElement: Entry = {};
         const values = row.split(',');
 
         for (let i = 0; i < keys.length; i++) {

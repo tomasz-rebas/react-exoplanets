@@ -3,6 +3,11 @@ import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import tableColumns from '../tableColumns.json';
 import roundValue from '../functions/roundValue';
+import { Entry } from '../interfaces/Entry';
+
+type Props = {
+    data: Entry
+}
 
 const useStyles = makeStyles({
     card: {
@@ -24,7 +29,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetCard( { data } ) {
+export default function PlanetCard( { data }: Props ) {
 
     const classes = useStyles();
     
@@ -66,7 +71,7 @@ export default function PlanetCard( { data } ) {
         >
             <img
                 /*src="https://www.flaticon.com/svg/static/icons/svg/1197/1197992.svg"*/
-                src={pl_dens < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
+                src={parseFloat(pl_dens) < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
                 className={classes.planetIcon}
                 alt="Planet"
             />
