@@ -1,4 +1,8 @@
-export default function csvToObject(text) {
+interface Entry {
+    [key: string]: string | number
+}
+
+export default function csvToObject(text: string) {
 
     let rows = text.split(/\r?\n/);
     const keys = rows[0].split(',');
@@ -8,7 +12,7 @@ export default function csvToObject(text) {
 
     const convertedData = rows.map(row => {
 
-        let newElement = {};
+        let newElement: Entry = {};
         const values = row.split(',');
 
         for (let i = 0; i < keys.length; i++) {
