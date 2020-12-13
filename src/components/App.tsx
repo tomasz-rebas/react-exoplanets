@@ -14,6 +14,8 @@ import FetchAlert from './FetchAlert';
 import Footer from './Footer';
 
 import { Entry } from '../interfaces/Entry';
+import { ActiveFilter } from '../interfaces/ActiveFilter';
+import { ActiveFilterValue } from '../interfaces/ActiveFilterValue';
 
 export default function App() {
 
@@ -31,17 +33,6 @@ export default function App() {
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps&format=csv
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+column_name,description+from+TAP_SCHEMA.columns+where+table_name+like+'ps'&format=csv
 
-    interface ActiveFilterList {
-        name: string,
-        isActive: boolean
-    }
-
-    interface ActiveFilter {
-        name?: string,
-        minValue?: number,
-        maxValue?: number,
-        values?: ActiveFilterList[]
-    }
 
     const [planetaryData, setPlanetaryData] = useState<Array<Entry>>();
     const [didFetchFail, setDidFetchFail] = useState<boolean>(false);
@@ -91,7 +82,7 @@ export default function App() {
                             maxValue
                         });
                     } else {
-                        let values: ActiveFilterList[] = [];
+                        let values: ActiveFilterValue[] = [];
                         planetaryData.forEach(entry => {
                             let isInArray = false;
                             values.forEach(value => {

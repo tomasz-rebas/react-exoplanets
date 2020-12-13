@@ -3,6 +3,14 @@ import PlanetCard from './PlanetCard';
 import Paging from './Paging';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { Entry } from '../interfaces/Entry';
+import { ActiveFilter } from '../interfaces/ActiveFilter';
+
+type Props = {
+    planetaryData: Entry[],
+    activeFilters: ActiveFilter[]
+}
+
 const useStyles = makeStyles({
     main: {
         paddingTop: '100px'
@@ -17,38 +25,38 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetList( { planetaryData, activeFilters }) {
+export default function PlanetList( { planetaryData, activeFilters }: Props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(24);
 
     const classes = useStyles();
 
-    function shouldBeFilteredOut(data) {
+    function shouldBeFilteredOut(data: Entry) {
 
         let shouldBeFilteredOut = false;
 
         activeFilters.forEach(property => {
-            if (data[property.name] < property.minValue || data[property.name] > property.maxValue) {
-                shouldBeFilteredOut = true;
-            } else if (property.values) {
-                property.values.forEach(checkbox => {
-                    if (checkbox.name === data[property.name] && !checkbox.isActive) {
-                        shouldBeFilteredOut = true;
-                    }
-                });
+            const { name, minValue, maxValue, values } = property;
+            if (name !== undefined && minValue !== undefined && maxValue !== undefined) {
+                if (parseFloat(data[name]) < minValue || parseFloat(data[name]) > maxValue) {
+                    shouldBeFilteredOut = true;
+                } else if (values) {
+                    values.forEach(checkbox => {
+                        if (checkbox.name === data[name] && !checkbox.isActive) {
+                            shouldBeFilteredOut = true;
+                        }
+                    });
+                }
             }
         });
 
         return shouldBeFilteredOut;
     }
 
-    let planetaryDataAfterFiltering = planetaryData.filter(element => !shouldBeFilteredOut(element));
+    const planetaryDataAfterFiltering = planetaryData.filter(element => !shouldBeFilteredOut(element));
 
-    // console.log('planetaryData = ' + planetaryData.length);
-    // console.log('planetaryDataAfterFiltering = ' + planetaryDataAfterFiltering.length);
-
-    const numberOfPages = parseInt(planetaryDataAfterFiltering.length / itemsPerPage + 1);
+    const numberOfPages = Math.floor(planetaryDataAfterFiltering.length / itemsPerPage + 1);
 
     let planets = [];
 
