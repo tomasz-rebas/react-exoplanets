@@ -1,4 +1,20 @@
-export default function buildQuery(columns, noNull) {
+type Column = {
+    databaseColumnName: string,
+    // tableLabel: string,
+    // description: string,
+    usedInQuery: boolean,
+    // usedInForm: boolean,
+    // dataType: string,
+    // minValue: number,
+    // maxValue: number,
+    // scaleStep: number,
+    // unit: string
+}
+
+export default function buildQuery(
+    columns: Column[], 
+    noNull: boolean
+    ) {
 
     let columnList = '';
 
