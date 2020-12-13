@@ -1,20 +1,12 @@
 type Column = {
-    databaseColumnName: string,
-    // tableLabel: string,
-    // description: string,
-    usedInQuery: boolean,
-    // usedInForm: boolean,
-    // dataType: string,
-    // minValue: number,
-    // maxValue: number,
-    // scaleStep: number,
-    // unit: string
+    databaseColumnName: string
+    usedInQuery: boolean
 }
 
 export default function buildQuery(
     columns: Column[], 
     noNull: boolean
-    ) {
+) {
 
     let columnList = '';
 
