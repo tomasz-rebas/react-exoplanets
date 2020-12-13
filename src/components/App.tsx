@@ -29,10 +29,26 @@ export default function App() {
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps&format=csv
     // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+column_name,description+from+TAP_SCHEMA.columns+where+table_name+like+'ps'&format=csv
 
-    const [planetaryData, setPlanetaryData] = useState();
-    const [didFetchFail, setDidFetchFail] = useState(false);
-    const [isSidebarOpened, setIsSidebarOpened] = useState(false);
-    const [activeFilters, setActiveFilters] = useState();
+    interface RawEntry {
+        [key: string]: string
+    }
+
+    interface ActiveFilterList {
+        name: string,
+        isActive: boolean
+    }
+
+    interface ActiveFilter {
+        name?: string,
+        minValue?: number,
+        maxValue?: number,
+        values?: ActiveFilterList[]
+    }
+
+    const [planetaryData, setPlanetaryData] = useState<Array<RawEntry>>();
+    const [didFetchFail, setDidFetchFail] = useState<boolean>(false);
+    const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
+    const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
     const isInDevelopment = true;
@@ -66,7 +82,7 @@ export default function App() {
     // Initialize active filters' state.
     useEffect(() => {
         if (planetaryData) {
-            let initiallyActiveFilters = [];
+            let initiallyActiveFilters: ActiveFilter[] = [];
             tableColumns.forEach(element => {
                 const { usedInForm, dataType, databaseColumnName, minValue, maxValue } = element;
                 if (usedInForm) {
@@ -77,7 +93,7 @@ export default function App() {
                             maxValue
                         });
                     } else {
-                        let values = [];
+                        let values: ActiveFilterList[] = [];
                         planetaryData.forEach(entry => {
                             let isInArray = false;
                             values.forEach(value => {

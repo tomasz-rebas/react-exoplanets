@@ -1,10 +1,11 @@
+interface RawEntry {
+    [key: string]: string
+}
+
 // This function will remove some of the entries so only one entry
 // per planet will remain - the one with most recent release date.
 
-export default function keepUniquePlanets(data: {
-    pl_name: string,
-    releasedate: string
-}[]) {
+export default function keepUniquePlanets(data: RawEntry[]) {
 
     let strippedData = [];
     let mostRecentDateIndex = 0;
