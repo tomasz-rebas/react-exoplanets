@@ -2,13 +2,17 @@ import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 
+type Props = {
+    didFetchFail: boolean
+}
+
 const useStyles = makeStyles({
     fetchAlert: {
         textAlign: 'center'
     }
 });
 
-export default function FetchAlert( { didFetchFail } ) {
+export default function FetchAlert( { didFetchFail }: Props ) {
 
     const classes = useStyles();
     
