@@ -81,13 +81,13 @@ export default function App() {
                         planetaryData.forEach(entry => {
                             let isInArray = false;
                             values.forEach(value => {
-                                if (value.name === entry.[databaseColumnName]) {
+                                if (value.name === entry[databaseColumnName]) {
                                     isInArray = true;
                                 }
                             });
                             if (!isInArray) {
                                 values.push({
-                                    name: entry.[databaseColumnName],
+                                    name: entry[databaseColumnName],
                                     isActive: true
                                 });
                             }
@@ -116,7 +116,7 @@ export default function App() {
                 setIsSidebarOpened={setIsSidebarOpened}
                 activeFilters={activeFilters}
                 setActiveFilters={setActiveFilters}
-            />}
+            />
             <PlanetList 
                 planetaryData={planetaryData}
                 activeFilters={activeFilters}

@@ -2,6 +2,12 @@ import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles } from '@material-ui/core/styles';
 
+type Props = {
+    numberOfPages: number,
+    currentPage: number,
+    setCurrentPage: Function
+}
+
 const useStyles = makeStyles({
     pagination: {
         display: 'flex',
@@ -9,7 +15,11 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Paging( { numberOfPages, currentPage, setCurrentPage }) {
+export default function Paging({ 
+    numberOfPages, 
+    currentPage, 
+    setCurrentPage 
+}: Props) {
 
     const classes = useStyles();
 

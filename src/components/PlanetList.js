@@ -29,11 +29,11 @@ export default function PlanetList( { planetaryData, activeFilters }) {
         let shouldBeFilteredOut = false;
 
         activeFilters.forEach(property => {
-            if (data.[property.name] < property.minValue || data.[property.name] > property.maxValue) {
+            if (data[property.name] < property.minValue || data[property.name] > property.maxValue) {
                 shouldBeFilteredOut = true;
             } else if (property.values) {
                 property.values.forEach(checkbox => {
-                    if (checkbox.name === data.[property.name] && !checkbox.isActive) {
+                    if (checkbox.name === data[property.name] && !checkbox.isActive) {
                         shouldBeFilteredOut = true;
                     }
                 });

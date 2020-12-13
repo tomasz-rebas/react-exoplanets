@@ -4,6 +4,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
 
+type Props = {
+    isSidebarOpened: boolean,
+    setIsSidebarOpened: Function
+}
+
 const useStyles = makeStyles({
     toolbar: {
         justifyContent: 'space-between'
@@ -13,7 +18,10 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Header( { isSidebarOpened, setIsSidebarOpened } ) {
+export default function Header({
+    isSidebarOpened,
+    setIsSidebarOpened
+}: Props ) {
 
     const classes = useStyles();
 
