@@ -1,19 +1,19 @@
-export default function roundValue(value) {
+export default function roundValue(value: string) {
 
-    let firstDigitIndex = null;
-    let dotIndex = null;
+    let firstDigitIndex = -1;
+    let dotIndex = -1;
 
     for (let i = 0; i < value.length; i++) {
-        if (value[i] !== '0' && value[i] !== '.' && firstDigitIndex === null) {
+        if (value[i] !== '0' && value[i] !== '.' && firstDigitIndex === -1) {
             firstDigitIndex = i;
         } else if (value[i] === '.') {
             dotIndex = i;
-        } else if (firstDigitIndex !== null && dotIndex !== null) {
+        } else if (firstDigitIndex !== -1 && dotIndex !== -1) {
             break;
         }
     }
 
-    if (dotIndex === null) {
+    if (dotIndex === -1) {
         // The number is an integer. No changes.
         return value;
     } else if (dotIndex > firstDigitIndex) {
