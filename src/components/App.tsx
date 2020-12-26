@@ -78,6 +78,7 @@ export default function App() {
                     if (dataType === 'number') {
                         initiallyActiveFilters.push({
                             name: databaseColumnName,
+                            dataType,
                             minValue,
                             maxValue
                         });
@@ -99,6 +100,7 @@ export default function App() {
                         });
                         initiallyActiveFilters.push({
                             name: databaseColumnName,
+                            dataType,
                             values
                         });
                     }
