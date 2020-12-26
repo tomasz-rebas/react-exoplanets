@@ -52,135 +52,192 @@ export default function Filters({
     let inputs: React.ReactNode[] = [];
     // let filterSettings = [];
 
-    tableColumns.forEach(element => {
-
-        if (element.usedInForm) {
-
-            if (element.dataType === 'text') {
-
-                let labels: string[] = [];
-                let checkboxValues = [];
-
-                planetaryData.forEach(planet => {
-                    if (!labels.includes(planet[element.databaseColumnName])) {
-                        labels.push(planet[element.databaseColumnName]);
-                        checkboxValues.push({
-                            name: planet[element.databaseColumnName],
-                            isActive: true
-                        });
-                    }
-                });
-
-                let checkboxes = labels.map((label, index) =>
-                    <label 
-                        key={element.databaseColumnName + '_' + index}
-                        className={classes.label}
-                    >
-                        <input 
-                            type="checkbox"
-                            name={label}
-                            defaultChecked={true}
-                            onChange={event => {  
-                                const { name } = event.target;
-                                setActiveFilters((previousState: ActiveFilter[]) => 
-                                    previousState.map(filter => {
-                                        if (filter.name === element.databaseColumnName && filter.values !== undefined) {
-                                            return {
-                                                name: filter.name,
-                                                values: filter.values.map((checkbox: ActiveFilterValue) => {
-                                                    if (checkbox.name === name) {
-                                                        return {
-                                                            name: checkbox.name,
-                                                            isActive: !checkbox.isActive
-                                                        }
-                                                    } else {
-                                                        return checkbox;
+    activeFilters.forEach((activeFilter: any) => {
+        if (activeFilter.dataType === 'text') {
+            let checkboxes = activeFilter.values.map((value: any, index: any) =>
+                <label 
+                    key={index}
+                    className={classes.label}
+                >
+                    <input 
+                        type="checkbox"
+                        name={value.name}
+                        defaultChecked={value.isActive}
+                        onChange={event => {  
+                            const { name } = event.target;
+                            setActiveFilters((previousState: ActiveFilter[]) => 
+                                previousState.map(previousFilter => {
+                                    if (previousFilter.name === activeFilter.name && previousFilter.values !== undefined) {
+                                        return {
+                                            ...activeFilter,
+                                            values: activeFilter.values.map((checkbox: ActiveFilterValue) => {
+                                                if (checkbox.name === name) {
+                                                    return {
+                                                        name: checkbox.name,
+                                                        isActive: !checkbox.isActive
                                                     }
-                                                })
-                                            }
-                                        } else {
-                                            return filter;
+                                                } else {
+                                                    return checkbox;
+                                                }
+                                            })
                                         }
-                                    })
-                                );
-                            }}
-                        />
-                        {label}
-                    </label>
-                );
+                                    } else {
+                                        return previousFilter;
+                                    }
+                                })
+                            );
+                        }}
+                    />
+                    {value.name}
+                </label>
+            );
 
-                inputs.unshift(
-                    <div key={element.databaseColumnName + '_label'} className="input-container">
-                        <h4>{element.tableLabel}</h4>
-                        <div>{checkboxes}</div>
-                        <Button 
-                            variant="contained"
-                            className={classes.selectAllButton}
-                        >
-                            Select All
-                        </Button>
-                    </div>
-                );
+            inputs.unshift(
+                <div key={activeFilter.name + '_label'} className="input-container">
+                    <h4>{activeFilter.tableLabel}</h4>
+                    <div>{checkboxes}</div>
+                    <Button 
+                        variant="contained"
+                        className={classes.selectAllButton}
+                    >
+                        Select All
+                    </Button>
+                </div>
+            );
+        } /*else if (filter.dataType === 'number') {
+
+        }*/
+    });
+
+    // tableColumns.forEach(element => {
+
+    //     if (element.usedInForm) {
+
+    //         if (element.dataType === 'text') {
+
+    //             let labels: string[] = [];
+    //             let checkboxValues = [];
+
+    //             planetaryData.forEach(planet => {
+    //                 if (!labels.includes(planet[element.databaseColumnName])) {
+    //                     labels.push(planet[element.databaseColumnName]);
+    //                     checkboxValues.push({
+    //                         name: planet[element.databaseColumnName],
+    //                         isActive: true
+    //                     });
+    //                 }
+    //             });
+
+    //             let checkboxes = labels.map((label, index) =>
+    //                 <label 
+    //                     key={element.databaseColumnName + '_' + index}
+    //                     className={classes.label}
+    //                 >
+    //                     <input 
+    //                         type="checkbox"
+    //                         name={label}
+    //                         defaultChecked={true}
+    //                         onChange={event => {  
+    //                             const { name } = event.target;
+    //                             setActiveFilters((previousState: ActiveFilter[]) => 
+    //                                 previousState.map(filter => {
+    //                                     if (filter.name === element.databaseColumnName && filter.values !== undefined) {
+    //                                         return {
+    //                                             name: filter.name,
+    //                                             values: filter.values.map((checkbox: ActiveFilterValue) => {
+    //                                                 if (checkbox.name === name) {
+    //                                                     return {
+    //                                                         name: checkbox.name,
+    //                                                         isActive: !checkbox.isActive
+    //                                                     }
+    //                                                 } else {
+    //                                                     return checkbox;
+    //                                                 }
+    //                                             })
+    //                                         }
+    //                                     } else {
+    //                                         return filter;
+    //                                     }
+    //                                 })
+    //                             );
+    //                         }}
+    //                     />
+    //                     {label}
+    //                 </label>
+    //             );
+
+    //             inputs.unshift(
+    //                 <div key={element.databaseColumnName + '_label'} className="input-container">
+    //                     <h4>{element.tableLabel}</h4>
+    //                     <div>{checkboxes}</div>
+    //                     <Button 
+    //                         variant="contained"
+    //                         className={classes.selectAllButton}
+    //                     >
+    //                         Select All
+    //                     </Button>
+    //                 </div>
+    //             );
 
                 // filterSettings.push({
                 //     name: element.databaseColumnName,
                 //     values: checkboxValues
                 // });
-            } 
+            // } 
 
-            else if (element.dataType === 'number') {
+            // else if (element.dataType === 'number') {
 
-                const min = element.minValue;
-                const max = element.maxValue;
+            //     const min = element.minValue;
+            //     const max = element.maxValue;
 
-                if (min !== undefined && max !== undefined) {
-                    inputs.push(
-                        <div key={element.databaseColumnName + '_label'}>
-                            <h4>
-                                {element.tableLabel}
-                                {element.unit ? ' [' + element.unit + ']' : ''}
-                            </h4>
-                            <Slider
-                                defaultValue={[min, max]}
-                                // onChange={}
-                                valueLabelDisplay="auto"
-                                // aria-labelledby=""
-                                // getAriaValueText={}
-                                step={element.scaleStep}
-                                min={min}
-                                max={max}
-                                onChangeCommitted={(event, value: number | number[]) => {
-                                    if (Array.isArray(value)) {
-                                        const newMin = value[0];
-                                        const newMax = value[1];
-                                        setActiveFilters((previousState: ActiveFilter[]) => 
-                                            previousState.map(filter => {
-                                                if (filter.name === element.databaseColumnName) {
-                                                    return {
-                                                        name: filter.name,
-                                                        minValue: newMin,
-                                                        maxValue: newMax
-                                                    }
-                                                } else {
-                                                    return filter;
-                                                }
-                                            })
-                                        );
-                                    }
-                                }}
-                            />
-                        </div>
-                    );
-                }
+            //     if (min !== undefined && max !== undefined) {
+            //         inputs.push(
+            //             <div key={element.databaseColumnName + '_label'}>
+            //                 <h4>
+            //                     {element.tableLabel}
+            //                     {element.unit ? ' [' + element.unit + ']' : ''}
+            //                 </h4>
+            //                 <Slider
+            //                     defaultValue={[min, max]}
+            //                     onChange={}
+            //                     valueLabelDisplay="auto"
+            //                     aria-labelledby=""
+            //                     getAriaValueText={}
+            //                     step={element.scaleStep}
+            //                     min={min}
+            //                     max={max}
+            //                     onChangeCommitted={(event, value: number | number[]) => {
+            //                         if (Array.isArray(value)) {
+            //                             const newMin = value[0];
+            //                             const newMax = value[1];
+            //                             setActiveFilters((previousState: ActiveFilter[]) => 
+            //                                 previousState.map(filter => {
+            //                                     if (filter.name === element.databaseColumnName) {
+            //                                         return {
+            //                                             name: filter.name,
+            //                                             minValue: newMin,
+            //                                             maxValue: newMax
+            //                                         }
+            //                                     } else {
+            //                                         return filter;
+            //                                     }
+            //                                 })
+            //                             );
+            //                         }
+            //                     }}
+            //                 />
+            //             </div>
+            //         );
+            //     }
                 
                 // filterSettings.push({
                 //     name: element.databaseColumnName,
                 //     minValue: min,
                 //     maxValue: max
                 // });
-            }
-        }
-    });
+    //         }
+    //     }
+    // });
 
     /*useEffect(() => {
         setActiveFilters(filterSettings);
