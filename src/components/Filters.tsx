@@ -49,6 +49,32 @@ export default function Filters({
 
     const classes = useStyles();
 
+    const handleCheckboxChange = (activeFilter: any) => (event: any) => {
+        //console.log('handleChange triggered');
+        const { name } = event.target;
+        setActiveFilters((previousState: ActiveFilter[]) => 
+            previousState.map(previousFilter => {
+                if (previousFilter.name === activeFilter.name && previousFilter.values !== undefined) {
+                    return {
+                        ...activeFilter,
+                        values: activeFilter.values.map((checkbox: ActiveFilterValue) => {
+                            if (checkbox.name === name) {
+                                return {
+                                    name: checkbox.name,
+                                    isActive: !checkbox.isActive
+                                }
+                            } else {
+                                return checkbox;
+                            }
+                        })
+                    }
+                } else {
+                        return previousFilter;
+                }
+            })
+        );
+    }
+
     let inputs: React.ReactNode[] = [];
     // let filterSettings = [];
 
@@ -63,30 +89,7 @@ export default function Filters({
                         type="checkbox"
                         name={value.name}
                         defaultChecked={value.isActive}
-                        onChange={event => {  
-                            const { name } = event.target;
-                            setActiveFilters((previousState: ActiveFilter[]) => 
-                                previousState.map(previousFilter => {
-                                    if (previousFilter.name === activeFilter.name && previousFilter.values !== undefined) {
-                                        return {
-                                            ...activeFilter,
-                                            values: activeFilter.values.map((checkbox: ActiveFilterValue) => {
-                                                if (checkbox.name === name) {
-                                                    return {
-                                                        name: checkbox.name,
-                                                        isActive: !checkbox.isActive
-                                                    }
-                                                } else {
-                                                    return checkbox;
-                                                }
-                                            })
-                                        }
-                                    } else {
-                                        return previousFilter;
-                                    }
-                                })
-                            );
-                        }}
+                        onChange={handleCheckboxChange(activeFilter)}
                     />
                     {value.name}
                 </label>
