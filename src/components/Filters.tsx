@@ -9,6 +9,8 @@ import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
 import { ActiveFilterValue } from '../interfaces/ActiveFilterValue';
 
+import roundValue from '../functions/roundValue';
+
 type Props = {
     planetaryData: Entry[], 
     isSidebarOpened: boolean, 
@@ -99,8 +101,22 @@ export default function Filters({
     // let filterSettings = [];
 
     activeFilters.forEach((activeFilter: any) => {
-        if (activeFilter.dataType === 'text') {
-            let checkboxes = activeFilter.values.map((value: any, index: number) =>
+
+        const { 
+            dataType,
+            values,
+            name,
+            tableLabel,
+            minValue,
+            maxValue,
+            unit,
+            scaleStep,
+            currentMinValue,
+            currentMaxValue 
+        } = activeFilter;
+
+        if (dataType === 'text') {
+            let checkboxes = values.map((value: any, index: number) =>
                 <label 
                     key={index}
                     className={classes.label}
@@ -116,8 +132,8 @@ export default function Filters({
             );
 
             inputs.unshift(
-                <div key={activeFilter.name + '_label'} className="input-container">
-                    <h4>{activeFilter.tableLabel}</h4>
+                <div key={name + '_label'} className="input-container">
+                    <h4>{tableLabel}</h4>
                     <div>{checkboxes}</div>
                     <Button 
                         variant="contained"
@@ -127,36 +143,44 @@ export default function Filters({
                     </Button>
                 </div>
             );
-        } else if (activeFilter.dataType === 'number') {
-            const middleMark = (activeFilter.maxValue - activeFilter.minValue) / 2;
+
+        } else if (dataType === 'number') {
+
+            const firstMiddleMark = (maxValue - minValue) / 3;
+            const secondMiddleMark = 2 * firstMiddleMark;
             const marks = [
                 {
-                    value: activeFilter.minValue,
-                    label: activeFilter.minValue + ' ' + (activeFilter.unit ? activeFilter.unit : '')
+                    value: minValue,
+                    label: minValue + ' ' + (unit ? unit : '')
                 },
                 {
-                    value: middleMark,
-                    label: middleMark + ' ' + activeFilter.unit
+                    value: firstMiddleMark,
+                    label: roundValue(firstMiddleMark.toString()) + ' ' + (unit ? unit : '')
                 },
                 {
-                    value: activeFilter.maxValue,
-                    label: activeFilter.maxValue + ' ' + (activeFilter.unit ? activeFilter.unit : '')
+                    value: secondMiddleMark,
+                    label: roundValue(secondMiddleMark.toString()) + ' ' + (unit ? unit : '')
+                },
+                {
+                    value: maxValue,
+                    label: maxValue + ' ' + (unit ? unit : '')
                 }
-            ]
+            ];
+
             inputs.push(
-                <div key={activeFilter.name + '_label'}>
+                <div key={name + '_label'}>
                     <h4>
-                        {activeFilter.tableLabel}
-                        {activeFilter.unit ? ' [' + activeFilter.unit + ']' : ''}
+                        {tableLabel}
+                        {unit ? ' [' + unit + ']' : ''}
                     </h4>
                     <Slider
-                        value={[activeFilter.currentMinValue, activeFilter.currentMaxValue]}
+                        value={[currentMinValue, currentMaxValue]}
                         valueLabelDisplay="auto"
-                        step={activeFilter.scaleStep}
+                        step={scaleStep}
                         marks={marks}
-                        min={activeFilter.minValue}
-                        max={activeFilter.maxValue}
-                        onChangeCommitted={handleSliderChange(activeFilter.name)}
+                        min={minValue}
+                        max={maxValue}
+                        onChangeCommitted={handleSliderChange(name)}
                     />
                 </div>
             );
