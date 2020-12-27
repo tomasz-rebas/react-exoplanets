@@ -44,6 +44,7 @@ export default function PlanetList( { planetaryData, activeFilters }: Props) {
                 } else if (values) {
                     values.forEach(checkbox => {
                         if (checkbox.name === data[name] && !checkbox.isActive) {
+                            console.log('checkbox.isActive: ' + checkbox.isActive);
                             shouldBeFilteredOut = true;
                         }
                     });

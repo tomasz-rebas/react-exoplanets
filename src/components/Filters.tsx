@@ -52,6 +52,7 @@ export default function Filters({
     const classes = useStyles();
 
     const handleCheckboxChange = (activeFilter: any) => (event: any) => {
+        console.log('handleCheckboxChange triggered');
         const { name } = event.target;
         setActiveFilters((previousState: ActiveFilter[]) => 
             previousState.map(previousFilter => {
@@ -61,7 +62,7 @@ export default function Filters({
                         values: activeFilter.values.map((checkbox: ActiveFilterValue) => {
                             if (checkbox.name === name) {
                                 return {
-                                    name: checkbox.name,
+                                    ...checkbox,
                                     isActive: !checkbox.isActive
                                 }
                             } else {
@@ -70,7 +71,7 @@ export default function Filters({
                         })
                     }
                 } else {
-                        return previousFilter;
+                    return previousFilter;
                 }
             })
         );
@@ -116,6 +117,7 @@ export default function Filters({
         } = activeFilter;
 
         if (dataType === 'text') {
+            
             let checkboxes = values.map((value: any, index: number) =>
                 <label 
                     key={index}
@@ -124,7 +126,7 @@ export default function Filters({
                     <input 
                         type="checkbox"
                         name={value.name}
-                        defaultChecked={value.isActive}
+                        checked={value.isActive}
                         onChange={handleCheckboxChange(activeFilter)}
                     />
                     {value.name}
