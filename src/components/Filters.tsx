@@ -50,7 +50,6 @@ export default function Filters({
     const classes = useStyles();
 
     const handleCheckboxChange = (activeFilter: any) => (event: any) => {
-        //console.log('handleChange triggered');
         const { name } = event.target;
         setActiveFilters((previousState: ActiveFilter[]) => 
             previousState.map(previousFilter => {
@@ -75,12 +74,33 @@ export default function Filters({
         );
     }
 
+    const handleSliderChange = (name: string) => (event: any, value: number | number[]) => {
+        if (Array.isArray(value)) {
+            const newCurrentMin = value[0];
+            const newCurrentMax = value[1];
+            console.log('newCurrentMin = ' + newCurrentMin + ' and newCurrentMax = ' + newCurrentMax);
+            setActiveFilters((previousState: ActiveFilter[]) => 
+                previousState.map(filter => {
+                    if (filter.name === name) {
+                        return {
+                            ...filter,
+                            currentMinValue: newCurrentMin,
+                            currentMaxValue: newCurrentMax
+                        }
+                    } else {
+                        return filter;
+                    }
+                })
+            );
+        }
+    }
+
     let inputs: React.ReactNode[] = [];
     // let filterSettings = [];
 
     activeFilters.forEach((activeFilter: any) => {
         if (activeFilter.dataType === 'text') {
-            let checkboxes = activeFilter.values.map((value: any, index: any) =>
+            let checkboxes = activeFilter.values.map((value: any, index: number) =>
                 <label 
                     key={index}
                     className={classes.label}
@@ -107,9 +127,40 @@ export default function Filters({
                     </Button>
                 </div>
             );
-        } /*else if (filter.dataType === 'number') {
-
-        }*/
+        } else if (activeFilter.dataType === 'number') {
+            const middleMark = (activeFilter.maxValue - activeFilter.minValue) / 2;
+            const marks = [
+                {
+                    value: activeFilter.minValue,
+                    label: activeFilter.minValue + ' ' + (activeFilter.unit ? activeFilter.unit : '')
+                },
+                {
+                    value: middleMark,
+                    label: middleMark + ' ' + activeFilter.unit
+                },
+                {
+                    value: activeFilter.maxValue,
+                    label: activeFilter.maxValue + ' ' + (activeFilter.unit ? activeFilter.unit : '')
+                }
+            ]
+            inputs.push(
+                <div key={activeFilter.name + '_label'}>
+                    <h4>
+                        {activeFilter.tableLabel}
+                        {activeFilter.unit ? ' [' + activeFilter.unit + ']' : ''}
+                    </h4>
+                    <Slider
+                        value={[activeFilter.currentMinValue, activeFilter.currentMaxValue]}
+                        valueLabelDisplay="auto"
+                        step={activeFilter.scaleStep}
+                        marks={marks}
+                        min={activeFilter.minValue}
+                        max={activeFilter.maxValue}
+                        onChangeCommitted={handleSliderChange(activeFilter.name)}
+                    />
+                </div>
+            );
+        }
     });
 
     // tableColumns.forEach(element => {
@@ -193,45 +244,45 @@ export default function Filters({
             //     const min = element.minValue;
             //     const max = element.maxValue;
 
-            //     if (min !== undefined && max !== undefined) {
-            //         inputs.push(
-            //             <div key={element.databaseColumnName + '_label'}>
-            //                 <h4>
-            //                     {element.tableLabel}
-            //                     {element.unit ? ' [' + element.unit + ']' : ''}
-            //                 </h4>
-            //                 <Slider
-            //                     defaultValue={[min, max]}
-            //                     onChange={}
-            //                     valueLabelDisplay="auto"
-            //                     aria-labelledby=""
-            //                     getAriaValueText={}
-            //                     step={element.scaleStep}
-            //                     min={min}
-            //                     max={max}
-            //                     onChangeCommitted={(event, value: number | number[]) => {
-            //                         if (Array.isArray(value)) {
-            //                             const newMin = value[0];
-            //                             const newMax = value[1];
-            //                             setActiveFilters((previousState: ActiveFilter[]) => 
-            //                                 previousState.map(filter => {
-            //                                     if (filter.name === element.databaseColumnName) {
-            //                                         return {
-            //                                             name: filter.name,
-            //                                             minValue: newMin,
-            //                                             maxValue: newMax
-            //                                         }
-            //                                     } else {
-            //                                         return filter;
-            //                                     }
-            //                                 })
-            //                             );
-            //                         }
-            //                     }}
-            //                 />
-            //             </div>
-            //         );
-            //     }
+                // if (min !== undefined && max !== undefined) {
+                //     inputs.push(
+                //         <div key={element.databaseColumnName + '_label'}>
+                //             <h4>
+                //                 {element.tableLabel}
+                //                 {element.unit ? ' [' + element.unit + ']' : ''}
+                //             </h4>
+                //             <Slider
+                //                 defaultValue={[min, max]}
+                //                 onChange={}
+                //                 valueLabelDisplay="auto"
+                //                 aria-labelledby=""
+                //                 getAriaValueText={}
+                //                 step={element.scaleStep}
+                //                 min={min}
+                //                 max={max}
+                //                 onChangeCommitted={(event, value: number | number[]) => {
+                //                     if (Array.isArray(value)) {
+                //                         const newMin = value[0];
+                //                         const newMax = value[1];
+                //                         setActiveFilters((previousState: ActiveFilter[]) => 
+                //                             previousState.map(filter => {
+                //                                 if (filter.name === element.databaseColumnName) {
+                //                                     return {
+                //                                         name: filter.name,
+                //                                         minValue: newMin,
+                //                                         maxValue: newMax
+                //                                     }
+                //                                 } else {
+                //                                     return filter;
+                //                                 }
+                //                             })
+                //                         );
+                //                     }
+                //                 }}
+                //             />
+                //         </div>
+                //     );
+                // }
                 
                 // filterSettings.push({
                 //     name: element.databaseColumnName,

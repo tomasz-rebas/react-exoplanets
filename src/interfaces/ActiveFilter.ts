@@ -6,5 +6,9 @@ export interface ActiveFilter {
     dataType?: string,
     minValue?: number,
     maxValue?: number,
-    values?: ActiveFilterValue[]
+    currentMinValue?: number,
+    currentMaxValue?: number,
+    values?: ActiveFilterValue[],
+    unit?: string,
+    scaleStep?: number
 }

@@ -37,9 +37,9 @@ export default function PlanetList( { planetaryData, activeFilters }: Props) {
         let shouldBeFilteredOut = false;
 
         activeFilters.forEach(property => {
-            const { name, minValue, maxValue, values } = property;
-            if (name !== undefined && minValue !== undefined && maxValue !== undefined) {
-                if (parseFloat(data[name]) < minValue || parseFloat(data[name]) > maxValue) {
+            const { name, currentMinValue, currentMaxValue, values } = property;
+            if (name !== undefined && currentMinValue !== undefined && currentMaxValue !== undefined) {
+                if (parseFloat(data[name]) < currentMinValue || parseFloat(data[name]) > currentMaxValue) {
                     shouldBeFilteredOut = true;
                 } else if (values) {
                     values.forEach(checkbox => {

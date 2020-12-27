@@ -73,7 +73,16 @@ export default function App() {
         if (planetaryData) {
             let initiallyActiveFilters: ActiveFilter[] = [];
             tableColumns.forEach(element => {
-                const { usedInForm, tableLabel, dataType, databaseColumnName, minValue, maxValue } = element;
+                const { 
+                    usedInForm, 
+                    tableLabel, 
+                    dataType, 
+                    databaseColumnName, 
+                    minValue, 
+                    maxValue, 
+                    unit, 
+                    scaleStep 
+                } = element;
                 if (usedInForm) {
                     if (dataType === 'number') {
                         initiallyActiveFilters.push({
@@ -81,7 +90,11 @@ export default function App() {
                             tableLabel,
                             dataType,
                             minValue,
-                            maxValue
+                            maxValue,
+                            currentMinValue: minValue,
+                            currentMaxValue: maxValue,
+                            unit,
+                            scaleStep
                         });
                     } else {
                         let values: ActiveFilterValue[] = [];
