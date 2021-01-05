@@ -34,25 +34,25 @@ export default function PlanetList( { planetaryData, activeFilters }: Props) {
 
     function shouldBeFilteredOut(data: Entry) {
 
-        let shouldBeFilteredOut = false;
+        let shouldDataBeFilteredOut = false;
 
         activeFilters.forEach(property => {
             const { name, currentMinValue, currentMaxValue, values } = property;
             if (name !== undefined && currentMinValue !== undefined && currentMaxValue !== undefined) {
                 if (parseFloat(data[name]) < currentMinValue || parseFloat(data[name]) > currentMaxValue) {
-                    shouldBeFilteredOut = true;
+                    shouldDataBeFilteredOut = true;
                 } else if (values) {
                     values.forEach(checkbox => {
                         if (checkbox.name === data[name] && !checkbox.isActive) {
                             console.log('checkbox.isActive: ' + checkbox.isActive);
-                            shouldBeFilteredOut = true;
+                            shouldDataBeFilteredOut = true;
                         }
                     });
                 }
             }
         });
 
-        return shouldBeFilteredOut;
+        return shouldDataBeFilteredOut;
     }
 
     const planetaryDataAfterFiltering = planetaryData.filter(element => !shouldBeFilteredOut(element));
