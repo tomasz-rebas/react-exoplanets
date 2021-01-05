@@ -176,7 +176,7 @@ export default function Filters({
                         {unit ? ' [' + unit + ']' : ''}
                     </h4>
                     <Slider
-                        value={[currentMinValue, currentMaxValue]}
+                        defaultValue={[currentMinValue, currentMaxValue]}
                         valueLabelDisplay="auto"
                         step={scaleStep}
                         marks={marks}
