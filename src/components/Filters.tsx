@@ -53,7 +53,6 @@ export default function Filters({
     const classes = useStyles();
 
     const handleCheckboxChange = (activeFilter: any) => (event: any) => {
-        console.log('handleCheckboxChange triggered');
         const { name } = event.target;
         setActiveFilters((previousState: ActiveFilter[]) => 
             getFiltersWithUpdatedCheckboxValues(activeFilter, name, previousState)
