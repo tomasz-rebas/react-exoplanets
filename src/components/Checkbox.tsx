@@ -29,9 +29,8 @@ export default function Checkbox ( { value, activeFilter, setActiveFilters }: Pr
     const { name, isActive } = value;
     
     const handleCheckboxChange = (activeFilter: any) => (event: any) => {
-        const { name } = event.target;
         setActiveFilters((previousState: ActiveFilter[]) => 
-            getFiltersWithUpdatedCheckboxValues(activeFilter, name, previousState)
+            getFiltersWithUpdatedCheckboxValues(activeFilter, event.target.name, previousState)
         );
     }
 
