@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import tableColumns from '../tableColumns.json';
+import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -7,11 +6,9 @@ import Checkbox from '../components/Checkbox';
 import CheckboxList from '../components/CheckboxList';
 import Slider from '../components/Slider';
 
-import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
 
 type Props = {
-    planetaryData: Entry[], 
     isSidebarOpened: boolean, 
     setIsSidebarOpened: Function, 
     activeFilters: ActiveFilter[], 
@@ -26,14 +23,10 @@ const useStyles = makeStyles({
     inputContainer: {
         paddingTop: '10px',
         paddingBottom: '10px'
-    },
-    selectAllButton: {
-        marginTop: '15px'
     }
 });
 
 export default function Filters({
-    planetaryData,
     isSidebarOpened,
     setIsSidebarOpened,
     activeFilters,
@@ -43,7 +36,6 @@ export default function Filters({
     const classes = useStyles();
 
     let inputs: React.ReactNode[] = [];
-    // let filterSettings = [];
 
     activeFilters.forEach((activeFilter: any) => {
 

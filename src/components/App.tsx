@@ -132,8 +132,7 @@ export default function App() {
                 isSidebarOpened={isSidebarOpened}
                 setIsSidebarOpened={setIsSidebarOpened}
             />
-            <Filters 
-                planetaryData={planetaryData}
+            <Filters
                 isSidebarOpened={isSidebarOpened}
                 setIsSidebarOpened={setIsSidebarOpened}
                 activeFilters={activeFilters}
