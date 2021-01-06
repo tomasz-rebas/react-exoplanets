@@ -5,10 +5,11 @@ import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Checkbox from '../components/Checkbox';
+
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
 
-import getFiltersWithUpdatedCheckboxValues from '../functions/getFiltersWithUpdatedCheckboxValues';
 import getFiltersWithUpdatedSliderValues from '../functions/getFiltersWithUpdatedSliderValues';
 import getSliderMarks from '../functions/getSliderMarks';
 
@@ -24,14 +25,6 @@ const useStyles = makeStyles({
     drawerPaper: {
         padding: '20px',
         width: '600px'
-    },
-    label: {
-        display: 'block',
-        paddingTop: '5px',
-        paddingBottom: '5px',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
     },
     inputContainer: {
         paddingTop: '10px',
@@ -51,13 +44,6 @@ export default function Filters({
 }: Props ) {
 
     const classes = useStyles();
-
-    const handleCheckboxChange = (activeFilter: any) => (event: any) => {
-        const { name } = event.target;
-        setActiveFilters((previousState: ActiveFilter[]) => 
-            getFiltersWithUpdatedCheckboxValues(activeFilter, name, previousState)
-        );
-    }
 
     const handleSliderChange = (name: string) => (event: any, value: number | number[]) => {
         if (Array.isArray(value)) {
@@ -87,18 +73,12 @@ export default function Filters({
         if (dataType === 'text') {
             
             let checkboxes = values.map((value: any, index: number) =>
-                <label 
+                <Checkbox
                     key={index}
-                    className={classes.label}
-                >
-                    <input 
-                        type="checkbox"
-                        name={value.name}
-                        checked={value.isActive}
-                        onChange={handleCheckboxChange(activeFilter)}
-                    />
-                    {value.name}
-                </label>
+                    value={value}
+                    activeFilter={activeFilter}
+                    setActiveFilters={setActiveFilters}
+                />
             );
 
             inputs.unshift(
