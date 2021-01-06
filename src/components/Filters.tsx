@@ -10,6 +10,7 @@ import { ActiveFilter } from '../interfaces/ActiveFilter';
 import { ActiveFilterValue } from '../interfaces/ActiveFilterValue';
 
 import roundValue from '../functions/roundValue';
+import getFiltersWithUpdatedSliderValues from '../functions/getFiltersWithUpdatedSliderValues';
 
 type Props = {
     planetaryData: Entry[], 
@@ -79,22 +80,8 @@ export default function Filters({
 
     const handleSliderChange = (name: string) => (event: any, value: number | number[]) => {
         if (Array.isArray(value)) {
-            const newCurrentMin = value[0];
-            const newCurrentMax = value[1];
-            console.log('newCurrentMin = ' + newCurrentMin + ' and newCurrentMax = ' + newCurrentMax);
             setActiveFilters((previousState: ActiveFilter[]) => 
-                previousState.map(filter => {
-                    if (filter.name === name) {
-                        return {
-                            ...filter,
-                            currentMinValue: newCurrentMin,
-                            currentMaxValue: newCurrentMax
-                        }
-                    } else {
-                        return filter;
-                    }
-                })
-            );
+                getFiltersWithUpdatedSliderValues(previousState, value[0], value[1], name));
         }
     }
 
