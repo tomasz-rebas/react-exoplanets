@@ -7,9 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
-import { ActiveFilterValue } from '../interfaces/ActiveFilterValue';
 
 import roundValue from '../functions/roundValue';
+import getFiltersWithUpdatedCheckboxValues from '../functions/getFiltersWithUpdatedCheckboxValues';
 import getFiltersWithUpdatedSliderValues from '../functions/getFiltersWithUpdatedSliderValues';
 
 type Props = {
@@ -56,25 +56,7 @@ export default function Filters({
         console.log('handleCheckboxChange triggered');
         const { name } = event.target;
         setActiveFilters((previousState: ActiveFilter[]) => 
-            previousState.map(previousFilter => {
-                if (previousFilter.name === activeFilter.name && previousFilter.values !== undefined) {
-                    return {
-                        ...activeFilter,
-                        values: activeFilter.values.map((checkbox: ActiveFilterValue) => {
-                            if (checkbox.name === name) {
-                                return {
-                                    ...checkbox,
-                                    isActive: !checkbox.isActive
-                                }
-                            } else {
-                                return checkbox;
-                            }
-                        })
-                    }
-                } else {
-                    return previousFilter;
-                }
-            })
+            getFiltersWithUpdatedCheckboxValues(activeFilter, name, previousState)
         );
     }
 
