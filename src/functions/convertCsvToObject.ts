@@ -1,6 +1,6 @@
 import { Entry } from '../interfaces/Entry';
 
-export default function csvToObject(text: string) {
+export default function convertCsvToObject(text: string) {
 
     let rows = text.split(/\r?\n/);
     const keys = rows[0].split(',');

@@ -1,4 +1,4 @@
-export default function roundValue(value: string) {
+export default function getRoundedValue(value: string) {
 
     let firstDigitIndex = -1;
     let dotIndex = -1;

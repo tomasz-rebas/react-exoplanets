@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import buildQuery from '../functions/buildQuery';
-import csvToObject from '../functions/csvToObject';
-import keepUniquePlanets from '../functions/keepUniquePlanets';
+import getQuery from '../functions/getQuery';
+import convertCsvToObject from '../functions/convertCsvToObject';
+import getUniquePlanets from '../functions/getUniquePlanets';
 
 import tableColumns from '../tableColumns.json';
 import fallbackData from '../fallbackData.json';
@@ -50,13 +50,13 @@ export default function App() {
                 // setActiveFilters([]);
             }, 1000);
         } else {
-            const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${buildQuery(tableColumns, true)}&format=csv`;
+            const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(tableColumns, true)}&format=csv`;
             console.log(url);
             fetch(url)
             .then(response => response.text())
             .then(data => {
-                const convertedData = csvToObject(data);
-                const strippedData = keepUniquePlanets(convertedData);
+                const convertedData = convertCsvToObject(data);
+                const strippedData = getUniquePlanets(convertedData);
                 console.log(strippedData);
                 setPlanetaryData(strippedData);
             })

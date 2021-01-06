@@ -3,7 +3,7 @@ type Column = {
     usedInQuery: boolean
 }
 
-export default function buildQuery(
+export default function getQuery(
     columns: Column[], 
     noNull: boolean
 ) {

@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import tableColumns from '../tableColumns.json';
-import roundValue from '../functions/roundValue';
+import getRoundedValue from '../functions/getRoundedValue';
 import { Entry } from '../interfaces/Entry';
 
 type Props = {
@@ -41,7 +41,7 @@ export default function PlanetCard( { data }: Props ) {
                 tableColumns[i].databaseColumnName !== 'pl_name') {
                 let value;
                 if (tableColumns[i].dataType === 'number') {
-                    value = roundValue(data[property]);
+                    value = getRoundedValue(data[property]);
                 } else {
                     value = data[property];
                 }

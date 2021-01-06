@@ -8,9 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
 
-import roundValue from '../functions/roundValue';
 import getFiltersWithUpdatedCheckboxValues from '../functions/getFiltersWithUpdatedCheckboxValues';
 import getFiltersWithUpdatedSliderValues from '../functions/getFiltersWithUpdatedSliderValues';
+import getSliderMarks from '../functions/getSliderMarks';
 
 type Props = {
     planetaryData: Entry[], 
@@ -116,27 +116,6 @@ export default function Filters({
 
         } else if (dataType === 'number') {
 
-            const firstMiddleMark = (maxValue - minValue) / 3;
-            const secondMiddleMark = 2 * firstMiddleMark;
-            const marks = [
-                {
-                    value: minValue,
-                    label: minValue + ' ' + (unit ? unit : '')
-                },
-                {
-                    value: firstMiddleMark,
-                    label: roundValue(firstMiddleMark.toString()) + ' ' + (unit ? unit : '')
-                },
-                {
-                    value: secondMiddleMark,
-                    label: roundValue(secondMiddleMark.toString()) + ' ' + (unit ? unit : '')
-                },
-                {
-                    value: maxValue,
-                    label: maxValue + ' ' + (unit ? unit : '')
-                }
-            ];
-
             inputs.push(
                 <div key={name + '_label'}>
                     <h4>
@@ -147,7 +126,7 @@ export default function Filters({
                         defaultValue={[currentMinValue, currentMaxValue]}
                         valueLabelDisplay="auto"
                         step={scaleStep}
-                        marks={marks}
+                        marks={getSliderMarks(minValue, maxValue, unit)}
                         min={minValue}
                         max={maxValue}
                         onChangeCommitted={handleSliderChange(name)}
