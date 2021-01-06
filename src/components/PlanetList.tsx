@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PlanetCard from './PlanetCard';
 import Paging from './Paging';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,7 +34,9 @@ export default function PlanetList( { planetaryData, activeFilters }: Props) {
 
     const classes = useStyles();
 
-    const planetaryDataAfterFiltering = planetaryData.filter(element => !shouldEntryBeFilteredOut(element, activeFilters));
+    const planetaryDataAfterFiltering = useMemo(
+        () => planetaryData.filter(element => !shouldEntryBeFilteredOut(element, activeFilters)
+    ), [planetaryData, activeFilters]);
 
     const numberOfPages = Math.floor(planetaryDataAfterFiltering.length / itemsPerPage + 1);
 
