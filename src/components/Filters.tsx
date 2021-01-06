@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import tableColumns from '../tableColumns.json';
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Checkbox from '../components/Checkbox';
+import CheckboxList from '../components/CheckboxList';
 import Slider from '../components/Slider';
 
 import { Entry } from '../interfaces/Entry';
@@ -72,16 +72,11 @@ export default function Filters({
             );
 
             inputs.unshift(
-                <div key={name + '_label'} className="input-container">
-                    <h4>{tableLabel}</h4>
-                    <div>{checkboxes}</div>
-                    <Button 
-                        variant="contained"
-                        className={classes.selectAllButton}
-                    >
-                        Select All
-                    </Button>
-                </div>
+                <CheckboxList
+                    key={name + '_label'}
+                    tableLabel={tableLabel}
+                    checkboxes={checkboxes}
+                />
             );
 
         } else if (dataType === 'number') {
