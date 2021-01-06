@@ -44,5 +44,5 @@ export default function Checkbox ( { value, activeFilter, setActiveFilters }: Pr
             />
             {name}
         </label>
-    )
+    );
 }

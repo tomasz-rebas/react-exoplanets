@@ -2,16 +2,14 @@ import React, { useEffect } from 'react';
 import tableColumns from '../tableColumns.json';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
-import Slider from '@material-ui/core/Slider';
+//import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Checkbox from '../components/Checkbox';
+import Slider from '../components/Slider';
 
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
-
-import getFiltersWithUpdatedSliderValues from '../functions/getFiltersWithUpdatedSliderValues';
-import getSliderMarks from '../functions/getSliderMarks';
 
 type Props = {
     planetaryData: Entry[], 
@@ -44,13 +42,6 @@ export default function Filters({
 }: Props ) {
 
     const classes = useStyles();
-
-    const handleSliderChange = (name: string) => (event: any, value: number | number[]) => {
-        if (Array.isArray(value)) {
-            setActiveFilters((previousState: ActiveFilter[]) => 
-                getFiltersWithUpdatedSliderValues(previousState, value[0], value[1], name));
-        }
-    }
 
     let inputs: React.ReactNode[] = [];
     // let filterSettings = [];
@@ -97,21 +88,18 @@ export default function Filters({
         } else if (dataType === 'number') {
 
             inputs.push(
-                <div key={name + '_label'}>
-                    <h4>
-                        {tableLabel}
-                        {unit ? ' [' + unit + ']' : ''}
-                    </h4>
-                    <Slider
-                        defaultValue={[currentMinValue, currentMaxValue]}
-                        valueLabelDisplay="auto"
-                        step={scaleStep}
-                        marks={getSliderMarks(minValue, maxValue, unit)}
-                        min={minValue}
-                        max={maxValue}
-                        onChangeCommitted={handleSliderChange(name)}
-                    />
-                </div>
+                <Slider
+                    key={name + '_label'}
+                    setActiveFilters={setActiveFilters}
+                    currentMinValue={currentMinValue}
+                    currentMaxValue={currentMaxValue}
+                    scaleStep={scaleStep}
+                    minValue={minValue}
+                    maxValue={maxValue}
+                    name={name}
+                    unit={unit}
+                    tableLabel={tableLabel}
+                />
             );
         }
     });
