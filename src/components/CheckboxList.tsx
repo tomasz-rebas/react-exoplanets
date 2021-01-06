@@ -11,13 +11,17 @@ type Props = {
 const useStyles = makeStyles({
     selectAllButton: {
         marginTop: '15px'
+    },
+    inputContainer: {
+        paddingTop: '10px',
+        paddingBottom: '10px'
     }
 });
 
 export default function CheckboxList ( { tableLabel, checkboxes }: Props ) {
     const classes = useStyles();
     return (
-        <div className="input-container">
+        <div className={classes.inputContainer}>
             <h4>{tableLabel}</h4>
             <div>{checkboxes}</div>
             <Button 

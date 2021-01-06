@@ -19,10 +19,6 @@ const useStyles = makeStyles({
     drawerPaper: {
         padding: '20px',
         width: '600px'
-    },
-    inputContainer: {
-        paddingTop: '10px',
-        paddingBottom: '10px'
     }
 });
 
