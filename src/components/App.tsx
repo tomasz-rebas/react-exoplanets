@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import getQuery from '../functions/getQuery';
 import convertCsvToObject from '../functions/convertCsvToObject';
 import getUniquePlanets from '../functions/getUniquePlanets';
+import getInitiallyActiveFilters from '../functions/getInitiallyActiveFilters';
 
 import tableColumns from '../tableColumns.json';
 import fallbackData from '../fallbackData.json';
@@ -15,7 +16,6 @@ import Footer from './Footer';
 
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
-import { ActiveFilterValue } from '../interfaces/ActiveFilterValue';
 
 export default function App() {
 
@@ -71,57 +71,9 @@ export default function App() {
     // Initialize active filters' state.
     useEffect(() => {
         if (planetaryData) {
-            let initiallyActiveFilters: ActiveFilter[] = [];
-            tableColumns.forEach(element => {
-                const { 
-                    usedInForm, 
-                    tableLabel, 
-                    dataType, 
-                    databaseColumnName, 
-                    minValue, 
-                    maxValue, 
-                    unit, 
-                    scaleStep 
-                } = element;
-                if (usedInForm) {
-                    if (dataType === 'number') {
-                        initiallyActiveFilters.push({
-                            name: databaseColumnName,
-                            tableLabel,
-                            dataType,
-                            minValue,
-                            maxValue,
-                            currentMinValue: minValue,
-                            currentMaxValue: maxValue,
-                            unit,
-                            scaleStep
-                        });
-                    } else {
-                        let values: ActiveFilterValue[] = [];
-                        planetaryData.forEach(entry => {
-                            let isInArray = false;
-                            values.forEach(value => {
-                                if (value.name === entry[databaseColumnName]) {
-                                    isInArray = true;
-                                }
-                            });
-                            if (!isInArray) {
-                                values.push({
-                                    name: entry[databaseColumnName],
-                                    isActive: true
-                                });
-                            }
-                        });
-                        initiallyActiveFilters.push({
-                            name: databaseColumnName,
-                            tableLabel,
-                            dataType,
-                            values
-                        });
-                    }
-                }
-            });
-            setActiveFilters(initiallyActiveFilters);
+            setActiveFilters(
+                getInitiallyActiveFilters(planetaryData, tableColumns)
+            );
         }
     }, [planetaryData]);
 
