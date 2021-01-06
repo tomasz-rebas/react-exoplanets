@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
 
+import shouldEntryBeFilteredOut from '../functions/shouldEntryBeFilteredOut';
+
 type Props = {
     planetaryData: Entry[],
     activeFilters: ActiveFilter[]
@@ -32,34 +34,7 @@ export default function PlanetList( { planetaryData, activeFilters }: Props) {
 
     const classes = useStyles();
 
-    function shouldBeFilteredOut(data: Entry) {
-
-        let shouldDataBeFilteredOut = false;
-
-        activeFilters.forEach(property => {
-
-            const { name, currentMinValue, currentMaxValue, values } = property;
-
-            if (name !== undefined) {
-                if (currentMinValue !== undefined && currentMaxValue !== undefined) {
-                    if (parseFloat(data[name]) < currentMinValue || parseFloat(data[name]) > currentMaxValue) {
-                        shouldDataBeFilteredOut = true;
-                    }
-                } else if (values) {
-                    values.forEach(checkbox => {
-                        if (checkbox.name === data[name] && !checkbox.isActive) {
-                            console.log('checkbox.isActive: ' + checkbox.isActive);
-                            shouldDataBeFilteredOut = true;
-                        }
-                    });
-                }
-            }
-        });
-
-        return shouldDataBeFilteredOut;
-    }
-
-    const planetaryDataAfterFiltering = planetaryData.filter(element => !shouldBeFilteredOut(element));
+    const planetaryDataAfterFiltering = planetaryData.filter(element => !shouldEntryBeFilteredOut(element, activeFilters));
 
     const numberOfPages = Math.floor(planetaryDataAfterFiltering.length / itemsPerPage + 1);
 
