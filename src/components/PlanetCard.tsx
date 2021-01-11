@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
+
 import getRoundedValue from '../functions/getRoundedValue';
+
 import { Entry } from '../interfaces/Entry';
 import { TableColumn } from '../interfaces/TableColumn';
 
@@ -30,13 +33,11 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetCard( { data, tableColumns }: Props ) {
-
-    const classes = useStyles();
-
-    console.log('card rendered');
-    
-    // Prepare the data for display in a card.
+function getCardData (
+    data: Entry,
+    tableColumns: TableColumn[],
+    rowClassName: string
+) {
     let dataForDisplay = [];
     for (const property in data) {
         for (let i = 0; i < tableColumns.length; i++) {
@@ -53,7 +54,7 @@ export default function PlanetCard( { data, tableColumns }: Props ) {
                 const unit = tableColumns[i].unit;
                 dataForDisplay.push(
                     <div 
-                        className={classes.dataRow}
+                        className={rowClassName}
                         key={label}
                     >
                         <strong>{label}: </strong>
@@ -63,6 +64,17 @@ export default function PlanetCard( { data, tableColumns }: Props ) {
             }
         }
     }
+    return dataForDisplay;
+}
+
+export default function PlanetCard( { data, tableColumns }: Props ) {
+
+    const classes = useStyles();
+
+    const dataForDisplay = useMemo(
+        () => getCardData(data, tableColumns, classes.dataRow),
+        [data, tableColumns, classes.dataRow]
+    );
 
     const { pl_dens, pl_name } = data;
 
