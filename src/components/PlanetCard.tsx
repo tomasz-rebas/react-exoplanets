@@ -33,46 +33,40 @@ const useStyles = makeStyles({
     }
 });
 
-function getCardData (
-    data: Entry,
-    tableColumns: TableColumn[],
-    rowClassName: string
-) {
-    let dataForDisplay = [];
-    for (const property in data) {
-        for (let i = 0; i < tableColumns.length; i++) {
-            if (tableColumns[i].databaseColumnName === property && 
-                tableColumns[i].databaseColumnName !== 'pl_name') {
-                let value;
-                if (tableColumns[i].dataType === 'number') {
-                    value = getRoundedValue(data[property]);
-                } else {
-                    value = data[property];
-                }
-                
-                const label = tableColumns[i].tableLabel;
-                const unit = tableColumns[i].unit;
-                dataForDisplay.push(
-                    <div 
-                        className={rowClassName}
-                        key={label}
-                    >
-                        <strong>{label}: </strong>
-                        <span>{value} {unit}</span>
-                    </div>
-                );
-            }
-        }
-    }
-    return dataForDisplay;
-}
-
 export default function PlanetCard( { data, tableColumns }: Props ) {
 
     const classes = useStyles();
 
     const dataForDisplay = useMemo(
-        () => getCardData(data, tableColumns, classes.dataRow),
+        () => {
+            let dataRows = [];
+            for (const property in data) {
+                for (let i = 0; i < tableColumns.length; i++) {
+                    if (tableColumns[i].databaseColumnName === property && 
+                        tableColumns[i].databaseColumnName !== 'pl_name') {
+                        let value;
+                        if (tableColumns[i].dataType === 'number') {
+                            value = getRoundedValue(data[property]);
+                        } else {
+                            value = data[property];
+                        }
+                        
+                        const label = tableColumns[i].tableLabel;
+                        const unit = tableColumns[i].unit;
+                        dataRows.push(
+                            <div 
+                                className={classes.dataRow}
+                                key={label}
+                            >
+                                <strong>{label}: </strong>
+                                <span>{value} {unit}</span>
+                            </div>
+                        );
+                    }
+                }
+            }
+            return dataRows;
+        },
         [data, tableColumns, classes.dataRow]
     );
 
