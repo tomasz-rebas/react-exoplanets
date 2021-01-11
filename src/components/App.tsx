@@ -93,6 +93,7 @@ export default function App() {
             <PlanetList 
                 planetaryData={planetaryData}
                 activeFilters={activeFilters}
+                tableColumns={tableColumns}
             />
             <Footer/>
         </div> :

@@ -1,12 +1,13 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import tableColumns from '../tableColumns.json';
 import getRoundedValue from '../functions/getRoundedValue';
 import { Entry } from '../interfaces/Entry';
+import { TableColumn } from '../interfaces/TableColumn';
 
 type Props = {
-    data: Entry
+    data: Entry,
+    tableColumns: TableColumn[]
 }
 
 const useStyles = makeStyles({
@@ -29,9 +30,11 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetCard( { data }: Props ) {
+export default function PlanetCard( { data, tableColumns }: Props ) {
 
     const classes = useStyles();
+
+    console.log('card rendered');
     
     // Prepare the data for display in a card.
     let dataForDisplay = [];
@@ -47,7 +50,6 @@ export default function PlanetCard( { data }: Props ) {
                 }
                 
                 const label = tableColumns[i].tableLabel;
-                //const description = tableColumns[i].description;
                 const unit = tableColumns[i].unit;
                 dataForDisplay.push(
                     <div 

@@ -5,12 +5,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Entry } from '../interfaces/Entry';
 import { ActiveFilter } from '../interfaces/ActiveFilter';
+import { TableColumn } from '../interfaces/TableColumn';
+
 
 import shouldEntryBeFilteredOut from '../functions/shouldEntryBeFilteredOut';
 
 type Props = {
     planetaryData: Entry[],
     activeFilters: ActiveFilter[]
+    tableColumns: TableColumn[]
 }
 
 const useStyles = makeStyles({
@@ -27,7 +30,11 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetList( { planetaryData, activeFilters }: Props) {
+export default function PlanetList( { 
+    planetaryData,
+    activeFilters,
+    tableColumns 
+}: Props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(24);
@@ -48,6 +55,7 @@ export default function PlanetList( { planetaryData, activeFilters }: Props) {
                 <PlanetCard 
                     data={planetaryDataAfterFiltering[i]}
                     key={planetaryDataAfterFiltering[i].pl_name + '_' + i}
+                    tableColumns={tableColumns}
                 />
             )
         }
