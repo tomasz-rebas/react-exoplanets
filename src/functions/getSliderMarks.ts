@@ -1,10 +1,6 @@
 import getRoundedValue from '../functions/getRoundedValue';
 
-export default function getSliderMarks(
-    minValue: number,
-    maxValue: number,
-    unit: string
-) {
+export default function getSliderMarks(minValue: number, maxValue: number, unit: string) {
 
     const firstMiddleMark = (maxValue - minValue) / 3;
     const secondMiddleMark = 2 * firstMiddleMark;

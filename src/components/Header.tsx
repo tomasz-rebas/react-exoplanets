@@ -18,10 +18,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Header({
-    isSidebarOpened,
-    setIsSidebarOpened
-}: Props ) {
+export default function Header( { isSidebarOpened, setIsSidebarOpened }: Props ) {
 
     const classes = useStyles();
 

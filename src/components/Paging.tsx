@@ -15,11 +15,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Paging({ 
-    numberOfPages, 
-    currentPage, 
-    setCurrentPage 
-}: Props) {
+export default function Paging({ numberOfPages, currentPage, setCurrentPage }: Props) {
 
     const classes = useStyles();
 

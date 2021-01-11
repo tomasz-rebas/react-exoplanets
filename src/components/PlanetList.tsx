@@ -30,11 +30,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function PlanetList( { 
-    planetaryData,
-    activeFilters,
-    tableColumns 
-}: Props) {
+export default function PlanetList( { planetaryData, activeFilters, tableColumns }: Props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(24);

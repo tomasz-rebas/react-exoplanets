@@ -3,10 +3,7 @@ type Column = {
     usedInQuery: boolean
 }
 
-export default function getQuery(
-    columns: Column[], 
-    noNull: boolean
-) {
+export default function getQuery(columns: Column[], noNull: boolean) {
 
     let columnList = '';
 
