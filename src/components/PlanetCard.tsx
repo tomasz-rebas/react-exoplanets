@@ -78,7 +78,6 @@ export default function PlanetCard( { data, tableColumns }: Props ) {
             className={classes.card}
         >
             <img
-                /*src="https://www.flaticon.com/svg/static/icons/svg/1197/1197992.svg"*/
                 src={parseFloat(pl_dens) < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
                 className={classes.planetIcon}
                 alt="Planet"

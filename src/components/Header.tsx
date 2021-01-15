@@ -33,7 +33,6 @@ export default function Header( { isSidebarOpened, setIsSidebarOpened }: Props )
                     filter_list
                 </Icon>
                 <h3>Exoplanets Archive</h3>
-                {/* <p>Browse through hundreds of exoplanets discovered in the last decades. Adjust form parameters for specific results.</p> */}
             </Toolbar>
         </AppBar>
     );

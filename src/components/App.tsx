@@ -19,39 +19,24 @@ import { ActiveFilter } from '../interfaces/ActiveFilter';
 
 export default function App() {
 
-    // https://cors-anywhere.herokuapp.com/
-
-    // Info about API migration:
-    // https://exoplanetarchive.ipac.caltech.edu/docs/transition.html
-
-    // Documentation
-    // https://exoplanetarchive.ipac.caltech.edu/docs/TAP/usingTAP.html
-    // https://exoplanetarchive.ipac.caltech.edu/docs/API_PS_columns.html
-
-    // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+*+from+ps
-    // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps
-    // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps&format=csv
-    // https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+column_name,description+from+TAP_SCHEMA.columns+where+table_name+like+'ps'&format=csv
-
-
     const [planetaryData, setPlanetaryData] = useState<Array<Entry>>();
     const [didFetchFail, setDidFetchFail] = useState<boolean>(false);
     const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
     const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
 
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-    const isInDevelopment = true;
 
-    // Fetch the data.
+    // Test only. Will be removed in the final version.
+    const isInDevelopment = false;
+
     useEffect(() => {
         if (isInDevelopment) {
             setTimeout(() => {
                 setPlanetaryData(fallbackData);
-                // setActiveFilters([]);
             }, 1000);
         } else {
             const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(tableColumns, true)}&format=csv`;
-            console.log(url);
+            console.log(`Fetching data from: ${url}`);
             fetch(url)
             .then(response => response.text())
             .then(data => {
@@ -68,7 +53,6 @@ export default function App() {
         }
     }, [isInDevelopment]);
 
-    // Initialize active filters' state.
     useEffect(() => {
         if (planetaryData) {
             setActiveFilters(

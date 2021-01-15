@@ -17,7 +17,6 @@ export default function shouldBeFilteredOut(data: Entry, filters: ActiveFilter[]
             } else if (values) {
                 values.forEach(checkbox => {
                     if (checkbox.name === data[name] && !checkbox.isActive) {
-                        console.log('checkbox.isActive: ' + checkbox.isActive);
                         shouldBeFilteredOut = true;
                     }
                 });

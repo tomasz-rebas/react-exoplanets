@@ -1,7 +1,3 @@
-// export interface TableColumn {
-//     [key: string]: string | number
-// }
-
 export interface TableColumn {
 
     databaseColumnName: string,
