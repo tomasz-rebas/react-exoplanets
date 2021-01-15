@@ -4,6 +4,8 @@ This web app allows you to browse through the database entries about discovered 
 
 The app fetches the data from [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/).
 
+![App Preview](https://i.imgur.com/6jFnM5A.gif)
+
 The app is written in ReactJS with TypeScript and uses Material-UI library for styling and various predefined components. The state is managed by Hooks.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
