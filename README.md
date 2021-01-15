@@ -1,3 +1,9 @@
+## react-exoplanets
+
+This web app allows you to browse through the database entries about discovered exoplanets (planets from outside the Solar System). It features pagination and dynamic data filtering - use checkboxes and sliders from the sidebar to filter the planets based on their discovery year, density, mass etc.
+
+This is one of my biggest ReactJS apps written so far and the first project I utilized TypeScript and Material-UI in. The state is managed by Hooks.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
