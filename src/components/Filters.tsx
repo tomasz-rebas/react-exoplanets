@@ -63,7 +63,9 @@ export default function Filters({
                 <CheckboxList
                     key={name + '_label'}
                     tableLabel={tableLabel}
+                    name={name}
                     checkboxes={checkboxes}
+                    setActiveFilters={setActiveFilters}
                 />
             );
 
