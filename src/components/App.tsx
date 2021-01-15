@@ -35,23 +35,29 @@ export default function App() {
                 setPlanetaryData(fallbackData);
             }, 1000);
         } else {
-            const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(tableColumns, true)}&format=csv`;
-            console.log(`Fetching data from: ${url}`);
-            fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                const convertedData = convertCsvToObject(data);
-                const strippedData = getUniquePlanets(convertedData);
-                console.log(strippedData);
-                setPlanetaryData(strippedData);
-            })
-            .catch(error => {
-                console.error('The error occured. ' + error);
-                setDidFetchFail(true);
-                setPlanetaryData(fallbackData);
-            });
+            fetchData();
         }
     }, [isInDevelopment]);
+
+    async function fetchData() {
+
+        const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(tableColumns, true)}&format=csv`;
+        console.log(`Fetching data from: ${url}`);
+
+        try {
+            const response = await fetch(url);
+            const data = await response.text();
+            const convertedData = convertCsvToObject(data);
+            const strippedData = getUniquePlanets(convertedData);
+            setPlanetaryData(strippedData);
+        } catch (e) {
+            console.error('The error occured. ' + e);
+            setDidFetchFail(true);
+            setTimeout(() => {
+                setPlanetaryData(fallbackData);
+            }, 2000);
+        }
+    }
 
     useEffect(() => {
         if (planetaryData) {

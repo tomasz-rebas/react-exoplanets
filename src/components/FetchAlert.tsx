@@ -21,8 +21,9 @@ export default function FetchAlert( { didFetchFail }: Props ) {
             {
                 didFetchFail ?
                 <div>
-                    <p>Error occured when fetching data.</p>
-                    <p>Please reload and try again.</p> 
+                    <p>Error occured during fetch.</p>
+                    <p>Loading fallback data from 11 Nov 2020...</p> 
+                    <CircularProgress/>
                 </div> :
                 <div>
                     <p>Fetching data.</p> 
