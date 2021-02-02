@@ -27,7 +27,7 @@ export default function App() {
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
     // Test only. Will be removed in the final version.
-    const isInDevelopment = false;
+    const isInDevelopment = true;
 
     useEffect(() => {
         if (isInDevelopment) {
