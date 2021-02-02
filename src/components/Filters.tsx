@@ -18,7 +18,7 @@ type Props = {
 const useStyles = makeStyles({
     drawerPaper: {
         padding: '20px',
-        width: '600px'
+        width: '400px'
     }
 });
 
