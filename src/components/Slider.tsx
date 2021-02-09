@@ -38,6 +38,8 @@ export default function Slider ( {
         }
     }
 
+    const isYear = (name === 'disc_year');
+
     return (
         <div>
             <h4>
@@ -48,7 +50,7 @@ export default function Slider ( {
                 defaultValue={[currentMinValue, currentMaxValue]}
                 valueLabelDisplay="auto"
                 step={scaleStep}
-                marks={getSliderMarks(minValue, maxValue, unit)}
+                marks={getSliderMarks(minValue, maxValue, unit, isYear)}
                 min={minValue}
                 max={maxValue}
                 onChangeCommitted={handleSliderChange(name)}
