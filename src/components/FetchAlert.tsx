@@ -8,7 +8,11 @@ type Props = {
 
 const useStyles = makeStyles({
     fetchAlert: {
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'absolute',
+        left: '50%',
+        top: '45%',
+        transform: 'translate(-50%, -50%)'
     }
 });
 
