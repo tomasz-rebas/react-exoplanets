@@ -24,10 +24,8 @@ export default function App() {
     const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
     const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
 
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-
     // Test only. Will be removed in the final version.
-    const isInDevelopment = true;
+    const isInDevelopment = false;
 
     useEffect(() => {
         if (isInDevelopment) {
@@ -41,7 +39,7 @@ export default function App() {
 
     async function fetchData() {
 
-        const url = `${corsProxy}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(tableColumns, true)}&format=csv`;
+        const url = `${process.env.REACT_APP_CORS_PROXY}https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(tableColumns, true)}&format=csv`;
         console.log(`Fetching data from: ${url}`);
 
         try {
