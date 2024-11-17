@@ -1,7 +1,7 @@
 import getSliderMarks from "../functions/getSliderMarks";
 import getFiltersWithUpdatedSliderValues from "../functions/getFiltersWithUpdatedSliderValues";
 
-import MaterialSlider from "@material-ui/core/Slider";
+import { Slider as MaterialSlider } from "@mui/material";
 
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 

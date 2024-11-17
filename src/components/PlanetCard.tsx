@@ -1,10 +1,10 @@
-import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
 
 import getRoundedValue from "../functions/getRoundedValue";
 
 import { Entry } from "../interfaces/Entry";
 import { TableColumn } from "../interfaces/TableColumn";
+import { Card } from "@mui/material";
 
 type Props = {
   data: Entry;

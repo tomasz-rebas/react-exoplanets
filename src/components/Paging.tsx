@@ -1,5 +1,5 @@
-import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
+import { Pagination } from "@mui/material";
 
 type Props = {
   numberOfPages: number;

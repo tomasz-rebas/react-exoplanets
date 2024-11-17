@@ -1,7 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+
 import getToggledTextFilters from "../functions/getToggledTextFilters";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { Button } from "@mui/material";
 
 type Props = {
   tableLabel: string;

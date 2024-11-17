@@ -1,7 +1,5 @@
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Icon from "@material-ui/core/Icon";
 import { makeStyles } from "@material-ui/core/styles";
+import { AppBar, Icon, Toolbar } from "@mui/material";
 
 type Props = {
   isSidebarOpened: boolean;
