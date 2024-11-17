@@ -1,4 +1,3 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import getFiltersWithUpdatedCheckboxValues from "../functions/getFiltersWithUpdatedCheckboxValues";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
