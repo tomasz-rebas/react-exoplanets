@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import getQuery from "../functions/getQuery";
 import convertCsvToObject from "../functions/convertCsvToObject";
@@ -38,7 +38,7 @@ export default function App() {
 
   async function fetchData() {
     const url = `${
-      process.env.REACT_APP_CORS_PROXY
+      import.meta.env.REACT_APP_CORS_PROXY
     }?https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(
       tableColumns,
       true

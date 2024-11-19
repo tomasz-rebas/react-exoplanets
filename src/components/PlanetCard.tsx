@@ -1,89 +1,79 @@
-import React, { useMemo } from 'react';
+import { styled } from "@mui/system";
 
-import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
+import getRoundedValue from "../functions/getRoundedValue";
 
-import getRoundedValue from '../functions/getRoundedValue';
-
-import { Entry } from '../interfaces/Entry';
-import { TableColumn } from '../interfaces/TableColumn';
+import { Entry } from "../interfaces/Entry";
+import { TableColumn } from "../interfaces/TableColumn";
+import { Card } from "@mui/material";
+import { useMemo } from "react";
 
 type Props = {
-    data: Entry,
-    tableColumns: TableColumn[]
-}
+  data: Entry;
+  tableColumns: TableColumn[];
+};
 
-const useStyles = makeStyles({
-    card: {
-        width: '250px',
-        padding: '10px',
-        margin: '10px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center'
-    },
-    planetIcon: {
-        width: '70px',
-        height: '70px'
-    },
-    dataRow: {
-        marginTop: '4px',
-        marginBottom: '4px'
-    }
+const StyledCard = styled(Card)({
+  width: "250px",
+  padding: "10px",
+  margin: "10px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
 });
 
-export default function PlanetCard( { data, tableColumns }: Props ) {
+const PlanetIcon = styled("img")({
+  width: "70px",
+  height: "70px",
+});
 
-    const classes = useStyles();
+const DataRow = styled("div")({
+  marginTop: "4px",
+  marginBottom: "4px",
+});
 
-    const dataForDisplay = useMemo(
-        () => {
-            let dataRows = [];
-            for (const property in data) {
-                for (let i = 0; i < tableColumns.length; i++) {
-                    if (tableColumns[i].databaseColumnName === property && 
-                        tableColumns[i].databaseColumnName !== 'pl_name') {
-                        let value;
-                        if (tableColumns[i].dataType === 'number') {
-                            value = getRoundedValue(data[property]);
-                        } else {
-                            value = data[property];
-                        }
-                        
-                        const label = tableColumns[i].tableLabel;
-                        const unit = tableColumns[i].unit;
-                        dataRows.push(
-                            <div 
-                                className={classes.dataRow}
-                                key={label}
-                            >
-                                <strong>{label}: </strong>
-                                <span>{value} {unit}</span>
-                            </div>
-                        );
-                    }
-                }
-            }
-            return dataRows;
-        },
-        [data, tableColumns, classes.dataRow]
-    );
+export default function PlanetCard({ data, tableColumns }: Props) {
+  const dataForDisplay = useMemo(() => {
+    let dataRows = [];
+    for (const property in data) {
+      for (let i = 0; i < tableColumns.length; i++) {
+        if (
+          tableColumns[i].databaseColumnName === property &&
+          tableColumns[i].databaseColumnName !== "pl_name"
+        ) {
+          let value;
+          if (tableColumns[i].dataType === "number") {
+            value = getRoundedValue(data[property]);
+          } else {
+            value = data[property];
+          }
 
-    const { pl_dens, pl_name } = data;
+          const label = tableColumns[i].tableLabel;
+          const unit = tableColumns[i].unit;
+          dataRows.push(
+            <DataRow key={label}>
+              <strong>{label}: </strong>
+              <span>
+                {value} {unit}
+              </span>
+            </DataRow>
+          );
+        }
+      }
+    }
+    return dataRows;
+  }, [data, tableColumns]);
 
-    return (
-        <Card 
-            variant="outlined"
-            className={classes.card}
-        >
-            <img
-                src={parseFloat(pl_dens) < 2 ? 'gas-giant.svg' : 'rocky-planet.svg'}
-                className={classes.planetIcon}
-                alt="Planet"
-            />
-            <h4>{pl_name}</h4>
-            {dataForDisplay}
-        </Card>
-    );
+  const { pl_dens, pl_name } = data;
+
+  return (
+    <StyledCard variant="outlined">
+      <PlanetIcon
+        src={parseFloat(pl_dens) < 2 ? "gas-giant.svg" : "rocky-planet.svg"}
+        alt="Planet"
+      />
+      <h4>{pl_name}</h4>
+      {dataForDisplay}
+    </StyledCard>
+  );
 }

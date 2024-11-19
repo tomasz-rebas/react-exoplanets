@@ -1,39 +1,33 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Icon from '@material-ui/core/Icon';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from "@mui/system";
+import { AppBar, Icon, Toolbar } from "@mui/material";
 
 type Props = {
-    isSidebarOpened: boolean,
-    setIsSidebarOpened: Function
-}
+  isSidebarOpened: boolean;
+  setIsSidebarOpened: Function;
+};
 
-const useStyles = makeStyles({
-    toolbar: {
-        justifyContent: 'space-between'
-    },
-    filterIcon: {
-        cursor: 'pointer'
-    }
+const StyledToolbar = styled(Toolbar)({
+  justifyContent: "space-between",
 });
 
-export default function Header( { isSidebarOpened, setIsSidebarOpened }: Props ) {
+const FilterIcon = styled(Icon)({
+  cursor: "pointer",
+});
 
-    const classes = useStyles();
-
-    return (
-        <AppBar>
-            <Toolbar className={classes.toolbar}>
-                <Icon
-                    onClick={() => {setIsSidebarOpened(!isSidebarOpened)}}
-                    fontSize="large"
-                    className={classes.filterIcon}
-                >
-                    filter_list
-                </Icon>
-                <h3>Exoplanets Archive</h3>
-            </Toolbar>
-        </AppBar>
-    );
+export default function Header({ isSidebarOpened, setIsSidebarOpened }: Props) {
+  return (
+    <AppBar>
+      <StyledToolbar>
+        <FilterIcon
+          onClick={() => {
+            setIsSidebarOpened(!isSidebarOpened);
+          }}
+          fontSize="large"
+        >
+          filter_list
+        </FilterIcon>
+        <h3>Exoplanets Archive</h3>
+      </StyledToolbar>
+    </AppBar>
+  );
 }
