@@ -24,7 +24,7 @@ export default function App() {
   const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
 
   // Test only. Will be removed in the final version.
-  const isInDevelopment = false;
+  const isInDevelopment = true;
 
   useEffect(() => {
     if (isInDevelopment) {
