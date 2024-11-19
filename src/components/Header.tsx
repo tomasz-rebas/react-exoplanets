@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/system";
 import { AppBar, Icon, Toolbar } from "@mui/material";
 
 type Props = {
@@ -6,32 +6,28 @@ type Props = {
   setIsSidebarOpened: Function;
 };
 
-const useStyles = makeStyles({
-  toolbar: {
-    justifyContent: "space-between",
-  },
-  filterIcon: {
-    cursor: "pointer",
-  },
+const StyledToolbar = styled(Toolbar)({
+  justifyContent: "space-between",
+});
+
+const FilterIcon = styled(Icon)({
+  cursor: "pointer",
 });
 
 export default function Header({ isSidebarOpened, setIsSidebarOpened }: Props) {
-  const classes = useStyles();
-
   return (
     <AppBar>
-      <Toolbar className={classes.toolbar}>
-        <Icon
+      <StyledToolbar>
+        <FilterIcon
           onClick={() => {
             setIsSidebarOpened(!isSidebarOpened);
           }}
           fontSize="large"
-          className={classes.filterIcon}
         >
           filter_list
-        </Icon>
+        </FilterIcon>
         <h3>Exoplanets Archive</h3>
-      </Toolbar>
+      </StyledToolbar>
     </AppBar>
   );
 }

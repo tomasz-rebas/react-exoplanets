@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/system";
 
 import Checkbox from "../components/Checkbox";
 import CheckboxList from "../components/CheckboxList";
@@ -15,8 +15,8 @@ type Props = {
   setActiveFilters: Function;
 };
 
-const useStyles = makeStyles({
-  drawerPaper: {
+const StyledDrawer = styled(Drawer)({
+  "& .MuiDrawer-paper": {
     paddingLeft: "40px",
     paddingRight: "40px",
     width: "340px",
@@ -29,8 +29,6 @@ export default function Filters({
   activeFilters,
   setActiveFilters,
 }: Props) {
-  const classes = useStyles();
-
   let inputs: React.ReactNode[] = [];
 
   activeFilters.forEach((activeFilter: any) => {
@@ -85,17 +83,14 @@ export default function Filters({
   });
 
   return (
-    <Drawer
+    <StyledDrawer
       anchor="left"
       open={isSidebarOpened}
       onClose={() => {
         setIsSidebarOpened(!isSidebarOpened);
       }}
-      classes={{
-        paper: classes.drawerPaper,
-      }}
     >
       {inputs}
-    </Drawer>
+    </StyledDrawer>
   );
 }

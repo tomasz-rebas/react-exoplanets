@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/system";
 import { Pagination } from "@mui/material";
 
 type Props = {
@@ -7,11 +7,9 @@ type Props = {
   setCurrentPage: Function;
 };
 
-const useStyles = makeStyles({
-  pagination: {
-    display: "flex",
-    justifyContent: "center",
-  },
+const StyledPagination = styled(Pagination)({
+  display: "flex",
+  justifyContent: "center",
 });
 
 export default function Paging({
@@ -19,10 +17,8 @@ export default function Paging({
   currentPage,
   setCurrentPage,
 }: Props) {
-  const classes = useStyles();
-
   return (
-    <Pagination
+    <StyledPagination
       count={numberOfPages}
       color="primary"
       size="large"
@@ -30,7 +26,6 @@ export default function Paging({
         setCurrentPage(page);
       }}
       page={currentPage}
-      className={classes.pagination}
     />
   );
 }

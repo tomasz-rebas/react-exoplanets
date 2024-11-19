@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/system";
 import getFiltersWithUpdatedCheckboxValues from "../functions/getFiltersWithUpdatedCheckboxValues";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 
@@ -11,15 +11,13 @@ type Props = {
   setActiveFilters: Function;
 };
 
-const useStyles = makeStyles({
-  label: {
-    display: "block",
-    paddingTop: "5px",
-    paddingBottom: "5px",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
+const Label = styled("label")({
+  display: "block",
+  paddingTop: "5px",
+  paddingBottom: "5px",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
 });
 
 export default function Checkbox({
@@ -27,7 +25,6 @@ export default function Checkbox({
   activeFilter,
   setActiveFilters,
 }: Props) {
-  const classes = useStyles();
   const { name, isActive } = value;
 
   const handleCheckboxChange = (activeFilter: any) => (event: any) => {
@@ -42,7 +39,7 @@ export default function Checkbox({
   };
 
   return (
-    <label className={classes.label}>
+    <Label>
       <input
         type="checkbox"
         name={name}
@@ -50,6 +47,6 @@ export default function Checkbox({
         onChange={handleCheckboxChange(activeFilter)}
       />
       {name}
-    </label>
+    </Label>
   );
 }

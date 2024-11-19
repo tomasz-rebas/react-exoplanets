@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import PlanetCard from "./PlanetCard";
 import Paging from "./Paging";
-import { makeStyles } from "@material-ui/core/styles";
+import { styled } from "@mui/system";
 
 import { Entry } from "../interfaces/Entry";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
@@ -15,18 +15,17 @@ type Props = {
   tableColumns: TableColumn[];
 };
 
-const useStyles = makeStyles({
-  main: {
-    paddingTop: "100px",
-  },
-  planetList: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    paddingTop: "20px",
-    paddingBottom: "20px",
-  },
+const Container = styled("main")({
+  paddingTop: "100px",
+});
+
+const List = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  paddingTop: "20px",
+  paddingBottom: "20px",
 });
 
 export default function PlanetList({
@@ -36,8 +35,6 @@ export default function PlanetList({
 }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(24);
-
-  const classes = useStyles();
 
   const planetaryDataAfterFiltering = useMemo(
     () =>
@@ -70,18 +67,18 @@ export default function PlanetList({
   }
 
   return (
-    <main className={classes.main}>
+    <Container>
       <Paging
         numberOfPages={numberOfPages}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-      <div className={classes.planetList}>{planets}</div>
+      <List>{planets}</List>
       <Paging
         numberOfPages={numberOfPages}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-    </main>
+    </Container>
   );
 }

@@ -1,8 +1,7 @@
-import { makeStyles } from "@material-ui/core/styles";
-
 import getToggledTextFilters from "../functions/getToggledTextFilters";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 import { Button } from "@mui/material";
+import { styled } from "@mui/system";
 
 type Props = {
   tableLabel: string;
@@ -11,14 +10,13 @@ type Props = {
   setActiveFilters: Function;
 };
 
-const useStyles = makeStyles({
-  selectAllButton: {
-    marginTop: "15px",
-  },
-  inputContainer: {
-    paddingTop: "10px",
-    paddingBottom: "10px",
-  },
+const SelectAllButton = styled(Button)({
+  marginTop: "15px",
+});
+
+const InputContainer = styled("div")({
+  paddingTop: "10px",
+  paddingBottom: "10px",
 });
 
 export default function CheckboxList({
@@ -27,8 +25,6 @@ export default function CheckboxList({
   checkboxes,
   setActiveFilters,
 }: Props) {
-  const classes = useStyles();
-
   const selectAllCheckboxes = () => {
     setActiveFilters((previousState: ActiveFilter[]) =>
       getToggledTextFilters(previousState, name)
@@ -36,16 +32,12 @@ export default function CheckboxList({
   };
 
   return (
-    <div className={classes.inputContainer}>
+    <InputContainer>
       <h4>{tableLabel}</h4>
       <div>{checkboxes}</div>
-      <Button
-        variant="contained"
-        className={classes.selectAllButton}
-        onClick={selectAllCheckboxes}
-      >
+      <SelectAllButton variant="contained" onClick={selectAllCheckboxes}>
         Select All
-      </Button>
-    </div>
+      </SelectAllButton>
+    </InputContainer>
   );
 }

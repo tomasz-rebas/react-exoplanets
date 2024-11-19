@@ -1,25 +1,21 @@
-import { makeStyles } from "@material-ui/core/styles";
 import { CircularProgress } from "@mui/material";
+import { styled } from "@mui/system";
 
 type Props = {
   didFetchFail: boolean;
 };
 
-const useStyles = makeStyles({
-  fetchAlert: {
-    textAlign: "center",
-    position: "absolute",
-    left: "50%",
-    top: "45%",
-    transform: "translate(-50%, -50%)",
-  },
+const Container = styled("div")({
+  textAlign: "center",
+  position: "absolute",
+  left: "50%",
+  top: "45%",
+  transform: "translate(-50%, -50%)",
 });
 
 export default function FetchAlert({ didFetchFail }: Props) {
-  const classes = useStyles();
-
   return (
-    <div className={classes.fetchAlert}>
+    <Container>
       {didFetchFail ? (
         <div>
           <p>Error occured during fetch.</p>
@@ -33,6 +29,6 @@ export default function FetchAlert({ didFetchFail }: Props) {
           <CircularProgress />
         </div>
       )}
-    </div>
+    </Container>
   );
 }
