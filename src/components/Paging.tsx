@@ -22,7 +22,7 @@ export default function Paging({
       count={numberOfPages}
       color="primary"
       size="large"
-      onChange={(event, page) => {
+      onChange={(_, page) => {
         setCurrentPage(page);
       }}
       page={currentPage}

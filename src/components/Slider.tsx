@@ -29,7 +29,8 @@ export default function Slider({
   tableLabel,
 }: Props) {
   const handleSliderChange =
-    (name: string) => (event: any, value: number | number[]) => {
+    (name: string) =>
+    (_: React.SyntheticEvent | Event, value: number | number[]) => {
       if (Array.isArray(value)) {
         setActiveFilters((previousState: ActiveFilter[]) =>
           getFiltersWithUpdatedSliderValues(
