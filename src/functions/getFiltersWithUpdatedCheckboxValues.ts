@@ -16,13 +16,13 @@ export default function getFiltersWithUpdatedCheckboxValues(
               ...checkbox,
               isActive: !checkbox.isActive,
             };
-          } else {
-            return checkbox;
           }
+
+          return checkbox;
         }),
       };
-    } else {
-      return filter;
     }
+
+    return filter;
   });
 }
