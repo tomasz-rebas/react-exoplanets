@@ -4,7 +4,7 @@
     "tableLabel": "Planet Name",
     "description": "Planet name most commonly used in the literature",
     "isUsedInQuery": true,
-    "usedInForm": false,
+    "isUsedInForm": false,
     "dataType": "text"
   },
   {
@@ -12,7 +12,7 @@
     "tableLabel": "Host Name",
     "description": "Stellar name most commonly used in the literature",
     "isUsedInQuery": true,
-    "usedInForm": false,
+    "isUsedInForm": false,
     "dataType": "text"
   },
   {
@@ -20,7 +20,7 @@
     "tableLabel": "Discovery Facility",
     "description": "Name of facility of planet discovery observations",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "text"
   },
   {
@@ -28,7 +28,7 @@
     "tableLabel": "Discovery Method",
     "description": "Method by which the planet was first identified",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "text"
   },
   {
@@ -36,7 +36,7 @@
     "tableLabel": "Discovery Year",
     "description": "Year the planet was discovered",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "number",
     "minValue": 1998,
     "maxValue": 2020,
@@ -47,7 +47,7 @@
     "tableLabel": "Orbital Period",
     "description": "Time the planet takes to make a complete orbit around the host star or system",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "number",
     "minValue": 0,
     "maxValue": 350,
@@ -59,7 +59,7 @@
     "tableLabel": "Orbit Semi-Major Axis",
     "description": "The longest radius of an elliptic orbit, or, for exoplanets detected via gravitational microlensing or direct imaging, the projected separation in the plane of the sky",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "number",
     "minValue": 0,
     "maxValue": 1.5,
@@ -71,7 +71,7 @@
     "tableLabel": "Planet Mass",
     "description": "Amount of matter contained in the planet, measured in units of masses of the Earth",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "number",
     "minValue": 0,
     "maxValue": 9000,
@@ -83,7 +83,7 @@
     "tableLabel": "Planet Radius",
     "description": "Length of a line segment from the center of the planet to its surface, measured in units of radius of the Earth",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "number",
     "minValue": 0,
     "maxValue": 25,
@@ -95,7 +95,7 @@
     "tableLabel": "Planet Density",
     "description": "Amount of mass per unit of volume of the planet",
     "isUsedInQuery": true,
-    "usedInForm": true,
+    "isUsedInForm": true,
     "dataType": "number",
     "minValue": 0,
     "maxValue": 35,
@@ -107,7 +107,7 @@
     "tableLabel": "Release Date",
     "description": "Date that the given planet parameter set was publicly released by the NASA Exoplanet Archive",
     "isUsedInQuery": true,
-    "usedInForm": false,
+    "isUsedInForm": false,
     "dataType": "date"
   }
 ]

@@ -8,7 +8,7 @@ export const getInitiallyActiveFilters = (
   tableColumns: TableColumn[]
 ): ActiveFilter[] =>
   tableColumns
-    .filter((column) => column.usedInForm)
+    .filter((column) => column.isUsedInForm)
     .map((column) => {
       const {
         tableLabel,
@@ -34,20 +34,15 @@ export const getInitiallyActiveFilters = (
         };
       }
 
-      let values: ActiveFilterValue[] = [];
+      const values: ActiveFilterValue[] = [];
+      const seen = new Set();
 
       planetaryData.forEach((entry) => {
-        let isInArray = false;
-        values.forEach((value) => {
-          if (value.name === entry[databaseColumnName]) {
-            isInArray = true;
-          }
-        });
-        if (!isInArray) {
-          values.push({
-            name: entry[databaseColumnName],
-            isActive: true,
-          });
+        const name = entry[databaseColumnName];
+
+        if (!seen.has(name)) {
+          seen.add(name);
+          values.push({ name, isActive: true });
         }
       });
 

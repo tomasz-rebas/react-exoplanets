@@ -3,7 +3,7 @@ export interface TableColumn {
   tableLabel: string;
   description: string;
   isUsedInQuery: boolean;
-  usedInForm: boolean;
+  isUsedInForm: boolean;
   dataType: string;
 
   minValue?: number;
