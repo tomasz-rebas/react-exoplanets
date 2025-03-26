@@ -11,7 +11,7 @@ interface Column {
 export default function getQuery(
   columns: Column[],
   includeEmptyProperties: boolean
-) {
+): string {
   const columnList = columns
     .filter((column) => column.isUsedInQuery)
     .map((column) => column.databaseColumnName)

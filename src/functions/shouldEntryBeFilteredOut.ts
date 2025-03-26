@@ -1,28 +1,32 @@
-import { Entry } from '../interfaces/Entry';
-import { ActiveFilter } from '../interfaces/ActiveFilter';
+import { Entry } from "../interfaces/Entry";
+import { ActiveFilter } from "../interfaces/ActiveFilter";
 
-export default function shouldBeFilteredOut(data: Entry, filters: ActiveFilter[]) {
+export default function shouldBeFilteredOut(
+  data: Entry,
+  filters: ActiveFilter[]
+): boolean {
+  let shouldBeFilteredOut = false;
 
-    let shouldBeFilteredOut = false;
+  filters.forEach((property) => {
+    const { name, currentMinValue, currentMaxValue, values } = property;
 
-    filters.forEach(property => {
-
-        const { name, currentMinValue, currentMaxValue, values } = property;
-
-        if (name !== undefined) {
-            if (currentMinValue !== undefined && currentMaxValue !== undefined) {
-                if (parseFloat(data[name]) < currentMinValue || parseFloat(data[name]) > currentMaxValue) {
-                    shouldBeFilteredOut = true;
-                }
-            } else if (values) {
-                values.forEach(checkbox => {
-                    if (checkbox.name === data[name] && !checkbox.isActive) {
-                        shouldBeFilteredOut = true;
-                    }
-                });
-            }
+    if (name !== undefined) {
+      if (currentMinValue !== undefined && currentMaxValue !== undefined) {
+        if (
+          parseFloat(data[name]) < currentMinValue ||
+          parseFloat(data[name]) > currentMaxValue
+        ) {
+          shouldBeFilteredOut = true;
         }
-    });
+      } else if (values) {
+        values.forEach((checkbox) => {
+          if (checkbox.name === data[name] && !checkbox.isActive) {
+            shouldBeFilteredOut = true;
+          }
+        });
+      }
+    }
+  });
 
-    return shouldBeFilteredOut;
+  return shouldBeFilteredOut;
 }

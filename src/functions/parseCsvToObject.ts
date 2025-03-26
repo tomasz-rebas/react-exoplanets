@@ -1,4 +1,6 @@
-export default function parseCsvToObject(text: string) {
+import { Entry } from "../interfaces/Entry";
+
+export default function parseCsvToObject(text: string): Entry[] {
   const rows = text.split(/\r?\n/);
   const keys = rows[0].split(",");
 
