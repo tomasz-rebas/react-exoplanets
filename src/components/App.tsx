@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import getQuery from "../functions/getQuery";
-import convertCsvToObject from "../functions/convertCsvToObject";
+import parseCsvToObject from "../functions/parseCsvToObject";
 import getUniquePlanets from "../functions/getUniquePlanets";
 import getInitiallyActiveFilters from "../functions/getInitiallyActiveFilters";
 
@@ -31,8 +31,8 @@ const fetchAndParseData = async () => {
   if (!response.ok) throw new Error("Failed to fetch");
   const rawData = await response.text();
 
-  const convertedData = convertCsvToObject(rawData);
-  const strippedData = getUniquePlanets(convertedData);
+  const parsedData = parseCsvToObject(rawData);
+  const strippedData = getUniquePlanets(parsedData);
 
   return strippedData;
 };
