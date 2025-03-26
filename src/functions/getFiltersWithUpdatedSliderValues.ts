@@ -13,8 +13,8 @@ export default function getFiltersWithUpdatedSliderValues(
         currentMinValue: newCurrentMin,
         currentMaxValue: newCurrentMax,
       };
-    } else {
-      return filter;
     }
+
+    return filter;
   });
 }
