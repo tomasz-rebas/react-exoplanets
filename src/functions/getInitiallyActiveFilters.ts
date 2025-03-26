@@ -3,64 +3,58 @@ import { ActiveFilterValue } from "../interfaces/ActiveFilterValue";
 import { Entry } from "../interfaces/Entry";
 import { TableColumn } from "../interfaces/TableColumn";
 
-export default function getInitiallyActiveFilters(
+export const getInitiallyActiveFilters = (
   planetaryData: Entry[],
   tableColumns: TableColumn[]
-): ActiveFilter[] {
-  let initiallyActiveFilters: ActiveFilter[] = [];
+): ActiveFilter[] =>
+  tableColumns
+    .filter((column) => column.usedInForm)
+    .map((column) => {
+      const {
+        tableLabel,
+        dataType,
+        databaseColumnName,
+        minValue,
+        maxValue,
+        unit,
+        scaleStep,
+      } = column;
 
-  tableColumns.forEach((element) => {
-    const {
-      usedInForm,
-      tableLabel,
-      dataType,
-      databaseColumnName,
-      minValue,
-      maxValue,
-      unit,
-      scaleStep,
-    } = element;
-
-    if (usedInForm) {
-      if (dataType === "number") {
-        initiallyActiveFilters.push({
-          name: databaseColumnName,
+      if (column.dataType === "number") {
+        return {
           tableLabel,
           dataType,
+          name: databaseColumnName,
           minValue,
           maxValue,
-          currentMinValue: minValue,
-          currentMaxValue: maxValue,
           unit,
           scaleStep,
-        });
-      } else {
-        let values: ActiveFilterValue[] = [];
+          currentMinValue: minValue,
+          currentMaxValue: maxValue,
+        };
+      }
 
-        planetaryData.forEach((entry) => {
-          let isInArray = false;
-          values.forEach((value) => {
-            if (value.name === entry[databaseColumnName]) {
-              isInArray = true;
-            }
-          });
-          if (!isInArray) {
-            values.push({
-              name: entry[databaseColumnName],
-              isActive: true,
-            });
+      let values: ActiveFilterValue[] = [];
+
+      planetaryData.forEach((entry) => {
+        let isInArray = false;
+        values.forEach((value) => {
+          if (value.name === entry[databaseColumnName]) {
+            isInArray = true;
           }
         });
+        if (!isInArray) {
+          values.push({
+            name: entry[databaseColumnName],
+            isActive: true,
+          });
+        }
+      });
 
-        initiallyActiveFilters.push({
-          name: databaseColumnName,
-          tableLabel,
-          dataType,
-          values,
-        });
-      }
-    }
-  });
-
-  return initiallyActiveFilters;
-}
+      return {
+        name: databaseColumnName,
+        tableLabel,
+        dataType,
+        values,
+      };
+    });
