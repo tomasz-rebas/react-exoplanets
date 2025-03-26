@@ -1,6 +1,6 @@
 import { styled } from "@mui/system";
 
-import getRoundedValue from "../functions/getRoundedValue";
+import { getRoundedValue } from "../functions/getRoundedValue";
 
 import { Entry } from "../interfaces/Entry";
 import { TableColumn } from "../interfaces/TableColumn";
@@ -43,7 +43,7 @@ export default function PlanetCard({ data, tableColumns }: Props) {
         ) {
           let value;
           if (tableColumns[i].dataType === "number") {
-            value = getRoundedValue(data[property]);
+            value = getRoundedValue(Number(data[property]));
           } else {
             value = data[property];
           }
