@@ -6,7 +6,6 @@ import getUniquePlanets from "../functions/getUniquePlanets";
 import getInitiallyActiveFilters from "../functions/getInitiallyActiveFilters";
 
 import tableColumns from "../tableColumns.json";
-import fallbackData from "../fallbackData.json";
 
 import Header from "./Header";
 import Filters from "./Filters";
@@ -14,48 +13,33 @@ import PlanetList from "./PlanetList";
 import FetchAlert from "./FetchAlert";
 import Footer from "./Footer";
 
-import { Entry } from "../interfaces/Entry";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchAndParseData = async () => {
+  const proxy = import.meta.env.VITE_CORS_PROXY;
+  const baseUrl = import.meta.env.VITE_EXOPLANET_ARCHIVE;
+  const query = getQuery(tableColumns, true);
+
+  const url = `${proxy}?${baseUrl}?query=${query}&format=csv`;
+
+  console.log(`Fetching data from: ${url}`);
+
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Failed to fetch");
+  const rawData = await response.text();
+
+  const convertedData = convertCsvToObject(rawData);
+  const strippedData = getUniquePlanets(convertedData);
+
+  return strippedData;
+};
 
 export default function App() {
-  const [planetaryData, setPlanetaryData] = useState<Array<Entry>>();
-  const [didFetchFail, setDidFetchFail] = useState<boolean>(false);
+  const { data: planetaryData, error } = useQuery(["data"], fetchAndParseData);
+
   const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
   const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
-
-  // Test only. Will be removed in the final version.
-  const isInDevelopment = false;
-
-  useEffect(() => {
-    if (isInDevelopment) {
-      setTimeout(() => {
-        setPlanetaryData(fallbackData);
-      }, 1000);
-    } else {
-      fetchData();
-    }
-  }, [isInDevelopment]);
-
-  async function fetchData() {
-    const url = `${import.meta.env.VITE_CORS_PROXY}?${
-      import.meta.env.VITE_EXOPLANET_ARCHIVE
-    }?query=${getQuery(tableColumns, true)}&format=csv`;
-    console.log(`Fetching data from: ${url}`);
-
-    try {
-      const response = await fetch(url);
-      const data = await response.text();
-      const convertedData = convertCsvToObject(data);
-      const strippedData = getUniquePlanets(convertedData);
-      setPlanetaryData(strippedData);
-    } catch (e) {
-      console.error("The error occured. " + e);
-      setDidFetchFail(true);
-      setTimeout(() => {
-        setPlanetaryData(fallbackData);
-      }, 2000);
-    }
-  }
 
   useEffect(() => {
     if (planetaryData) {
@@ -83,6 +67,6 @@ export default function App() {
       <Footer />
     </div>
   ) : (
-    <FetchAlert didFetchFail={didFetchFail} />
+    <FetchAlert error={error} />
   );
 }

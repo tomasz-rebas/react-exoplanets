@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { styled } from "@mui/system";
 
 type Props = {
-  didFetchFail: boolean;
+  error: unknown;
 };
 
 const Container = styled("div")({
@@ -13,10 +13,10 @@ const Container = styled("div")({
   transform: "translate(-50%, -50%)",
 });
 
-export default function FetchAlert({ didFetchFail }: Props) {
+export default function FetchAlert({ error }: Props) {
   return (
     <Container>
-      {didFetchFail ? (
+      {error ? (
         <div>
           <p>Error occured during fetch.</p>
           <p>Loading fallback data from 1 Sep 2024...</p>
