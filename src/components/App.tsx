@@ -37,12 +37,9 @@ export default function App() {
   }, [isInDevelopment]);
 
   async function fetchData() {
-    const url = `${
-      import.meta.env.VITE_CORS_PROXY
-    }?https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(
-      tableColumns,
-      true
-    )}&format=csv`;
+    const url = `${import.meta.env.VITE_CORS_PROXY}?${
+      import.meta.env.VITE_EXOPLANET_ARCHIVE
+    }?query=${getQuery(tableColumns, true)}&format=csv`;
     console.log(`Fetching data from: ${url}`);
 
     try {
