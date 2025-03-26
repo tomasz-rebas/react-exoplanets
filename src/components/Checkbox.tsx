@@ -1,5 +1,5 @@
 import { styled } from "@mui/system";
-import getFiltersWithUpdatedCheckboxValues from "../functions/getFiltersWithUpdatedCheckboxValues";
+import { getFiltersWithUpdatedCheckboxValues } from "../functions/getFiltersWithUpdatedCheckboxValues";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 
 type Props = {

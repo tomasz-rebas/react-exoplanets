@@ -1,13 +1,13 @@
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 import { ActiveFilterValue } from "../interfaces/ActiveFilterValue";
 
-export default function getFiltersWithUpdatedCheckboxValues(
+export const getFiltersWithUpdatedCheckboxValues = (
   activeFilter: any,
   name: string,
   filters: ActiveFilter[]
-): ActiveFilter[] {
-  return filters.map((filter) => {
-    if (filter.name === activeFilter.name && filter.values !== undefined) {
+): ActiveFilter[] =>
+  filters.map((filter) => {
+    if (filter.name === activeFilter.name) {
       return {
         ...activeFilter,
         values: activeFilter.values.map((checkbox: ActiveFilterValue) => {
@@ -25,4 +25,3 @@ export default function getFiltersWithUpdatedCheckboxValues(
 
     return filter;
   });
-}
