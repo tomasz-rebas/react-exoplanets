@@ -1,12 +1,12 @@
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 
-export default function getFiltersWithUpdatedSliderValues(
+export const getFiltersWithUpdatedSliderValues = (
   filters: ActiveFilter[],
   newCurrentMin: number,
   newCurrentMax: number,
   name: string
-): ActiveFilter[] {
-  return filters.map((filter) => {
+): ActiveFilter[] =>
+  filters.map((filter) => {
     if (filter.name === name) {
       return {
         ...filter,
@@ -17,4 +17,3 @@ export default function getFiltersWithUpdatedSliderValues(
 
     return filter;
   });
-}

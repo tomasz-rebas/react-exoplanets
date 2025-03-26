@@ -1,5 +1,5 @@
 import getSliderMarks from "../functions/getSliderMarks";
-import getFiltersWithUpdatedSliderValues from "../functions/getFiltersWithUpdatedSliderValues";
+import { getFiltersWithUpdatedSliderValues } from "../functions/getFiltersWithUpdatedSliderValues";
 
 import { Slider as MaterialSlider } from "@mui/material";
 
