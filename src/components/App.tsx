@@ -24,7 +24,7 @@ export default function App() {
   const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
 
   // Test only. Will be removed in the final version.
-  const isInDevelopment = true;
+  const isInDevelopment = false;
 
   useEffect(() => {
     if (isInDevelopment) {
@@ -38,7 +38,7 @@ export default function App() {
 
   async function fetchData() {
     const url = `${
-      import.meta.env.REACT_APP_CORS_PROXY
+      import.meta.env.VITE_CORS_PROXY
     }?https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=${getQuery(
       tableColumns,
       true
