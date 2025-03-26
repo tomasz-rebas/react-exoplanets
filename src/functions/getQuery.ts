@@ -1,27 +1,30 @@
 interface Column {
   databaseColumnName: string;
-  usedInQuery: boolean;
+  isUsedInQuery: boolean;
 }
 
-export default function getQuery(columns: Column[], noNull: boolean) {
+/**
+ * 'includeEmptyProperties' - when true, will fetch all the exoplanets,
+ * including those with missing data (e.g. the mass).
+ */
+
+export default function getQuery(
+  columns: Column[],
+  includeEmptyProperties: boolean
+) {
   const columnList = columns
-    .filter((column) => column.usedInQuery)
+    .filter((column) => column.isUsedInQuery)
     .map((column) => column.databaseColumnName)
     .join();
 
-  let query = `select+distinct+${columnList}+from+ps`;
-
-  if (noNull) {
-    let whereClause = "+where+";
-    for (let i = 0; i < columns.length; i++) {
-      if (columns[i].usedInQuery) {
-        whereClause += columns[i].databaseColumnName + "+is+not+null";
-        whereClause += "+and+";
-      }
-    }
-    whereClause = whereClause.substring(0, whereClause.length - 5);
-    query += whereClause;
+  if (includeEmptyProperties) {
+    return `select+distinct+${columnList}+from+ps`;
   }
 
-  return query;
+  const conditions = columns
+    .filter((column) => column.isUsedInQuery)
+    .map((column) => column.databaseColumnName + "+is+not+null")
+    .join("+and+");
+
+  return `select+distinct+${columnList}+from+ps+where+${conditions}`;
 }

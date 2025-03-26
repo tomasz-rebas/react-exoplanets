@@ -21,7 +21,7 @@ import { Entry } from "../interfaces/Entry";
 const fetchAndParseData = async () => {
   const proxy = import.meta.env.VITE_CORS_PROXY;
   const baseUrl = import.meta.env.VITE_EXOPLANET_ARCHIVE;
-  const query = getQuery(tableColumns, true);
+  const query = getQuery(tableColumns, false);
 
   const url = `${proxy}?${baseUrl}?query=${query}&format=csv`;
 
