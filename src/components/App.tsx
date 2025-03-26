@@ -6,6 +6,7 @@ import getUniquePlanets from "../functions/getUniquePlanets";
 import getInitiallyActiveFilters from "../functions/getInitiallyActiveFilters";
 
 import tableColumns from "../tableColumns.json";
+import fallbackData from "../fallbackData.json";
 
 import Header from "./Header";
 import Filters from "./Filters";
@@ -15,6 +16,7 @@ import Footer from "./Footer";
 
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 import { useQuery } from "@tanstack/react-query";
+import { Entry } from "../interfaces/Entry";
 
 const fetchAndParseData = async () => {
   const proxy = import.meta.env.VITE_CORS_PROXY;
@@ -36,18 +38,36 @@ const fetchAndParseData = async () => {
 };
 
 export default function App() {
-  const { data: planetaryData, error } = useQuery(["data"], fetchAndParseData);
+  const {
+    isLoading,
+    data: planetaryData,
+    error,
+  } = useQuery(["data"], fetchAndParseData);
 
   const [isSidebarOpened, setIsSidebarOpened] = useState<boolean>(false);
   const [activeFilters, setActiveFilters] = useState<Array<ActiveFilter>>();
+  const [shouldShowfallback, setShouldShowFallback] = useState<boolean>(false);
 
   useEffect(() => {
     if (planetaryData) {
       setActiveFilters(getInitiallyActiveFilters(planetaryData, tableColumns));
     }
-  }, [planetaryData]);
 
-  return planetaryData && activeFilters ? (
+    if (error) {
+      setActiveFilters(getInitiallyActiveFilters(fallbackData, tableColumns));
+      setTimeout(() => setShouldShowFallback(true), 2000);
+    }
+  }, [planetaryData, error]);
+
+  if (isLoading || !activeFilters) {
+    return <FetchAlert />;
+  }
+
+  if (error && !shouldShowfallback) {
+    return <FetchAlert isLoadingFallback />;
+  }
+
+  return (
     <div>
       <Header
         isSidebarOpened={isSidebarOpened}
@@ -60,13 +80,13 @@ export default function App() {
         setActiveFilters={setActiveFilters}
       />
       <PlanetList
-        planetaryData={planetaryData}
+        planetaryData={
+          shouldShowfallback ? fallbackData : (planetaryData as Entry[])
+        }
         activeFilters={activeFilters}
         tableColumns={tableColumns}
       />
       <Footer />
     </div>
-  ) : (
-    <FetchAlert error={error} />
   );
 }
