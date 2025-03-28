@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 
-import getQuery from "../functions/getQuery";
-import parseCsvToObject from "../functions/parseCsvToObject";
-import { getUniquePlanets } from "../functions/getUniquePlanets";
-import { getInitiallyActiveFilters } from "../functions/getInitiallyActiveFilters";
+import getQuery from "./functions/getQuery";
+import parseCsvToObject from "./functions/parseCsvToObject";
+import { getUniquePlanets } from "./functions/getUniquePlanets";
+import { getInitiallyActiveFilters } from "./functions/getInitiallyActiveFilters";
 
-import tableColumns from "../tableColumns.json";
-import fallbackData from "../fallbackData.json";
+import tableColumns from "./tableColumns.json";
+import fallbackData from "./fallbackData.json";
 
-import Header from "./Header/Header";
-import Filters from "./Filters/Filters";
-import PlanetList from "./PlanetList/PlanetList";
-import FetchAlert from "./FetchAlert/FetchAlert";
-import Footer from "./Footer";
+import Header from "./components/Header/Header";
+import Filters from "./components/Filters/Filters";
+import PlanetList from "./components/PlanetList/PlanetList";
+import FetchAlert from "./components/FetchAlert/FetchAlert";
+import Footer from "./components/Footer";
 
-import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { ActiveFilter } from "./interfaces/ActiveFilter";
 import { useQuery } from "@tanstack/react-query";
-import { Entry } from "../interfaces/Entry";
+import { Entry } from "./interfaces/Entry";
 
 const fetchAndParseData = async () => {
   const proxy = import.meta.env.VITE_CORS_PROXY;
