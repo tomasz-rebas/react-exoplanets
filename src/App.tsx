@@ -5,8 +5,8 @@ import parseCsvToObject from "./functions/parseCsvToObject";
 import { getUniquePlanets } from "./functions/getUniquePlanets";
 import { getInitiallyActiveFilters } from "./functions/getInitiallyActiveFilters";
 
-import tableColumns from "./tableColumns.json";
-import fallbackData from "./fallbackData.json";
+import tableColumns from "./data/tableColumns.json";
+import fallbackData from "./data/fallbackData.json";
 
 import Header from "./components/Header/Header";
 import Filters from "./components/Filters/Filters";
