@@ -1,36 +1,15 @@
-import { styled } from "@mui/system";
+import { getRoundedValue } from "../../functions/getRoundedValue";
 
-import { getRoundedValue } from "../functions/getRoundedValue";
+import { Entry } from "../../interfaces/Entry";
+import { TableColumn } from "../../interfaces/TableColumn";
 
-import { Entry } from "../interfaces/Entry";
-import { TableColumn } from "../interfaces/TableColumn";
-import { Card } from "@mui/material";
 import { useMemo } from "react";
+import { DataRow, PlanetIcon, StyledCard } from "./PlanetCard.theme";
 
 type Props = {
   data: Entry;
   tableColumns: TableColumn[];
 };
-
-const StyledCard = styled(Card)({
-  width: "250px",
-  padding: "10px",
-  margin: "10px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  textAlign: "center",
-});
-
-const PlanetIcon = styled("img")({
-  width: "70px",
-  height: "70px",
-});
-
-const DataRow = styled("div")({
-  marginTop: "4px",
-  marginBottom: "4px",
-});
 
 export default function PlanetCard({ data, tableColumns }: Props) {
   const dataForDisplay = useMemo(() => {

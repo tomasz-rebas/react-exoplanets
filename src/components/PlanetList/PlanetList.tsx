@@ -1,32 +1,19 @@
 import { useState, useMemo } from "react";
-import PlanetCard from "./PlanetCard";
-import Paging from "./Paging";
-import { styled } from "@mui/system";
+import PlanetCard from "../PlanetCard/PlanetCard";
+import Paging from "../Paging/Paging";
 
-import { Entry } from "../interfaces/Entry";
-import { ActiveFilter } from "../interfaces/ActiveFilter";
-import { TableColumn } from "../interfaces/TableColumn";
+import { Entry } from "../../interfaces/Entry";
+import { ActiveFilter } from "../../interfaces/ActiveFilter";
+import { TableColumn } from "../../interfaces/TableColumn";
 
-import shouldEntryBeFilteredOut from "../functions/shouldEntryBeFilteredOut";
+import shouldEntryBeFilteredOut from "../../functions/shouldEntryBeFilteredOut";
+import { Container, List } from "./PlanetList.theme";
 
 type Props = {
   planetaryData: Entry[];
   activeFilters: ActiveFilter[];
   tableColumns: TableColumn[];
 };
-
-const Container = styled("main")({
-  paddingTop: "100px",
-});
-
-const List = styled("div")({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  flexWrap: "wrap",
-  paddingTop: "20px",
-  paddingBottom: "20px",
-});
 
 export default function PlanetList({
   planetaryData,

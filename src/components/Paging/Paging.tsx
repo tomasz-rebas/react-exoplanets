@@ -1,16 +1,10 @@
-import { styled } from "@mui/system";
-import { Pagination } from "@mui/material";
+import { StyledPagination } from "./Paging.theme";
 
 type Props = {
   numberOfPages: number;
   currentPage: number;
   setCurrentPage: Function;
 };
-
-const StyledPagination = styled(Pagination)({
-  display: "flex",
-  justifyContent: "center",
-});
 
 export default function Paging({
   numberOfPages,

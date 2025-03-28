@@ -1,6 +1,7 @@
-import { styled } from "@mui/system";
-import { getFiltersWithUpdatedCheckboxValues } from "../functions/getFiltersWithUpdatedCheckboxValues";
-import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { getFiltersWithUpdatedCheckboxValues } from "../../functions/getFiltersWithUpdatedCheckboxValues";
+import { ActiveFilter } from "../../interfaces/ActiveFilter";
+
+import { Label } from "./Checkbox.theme";
 
 type Props = {
   value: {
@@ -10,15 +11,6 @@ type Props = {
   activeFilter: ActiveFilter;
   setActiveFilters: Function;
 };
-
-const Label = styled("label")({
-  display: "block",
-  paddingTop: "5px",
-  paddingBottom: "5px",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
-});
 
 export default function Checkbox({
   value,

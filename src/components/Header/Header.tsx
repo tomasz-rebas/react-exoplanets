@@ -1,18 +1,10 @@
-import { styled } from "@mui/system";
-import { AppBar, Icon, Toolbar } from "@mui/material";
+import { AppBar } from "@mui/material";
+import { FilterIcon, StyledToolbar } from "./Header.theme";
 
 type Props = {
   isSidebarOpened: boolean;
   setIsSidebarOpened: Function;
 };
-
-const StyledToolbar = styled(Toolbar)({
-  justifyContent: "space-between",
-});
-
-const FilterIcon = styled(Icon)({
-  cursor: "pointer",
-});
 
 export default function Header({ isSidebarOpened, setIsSidebarOpened }: Props) {
   return (

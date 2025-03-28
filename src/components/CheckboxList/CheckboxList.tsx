@@ -1,7 +1,6 @@
-import getToggledTextFilters from "../functions/getToggledTextFilters";
-import { ActiveFilter } from "../interfaces/ActiveFilter";
-import { Button } from "@mui/material";
-import { styled } from "@mui/system";
+import getToggledTextFilters from "../../functions/getToggledTextFilters";
+import { ActiveFilter } from "../../interfaces/ActiveFilter";
+import { InputContainer, SelectAllButton } from "./CheckboxList.theme";
 
 type Props = {
   tableLabel: string;
@@ -9,15 +8,6 @@ type Props = {
   checkboxes: JSX.Element[];
   setActiveFilters: Function;
 };
-
-const SelectAllButton = styled(Button)({
-  marginTop: "15px",
-});
-
-const InputContainer = styled("div")({
-  paddingTop: "10px",
-  paddingBottom: "10px",
-});
 
 export default function CheckboxList({
   tableLabel,

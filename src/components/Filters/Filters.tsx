@@ -1,12 +1,11 @@
 import React from "react";
-import { styled } from "@mui/system";
 
-import Checkbox from "../components/Checkbox";
-import CheckboxList from "../components/CheckboxList";
-import Slider from "../components/Slider";
+import Checkbox from "../Checkbox/Checkbox";
+import CheckboxList from "../CheckboxList/CheckboxList";
+import Slider from "../Slider";
 
-import { ActiveFilter } from "../interfaces/ActiveFilter";
-import { Drawer } from "@mui/material";
+import { ActiveFilter } from "../../interfaces/ActiveFilter";
+import { StyledDrawer } from "./Filters.theme";
 
 type Props = {
   isSidebarOpened: boolean;
@@ -14,14 +13,6 @@ type Props = {
   activeFilters: ActiveFilter[];
   setActiveFilters: Function;
 };
-
-const StyledDrawer = styled(Drawer)({
-  "& .MuiDrawer-paper": {
-    paddingLeft: "40px",
-    paddingRight: "40px",
-    width: "340px",
-  },
-});
 
 export default function Filters({
   isSidebarOpened,

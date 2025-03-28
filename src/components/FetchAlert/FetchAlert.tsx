@@ -1,17 +1,9 @@
 import { CircularProgress } from "@mui/material";
-import { styled } from "@mui/system";
+import { Container } from "./FetchAlert.theme";
 
 type Props = {
   isLoadingFallback?: boolean;
 };
-
-const Container = styled("div")({
-  textAlign: "center",
-  position: "absolute",
-  left: "50%",
-  top: "45%",
-  transform: "translate(-50%, -50%)",
-});
 
 export default function FetchAlert({ isLoadingFallback }: Props) {
   return (

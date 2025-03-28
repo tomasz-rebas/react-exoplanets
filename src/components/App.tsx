@@ -8,10 +8,10 @@ import { getInitiallyActiveFilters } from "../functions/getInitiallyActiveFilter
 import tableColumns from "../tableColumns.json";
 import fallbackData from "../fallbackData.json";
 
-import Header from "./Header";
-import Filters from "./Filters";
-import PlanetList from "./PlanetList";
-import FetchAlert from "./FetchAlert";
+import Header from "./Header/Header";
+import Filters from "./Filters/Filters";
+import PlanetList from "./PlanetList/PlanetList";
+import FetchAlert from "./FetchAlert/FetchAlert";
 import Footer from "./Footer";
 
 import { ActiveFilter } from "../interfaces/ActiveFilter";
