@@ -3,22 +3,22 @@ import { Entry } from "../interfaces/Entry";
 // This function will remove some of the entries so only one entry
 // per planet will remain - the one with most recent release date.
 
-export default function getUniquePlanets(data: Entry[]): Entry[] {
-  let strippedData = [];
-  let mostRecentDateIndex = 0;
+export const getUniquePlanets = (data: Entry[]): Entry[] =>
+  Object.values(
+    data.reduce((acc, entry) => {
+      if (!acc[entry.pl_name]) {
+        acc[entry.pl_name] = entry;
 
-  for (let i = 1; i < data.length; i++) {
-    if (data[i].pl_name === data[i - 1].pl_name) {
-      let currentDate = new Date(data[i].releasedate);
-      let previousDate = new Date(data[i - 1].releasedate);
-      if (currentDate > previousDate) {
-        mostRecentDateIndex = i;
+        return acc;
       }
-    } else {
-      strippedData.push(data[mostRecentDateIndex]);
-      mostRecentDateIndex = i;
-    }
-  }
 
-  return strippedData;
-}
+      const accDate = new Date(acc[entry.pl_name].releasedate);
+      const entryDate = new Date(entry.releasedate);
+
+      if (entryDate > accDate) {
+        acc[entry.pl_name] = entry;
+      }
+
+      return acc;
+    }, {} as Record<string, Entry>)
+  );

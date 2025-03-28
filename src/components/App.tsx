@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import getQuery from "../functions/getQuery";
 import parseCsvToObject from "../functions/parseCsvToObject";
-import getUniquePlanets from "../functions/getUniquePlanets";
+import { getUniquePlanets } from "../functions/getUniquePlanets";
 import { getInitiallyActiveFilters } from "../functions/getInitiallyActiveFilters";
 
 import tableColumns from "../tableColumns.json";
