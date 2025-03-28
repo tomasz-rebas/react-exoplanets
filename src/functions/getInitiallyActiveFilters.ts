@@ -1,11 +1,11 @@
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 import { ActiveFilterValue } from "../interfaces/ActiveFilterValue";
-import { Entry } from "../interfaces/Entry";
+import { Entry, EntryKey } from "../interfaces/Entry";
 import { TableColumn } from "../interfaces/TableColumn";
 
 const getCheckboxValues = (
   data: Entry[],
-  databaseColumnName: string
+  databaseColumnName: EntryKey
 ): ActiveFilterValue[] => {
   const uniqueValues = data.reduce((acc, entry) => {
     if (!acc.includes(entry[databaseColumnName])) {

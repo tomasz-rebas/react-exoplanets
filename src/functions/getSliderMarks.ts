@@ -5,12 +5,12 @@ interface SliderMark {
   label: string;
 }
 
-export default function getSliderMarks(
+export const getSliderMarks = (
   minValue: number,
   maxValue: number,
   unit: string,
   isYear: boolean
-): SliderMark[] {
+): SliderMark[] => {
   let firstMiddleMark = (maxValue - minValue) / 3;
   let secondMiddleMark = 2 * firstMiddleMark;
 
@@ -40,4 +40,4 @@ export default function getSliderMarks(
       label: maxValue + " " + (unit ? unit : ""),
     },
   ];
-}
+};

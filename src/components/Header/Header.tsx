@@ -6,20 +6,18 @@ type Props = {
   setIsSidebarOpened: Function;
 };
 
-export default function Header({ isSidebarOpened, setIsSidebarOpened }: Props) {
-  return (
-    <AppBar>
-      <StyledToolbar>
-        <FilterIcon
-          onClick={() => {
-            setIsSidebarOpened(!isSidebarOpened);
-          }}
-          fontSize="large"
-        >
-          filter_list
-        </FilterIcon>
-        <h3>Exoplanets Archive</h3>
-      </StyledToolbar>
-    </AppBar>
-  );
-}
+export const Header = ({ isSidebarOpened, setIsSidebarOpened }: Props) => (
+  <AppBar>
+    <StyledToolbar>
+      <FilterIcon
+        onClick={() => {
+          setIsSidebarOpened(!isSidebarOpened);
+        }}
+        fontSize="large"
+      >
+        filter_list
+      </FilterIcon>
+      <h3>Exoplanets Archive</h3>
+    </StyledToolbar>
+  </AppBar>
+);

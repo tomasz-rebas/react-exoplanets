@@ -1,9 +1,9 @@
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 
-export default function getToggledTextFilters(
+export const getToggledTextFilters = (
   previousState: ActiveFilter[],
   name: string
-): ActiveFilter[] {
+): ActiveFilter[] => {
   return previousState.map((filter) => {
     if (filter.name === name && filter.values) {
       let isEachFilterActive = true;
@@ -44,4 +44,4 @@ export default function getToggledTextFilters(
       return filter;
     }
   });
-}
+};

@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 
-import getQuery from "./functions/getQuery";
-import parseCsvToObject from "./functions/parseCsvToObject";
+import { getQuery } from "./functions/getQuery";
+import { parseCsvToObject } from "./functions/parseCsvToObject";
 import { getUniquePlanets } from "./functions/getUniquePlanets";
 import { getInitiallyActiveFilters } from "./functions/getInitiallyActiveFilters";
 
 import tableColumns from "./data/tableColumns.json";
 import fallbackData from "./data/fallbackData.json";
 
-import Header from "./components/Header/Header";
-import Filters from "./components/Filters/Filters";
-import PlanetList from "./components/PlanetList/PlanetList";
-import FetchAlert from "./components/FetchAlert/FetchAlert";
-import Footer from "./components/Footer";
+import { Header } from "./components/Header/Header";
+import { Filters } from "./components/Filters/Filters";
+import { PlanetList } from "./components/PlanetList/PlanetList";
+import { FetchAlert } from "./components/FetchAlert/FetchAlert";
+import { Footer } from "./components/Footer";
 
 import { ActiveFilter } from "./interfaces/ActiveFilter";
 import { useQuery } from "@tanstack/react-query";
 import { Entry } from "./interfaces/Entry";
+import { TableColumn } from "./interfaces/TableColumn";
 
 const fetchAndParseData = async () => {
   const proxy = import.meta.env.VITE_CORS_PROXY;
@@ -37,7 +38,7 @@ const fetchAndParseData = async () => {
   return strippedData;
 };
 
-export default function App() {
+export const App = () => {
   const {
     isLoading,
     data: planetaryData,
@@ -50,11 +51,15 @@ export default function App() {
 
   useEffect(() => {
     if (planetaryData) {
-      setActiveFilters(getInitiallyActiveFilters(planetaryData, tableColumns));
+      setActiveFilters(
+        getInitiallyActiveFilters(planetaryData, tableColumns as TableColumn[])
+      );
     }
 
     if (error) {
-      setActiveFilters(getInitiallyActiveFilters(fallbackData, tableColumns));
+      setActiveFilters(
+        getInitiallyActiveFilters(fallbackData, tableColumns as TableColumn[])
+      );
       setTimeout(() => setShouldShowFallback(true), 2000);
     }
   }, [planetaryData, error]);
@@ -84,9 +89,9 @@ export default function App() {
           shouldShowfallback ? fallbackData : (planetaryData as Entry[])
         }
         activeFilters={activeFilters}
-        tableColumns={tableColumns}
+        tableColumns={tableColumns as TableColumn[]}
       />
       <Footer />
     </div>
   );
-}
+};

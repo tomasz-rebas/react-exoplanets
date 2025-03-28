@@ -1,6 +1,6 @@
 import { Entry } from "../interfaces/Entry";
 
-export default function parseCsvToObject(text: string): Entry[] {
+export const parseCsvToObject = (text: string): Entry[] => {
   const rows = text.split(/\r?\n/);
   const keys = rows[0].split(",");
 
@@ -13,6 +13,6 @@ export default function parseCsvToObject(text: string): Entry[] {
       return Object.fromEntries(
         // Strip the value from double quotes
         keys.map((key, index) => [key, values[index].replace(/["]+/g, "")])
-      );
+      ) as Entry;
     });
-}
+};

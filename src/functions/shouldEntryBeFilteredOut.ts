@@ -1,10 +1,10 @@
 import { Entry } from "../interfaces/Entry";
 import { ActiveFilter } from "../interfaces/ActiveFilter";
 
-export default function shouldBeFilteredOut(
+export const shouldEntryBeFilteredOut = (
   data: Entry,
   filters: ActiveFilter[]
-): boolean {
+): boolean => {
   let shouldBeFilteredOut = false;
 
   filters.forEach((property) => {
@@ -29,4 +29,4 @@ export default function shouldBeFilteredOut(
   });
 
   return shouldBeFilteredOut;
-}
+};

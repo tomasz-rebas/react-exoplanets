@@ -6,20 +6,18 @@ type Props = {
   setCurrentPage: Function;
 };
 
-export default function Paging({
+export const Paging = ({
   numberOfPages,
   currentPage,
   setCurrentPage,
-}: Props) {
-  return (
-    <StyledPagination
-      count={numberOfPages}
-      color="primary"
-      size="large"
-      onChange={(_, page) => {
-        setCurrentPage(page);
-      }}
-      page={currentPage}
-    />
-  );
-}
+}: Props) => (
+  <StyledPagination
+    count={numberOfPages}
+    color="primary"
+    size="large"
+    onChange={(_, page) => {
+      setCurrentPage(page);
+    }}
+    page={currentPage}
+  />
+);

@@ -1,4 +1,4 @@
-import getToggledTextFilters from "../../functions/getToggledTextFilters";
+import { getToggledTextFilters } from "../../functions/getToggledTextFilters";
 import { ActiveFilter } from "../../interfaces/ActiveFilter";
 import { InputContainer, SelectAllButton } from "./CheckboxList.theme";
 
@@ -9,12 +9,12 @@ type Props = {
   setActiveFilters: Function;
 };
 
-export default function CheckboxList({
+export const CheckboxList = ({
   tableLabel,
   name,
   checkboxes,
   setActiveFilters,
-}: Props) {
+}: Props) => {
   const selectAllCheckboxes = () => {
     setActiveFilters((previousState: ActiveFilter[]) =>
       getToggledTextFilters(previousState, name)
@@ -30,4 +30,4 @@ export default function CheckboxList({
       </SelectAllButton>
     </InputContainer>
   );
-}
+};

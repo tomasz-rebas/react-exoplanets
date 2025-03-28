@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
-import PlanetCard from "../PlanetCard/PlanetCard";
-import Paging from "../Paging/Paging";
+import { PlanetCard } from "../PlanetCard/PlanetCard";
+import { Paging } from "../Paging/Paging";
 
 import { Entry } from "../../interfaces/Entry";
 import { ActiveFilter } from "../../interfaces/ActiveFilter";
 import { TableColumn } from "../../interfaces/TableColumn";
 
-import shouldEntryBeFilteredOut from "../../functions/shouldEntryBeFilteredOut";
+import { shouldEntryBeFilteredOut } from "../../functions/shouldEntryBeFilteredOut";
 import { Container, List } from "./PlanetList.theme";
 
 type Props = {
@@ -15,11 +15,11 @@ type Props = {
   tableColumns: TableColumn[];
 };
 
-export default function PlanetList({
+export const PlanetList = ({
   planetaryData,
   activeFilters,
   tableColumns,
-}: Props) {
+}: Props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(24);
 
@@ -68,4 +68,4 @@ export default function PlanetList({
       />
     </Container>
   );
-}
+};

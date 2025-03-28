@@ -1,4 +1,4 @@
-import getSliderMarks from "../functions/getSliderMarks";
+import { getSliderMarks } from "../functions/getSliderMarks";
 import { getFiltersWithUpdatedSliderValues } from "../functions/getFiltersWithUpdatedSliderValues";
 
 import { Slider as MaterialSlider } from "@mui/material";
@@ -17,7 +17,7 @@ type Props = {
   tableLabel: string;
 };
 
-export default function Slider({
+export const Slider = ({
   setActiveFilters,
   currentMinValue,
   currentMaxValue,
@@ -27,7 +27,7 @@ export default function Slider({
   name,
   unit,
   tableLabel,
-}: Props) {
+}: Props) => {
   const handleSliderChange =
     (name: string) =>
     (_: React.SyntheticEvent | Event, value: number | number[]) => {
@@ -62,4 +62,4 @@ export default function Slider({
       />
     </div>
   );
-}
+};

@@ -1,4 +1,4 @@
 export interface ActiveFilterValue {
-    name: string,
-    isActive: boolean
+  name: string;
+  isActive: boolean;
 }

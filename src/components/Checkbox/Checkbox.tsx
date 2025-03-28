@@ -12,11 +12,7 @@ type Props = {
   setActiveFilters: Function;
 };
 
-export default function Checkbox({
-  value,
-  activeFilter,
-  setActiveFilters,
-}: Props) {
+export const Checkbox = ({ value, activeFilter, setActiveFilters }: Props) => {
   const { name, isActive } = value;
 
   const handleCheckboxChange = (activeFilter: any) => (event: any) => {
@@ -41,4 +37,4 @@ export default function Checkbox({
       {name}
     </Label>
   );
-}
+};

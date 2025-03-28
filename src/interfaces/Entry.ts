@@ -1,13 +1,14 @@
-export interface Entry {
-  pl_name: string;
-  hostname: string;
-  disc_facility: string;
-  discoverymethod: string;
-  disc_year: string;
-  pl_orbper: string;
-  pl_orbsmax: string;
-  pl_masse: string;
-  pl_rade: string;
-  pl_dens: string;
-  releasedate: string;
-}
+export type EntryKey =
+  | "pl_name"
+  | "hostname"
+  | "disc_facility"
+  | "discoverymethod"
+  | "disc_year"
+  | "pl_orbper"
+  | "pl_orbsmax"
+  | "pl_masse"
+  | "pl_rade"
+  | "pl_dens"
+  | "releasedate";
+
+export type Entry = Record<EntryKey, string>;

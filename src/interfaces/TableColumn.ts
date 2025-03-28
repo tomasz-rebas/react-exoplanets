@@ -1,5 +1,7 @@
+import { EntryKey } from "./Entry";
+
 export interface TableColumn {
-  databaseColumnName: string;
+  databaseColumnName: EntryKey;
   tableLabel: string;
   description: string;
   isUsedInQuery: boolean;

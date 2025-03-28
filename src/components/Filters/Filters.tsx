@@ -1,8 +1,8 @@
 import React from "react";
 
-import Checkbox from "../Checkbox/Checkbox";
-import CheckboxList from "../CheckboxList/CheckboxList";
-import Slider from "../Slider";
+import { Checkbox } from "../Checkbox/Checkbox";
+import { CheckboxList } from "../CheckboxList/CheckboxList";
+import { Slider } from "../Slider";
 
 import { ActiveFilter } from "../../interfaces/ActiveFilter";
 import { StyledDrawer } from "./Filters.theme";
@@ -14,12 +14,12 @@ type Props = {
   setActiveFilters: Function;
 };
 
-export default function Filters({
+export const Filters = ({
   isSidebarOpened,
   setIsSidebarOpened,
   activeFilters,
   setActiveFilters,
-}: Props) {
+}: Props) => {
   let inputs: React.ReactNode[] = [];
 
   activeFilters.forEach((activeFilter: any) => {
@@ -84,4 +84,4 @@ export default function Filters({
       {inputs}
     </StyledDrawer>
   );
-}
+};

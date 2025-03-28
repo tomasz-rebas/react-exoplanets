@@ -8,10 +8,10 @@ interface Column {
  * including those with missing data (e.g. the mass).
  */
 
-export default function getQuery(
+export const getQuery = (
   columns: Column[],
   includeEmptyProperties: boolean
-): string {
+): string => {
   const columnList = columns
     .filter((column) => column.isUsedInQuery)
     .map((column) => column.databaseColumnName)
@@ -27,4 +27,4 @@ export default function getQuery(
     .join("+and+");
 
   return `select+distinct+${columnList}+from+ps+where+${conditions}`;
-}
+};

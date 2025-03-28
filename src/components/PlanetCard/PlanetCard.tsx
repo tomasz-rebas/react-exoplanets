@@ -11,7 +11,7 @@ type Props = {
   tableColumns: TableColumn[];
 };
 
-export default function PlanetCard({ data, tableColumns }: Props) {
+export const PlanetCard = ({ data, tableColumns }: Props) => {
   const dataForDisplay = useMemo(() => {
     let dataRows = [];
     for (const property in data) {
@@ -56,4 +56,4 @@ export default function PlanetCard({ data, tableColumns }: Props) {
       {dataForDisplay}
     </StyledCard>
   );
-}
+};
