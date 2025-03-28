@@ -3,6 +3,24 @@ import { ActiveFilterValue } from "../interfaces/ActiveFilterValue";
 import { Entry } from "../interfaces/Entry";
 import { TableColumn } from "../interfaces/TableColumn";
 
+const getCheckboxValues = (
+  data: Entry[],
+  databaseColumnName: string
+): ActiveFilterValue[] => {
+  const uniqueValues = data.reduce((acc, entry) => {
+    if (!acc.includes(entry[databaseColumnName])) {
+      acc.push(entry[databaseColumnName]);
+    }
+
+    return acc;
+  }, [] as string[]);
+
+  return uniqueValues.map((value) => ({
+    name: value,
+    isActive: true,
+  }));
+};
+
 export const getInitiallyActiveFilters = (
   planetaryData: Entry[],
   tableColumns: TableColumn[]
@@ -34,17 +52,7 @@ export const getInitiallyActiveFilters = (
         };
       }
 
-      const values: ActiveFilterValue[] = [];
-      const seen = new Set();
-
-      planetaryData.forEach((entry) => {
-        const name = entry[databaseColumnName];
-
-        if (!seen.has(name)) {
-          seen.add(name);
-          values.push({ name, isActive: true });
-        }
-      });
+      const values = getCheckboxValues(planetaryData, databaseColumnName);
 
       return {
         name: databaseColumnName,
