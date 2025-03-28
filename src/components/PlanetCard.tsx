@@ -36,16 +36,17 @@ export default function PlanetCard({ data, tableColumns }: Props) {
   const dataForDisplay = useMemo(() => {
     let dataRows = [];
     for (const property in data) {
+      const key = property as keyof Entry;
       for (let i = 0; i < tableColumns.length; i++) {
         if (
-          tableColumns[i].databaseColumnName === property &&
+          tableColumns[i].databaseColumnName === key &&
           tableColumns[i].databaseColumnName !== "pl_name"
         ) {
           let value;
           if (tableColumns[i].dataType === "number") {
-            value = getRoundedValue(Number(data[property]));
+            value = getRoundedValue(Number(data[key]));
           } else {
-            value = data[property];
+            value = data[key];
           }
 
           const label = tableColumns[i].tableLabel;
