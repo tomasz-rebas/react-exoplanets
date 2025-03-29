@@ -6,7 +6,7 @@ export const parseCsvToObject = (text: string): Entry[] => {
 
   return rows
     .slice(1) // Once keys are defined, the first row is redundant
-    .filter((row) => row) // Filter out empty rows
+    .filter((row) => row) // In case the last row is empty
     .map((row) => {
       const values = row.split(",");
 
