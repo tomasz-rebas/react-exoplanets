@@ -6,14 +6,12 @@ export const getFiltersWithUpdatedSliderValues = (
   newCurrentMax: number,
   name: string
 ): ActiveFilter[] =>
-  filters.map((filter) => {
-    if (filter.name === name) {
-      return {
-        ...filter,
-        currentMinValue: newCurrentMin,
-        currentMaxValue: newCurrentMax,
-      };
-    }
-
-    return filter;
-  });
+  filters.map((filter) =>
+    filter.name === name
+      ? {
+          ...filter,
+          currentMinValue: newCurrentMin,
+          currentMaxValue: newCurrentMax,
+        }
+      : filter
+  );
