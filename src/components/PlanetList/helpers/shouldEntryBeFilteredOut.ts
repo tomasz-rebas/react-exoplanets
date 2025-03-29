@@ -10,21 +10,19 @@ export const shouldEntryBeFilteredOut = (
   filters.forEach((property) => {
     const { name, currentMinValue, currentMaxValue, values } = property;
 
-    if (name !== undefined) {
-      if (currentMinValue !== undefined && currentMaxValue !== undefined) {
-        if (
-          parseFloat(data[name]) < currentMinValue ||
-          parseFloat(data[name]) > currentMaxValue
-        ) {
+    if (currentMinValue !== undefined && currentMaxValue !== undefined) {
+      if (
+        parseFloat(data[name]) < currentMinValue ||
+        parseFloat(data[name]) > currentMaxValue
+      ) {
+        shouldBeFilteredOut = true;
+      }
+    } else if (values) {
+      values.forEach((checkbox) => {
+        if (checkbox.name === data[name] && !checkbox.isActive) {
           shouldBeFilteredOut = true;
         }
-      } else if (values) {
-        values.forEach((checkbox) => {
-          if (checkbox.name === data[name] && !checkbox.isActive) {
-            shouldBeFilteredOut = true;
-          }
-        });
-      }
+      });
     }
   });
 
