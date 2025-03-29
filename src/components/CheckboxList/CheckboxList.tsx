@@ -1,12 +1,13 @@
 import { getToggledTextFilters } from "./helpers/getToggledTextFilters";
 import { ActiveFilter } from "../../types/ActiveFilter";
 import { InputContainer, SelectAllButton } from "./CheckboxList.theme";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
   tableLabel: string;
   name: string;
   checkboxes: JSX.Element[];
-  setActiveFilters: Function;
+  setActiveFilters: Dispatch<SetStateAction<ActiveFilter[]>>;
 };
 
 export const CheckboxList = ({

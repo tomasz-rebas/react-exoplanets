@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import { Checkbox } from "../Checkbox/Checkbox";
 import { CheckboxList } from "../CheckboxList/CheckboxList";
@@ -9,9 +9,9 @@ import { Slider } from "../Slider/Slider";
 
 type Props = {
   isSidebarOpened: boolean;
-  setIsSidebarOpened: Function;
+  setIsSidebarOpened: Dispatch<SetStateAction<boolean>>;
   activeFilters: ActiveFilter[];
-  setActiveFilters: Function;
+  setActiveFilters: Dispatch<SetStateAction<ActiveFilter[]>>;
 };
 
 export const Filters = ({

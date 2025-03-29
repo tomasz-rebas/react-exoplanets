@@ -4,9 +4,10 @@ import { getFiltersWithUpdatedSliderValues } from "./helpers/getFiltersWithUpdat
 import { Slider as MaterialSlider } from "@mui/material";
 
 import { ActiveFilter } from "../../types/ActiveFilter";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
-  setActiveFilters: Function;
+  setActiveFilters: Dispatch<SetStateAction<ActiveFilter[]>>;
   currentMinValue: number;
   currentMaxValue: number;
   scaleStep: number;

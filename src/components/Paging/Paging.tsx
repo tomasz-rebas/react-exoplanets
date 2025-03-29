@@ -1,9 +1,10 @@
+import { Dispatch, SetStateAction } from "react";
 import { StyledPagination } from "./Paging.theme";
 
 type Props = {
   numberOfPages: number;
   currentPage: number;
-  setCurrentPage: Function;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 };
 
 export const Paging = ({
