@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-import { getQuery } from "./functions/getQuery";
-import { parseCsvToObject } from "./functions/parseCsvToObject";
-import { getUniquePlanets } from "./functions/getUniquePlanets";
-import { getInitiallyActiveFilters } from "./functions/getInitiallyActiveFilters";
+import { getQuery } from "./helpers/getQuery";
+import { parseCsvToObject } from "./helpers/parseCsvToObject";
+import { getUniquePlanets } from "./helpers/getUniquePlanets";
+import { getInitiallyActiveFilters } from "./helpers/getInitiallyActiveFilters";
 
 import tableColumns from "./data/tableColumns.json";
 import fallbackData from "./data/fallbackData.json";
@@ -14,10 +14,10 @@ import { PlanetList } from "./components/PlanetList/PlanetList";
 import { FetchAlert } from "./components/FetchAlert/FetchAlert";
 import { Footer } from "./components/Footer";
 
-import { ActiveFilter } from "./interfaces/ActiveFilter";
+import { ActiveFilter } from "./types/ActiveFilter";
 import { useQuery } from "@tanstack/react-query";
-import { Entry } from "./interfaces/Entry";
-import { TableColumn } from "./interfaces/TableColumn";
+import { Entry } from "./types/Entry";
+import { TableColumn } from "./types/TableColumn";
 
 const fetchAndParseData = async () => {
   const proxy = import.meta.env.VITE_CORS_PROXY;

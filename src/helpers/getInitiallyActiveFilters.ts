@@ -1,7 +1,7 @@
-import { ActiveFilter } from "../interfaces/ActiveFilter";
-import { ActiveFilterValue } from "../interfaces/ActiveFilterValue";
-import { Entry, EntryKey } from "../interfaces/Entry";
-import { TableColumn } from "../interfaces/TableColumn";
+import { ActiveFilter } from "../types/ActiveFilter";
+import { ActiveFilterValue } from "../types/ActiveFilterValue";
+import { Entry, EntryKey } from "../types/Entry";
+import { TableColumn } from "../types/TableColumn";
 
 const getCheckboxValues = (
   data: Entry[],

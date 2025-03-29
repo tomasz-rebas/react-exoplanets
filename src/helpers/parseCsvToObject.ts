@@ -1,4 +1,4 @@
-import { Entry } from "../interfaces/Entry";
+import { Entry } from "../types/Entry";
 
 export const parseCsvToObject = (text: string): Entry[] => {
   const rows = text.split(/\r?\n/);

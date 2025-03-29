@@ -1,4 +1,4 @@
-import { Entry } from "../interfaces/Entry";
+import { Entry } from "../types/Entry";
 
 // This function will remove some of the entries so only one entry
 // per planet will remain - the one with most recent release date.

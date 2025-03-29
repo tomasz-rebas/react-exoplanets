@@ -1,5 +1,5 @@
-import { getToggledTextFilters } from "../../functions/getToggledTextFilters";
-import { ActiveFilter } from "../../interfaces/ActiveFilter";
+import { getToggledTextFilters } from "./helpers/getToggledTextFilters";
+import { ActiveFilter } from "../../types/ActiveFilter";
 import { InputContainer, SelectAllButton } from "./CheckboxList.theme";
 
 type Props = {

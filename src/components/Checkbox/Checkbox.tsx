@@ -1,5 +1,5 @@
-import { getFiltersWithUpdatedCheckboxValues } from "../../functions/getFiltersWithUpdatedCheckboxValues";
-import { ActiveFilter } from "../../interfaces/ActiveFilter";
+import { getFiltersWithUpdatedCheckboxValues } from "./helpers/getFiltersWithUpdatedCheckboxValues";
+import { ActiveFilter } from "../../types/ActiveFilter";
 
 import { Label } from "./Checkbox.theme";
 

@@ -2,11 +2,11 @@ import { useState, useMemo } from "react";
 import { PlanetCard } from "../PlanetCard/PlanetCard";
 import { Paging } from "../Paging/Paging";
 
-import { Entry } from "../../interfaces/Entry";
-import { ActiveFilter } from "../../interfaces/ActiveFilter";
-import { TableColumn } from "../../interfaces/TableColumn";
+import { Entry } from "../../types/Entry";
+import { ActiveFilter } from "../../types/ActiveFilter";
+import { TableColumn } from "../../types/TableColumn";
 
-import { shouldEntryBeFilteredOut } from "../../functions/shouldEntryBeFilteredOut";
+import { shouldEntryBeFilteredOut } from "./helpers/shouldEntryBeFilteredOut";
 import { Container, List } from "./PlanetList.theme";
 
 type Props = {

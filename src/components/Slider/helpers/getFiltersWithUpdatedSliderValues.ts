@@ -1,4 +1,4 @@
-import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { ActiveFilter } from "../../../types/ActiveFilter";
 
 export const getFiltersWithUpdatedSliderValues = (
   filters: ActiveFilter[],

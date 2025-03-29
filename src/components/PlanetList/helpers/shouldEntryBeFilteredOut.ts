@@ -1,5 +1,5 @@
-import { Entry } from "../interfaces/Entry";
-import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { Entry } from "../../../types/Entry";
+import { ActiveFilter } from "../../../types/ActiveFilter";
 
 export const shouldEntryBeFilteredOut = (
   data: Entry,

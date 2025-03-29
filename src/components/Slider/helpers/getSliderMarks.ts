@@ -1,4 +1,4 @@
-import { getRoundedValue } from "../functions/getRoundedValue";
+import { getRoundedValue } from "../../../helpers/getRoundedValue";
 
 interface SliderMark {
   value: number;

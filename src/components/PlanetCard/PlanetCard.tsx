@@ -1,7 +1,7 @@
-import { getRoundedValue } from "../../functions/getRoundedValue";
+import { getRoundedValue } from "../../helpers/getRoundedValue";
 
-import { Entry } from "../../interfaces/Entry";
-import { TableColumn } from "../../interfaces/TableColumn";
+import { Entry } from "../../types/Entry";
+import { TableColumn } from "../../types/TableColumn";
 
 import { useMemo } from "react";
 import { DataRow, PlanetIcon, StyledCard } from "./PlanetCard.theme";

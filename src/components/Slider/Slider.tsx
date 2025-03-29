@@ -1,9 +1,9 @@
-import { getSliderMarks } from "../functions/getSliderMarks";
-import { getFiltersWithUpdatedSliderValues } from "../functions/getFiltersWithUpdatedSliderValues";
+import { getSliderMarks } from "./helpers/getSliderMarks";
+import { getFiltersWithUpdatedSliderValues } from "./helpers/getFiltersWithUpdatedSliderValues";
 
 import { Slider as MaterialSlider } from "@mui/material";
 
-import { ActiveFilter } from "../interfaces/ActiveFilter";
+import { ActiveFilter } from "../../types/ActiveFilter";
 
 type Props = {
   setActiveFilters: Function;

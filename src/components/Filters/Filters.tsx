@@ -2,10 +2,10 @@ import React from "react";
 
 import { Checkbox } from "../Checkbox/Checkbox";
 import { CheckboxList } from "../CheckboxList/CheckboxList";
-import { Slider } from "../Slider";
 
-import { ActiveFilter } from "../../interfaces/ActiveFilter";
+import { ActiveFilter } from "../../types/ActiveFilter";
 import { StyledDrawer } from "./Filters.theme";
+import { Slider } from "../Slider/Slider";
 
 type Props = {
   isSidebarOpened: boolean;

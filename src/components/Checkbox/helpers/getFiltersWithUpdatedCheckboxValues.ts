@@ -1,5 +1,5 @@
-import { ActiveFilter } from "../interfaces/ActiveFilter";
-import { ActiveFilterValue } from "../interfaces/ActiveFilterValue";
+import { ActiveFilter } from "../../../types/ActiveFilter";
+import { ActiveFilterValue } from "../../../types/ActiveFilterValue";
 
 export const getFiltersWithUpdatedCheckboxValues = (
   activeFilter: any,
