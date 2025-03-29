@@ -4,27 +4,18 @@ import { ActiveFilter } from "../../../types/ActiveFilter";
 export const shouldEntryBeFilteredOut = (
   data: Entry,
   filters: ActiveFilter[]
-): boolean => {
-  let shouldBeFilteredOut = false;
-
-  filters.forEach((property) => {
-    const { name, currentMinValue, currentMaxValue, values } = property;
-
-    if (currentMinValue !== undefined && currentMaxValue !== undefined) {
-      if (
-        parseFloat(data[name]) < currentMinValue ||
-        parseFloat(data[name]) > currentMaxValue
-      ) {
-        shouldBeFilteredOut = true;
-      }
-    } else if (values) {
-      values.forEach((checkbox) => {
-        if (checkbox.name === data[name] && !checkbox.isActive) {
-          shouldBeFilteredOut = true;
-        }
-      });
+): boolean =>
+  filters.some(({ name, currentMinValue, currentMaxValue, values }) => {
+    if (
+      currentMinValue !== undefined &&
+      currentMaxValue !== undefined &&
+      (parseFloat(data[name]) < currentMinValue ||
+        parseFloat(data[name]) > currentMaxValue)
+    ) {
+      return true;
     }
-  });
 
-  return shouldBeFilteredOut;
-};
+    return values?.some(
+      (checkbox) => checkbox.name === data[name] && !checkbox.isActive
+    );
+  });
