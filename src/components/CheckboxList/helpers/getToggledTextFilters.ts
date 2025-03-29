@@ -2,13 +2,7 @@ import { ActiveFilter } from "../../../types/ActiveFilter";
 import { ActiveFilterValue } from "../../../types/ActiveFilterValue";
 
 const isEachFilterActive = (values: ActiveFilterValue[]): boolean =>
-  values.reduce((acc, value) => {
-    if (!value.isActive) {
-      acc = false;
-    }
-
-    return acc;
-  }, true);
+  !values.some((value) => !value.isActive);
 
 // Select/Unselect All
 export const getToggledTextFilters = (
