@@ -10,6 +10,7 @@ const isEachFilterActive = (values: ActiveFilterValue[]): boolean =>
     return acc;
   }, true);
 
+// Select/Unselect All
 export const getToggledTextFilters = (
   previousState: ActiveFilter[],
   name: string
