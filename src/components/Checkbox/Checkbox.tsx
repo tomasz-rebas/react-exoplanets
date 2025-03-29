@@ -15,16 +15,18 @@ type Props = {
 export const Checkbox = ({ value, activeFilter, setActiveFilters }: Props) => {
   const { name, isActive } = value;
 
-  const handleCheckboxChange = (activeFilter: any) => (event: any) => {
-    const checkboxName = event.target.name;
-    setActiveFilters((previousState: ActiveFilter[]) =>
-      getFiltersWithUpdatedCheckboxValues(
-        activeFilter,
-        checkboxName,
-        previousState
-      )
-    );
-  };
+  const handleCheckboxChange =
+    (activeFilter: ActiveFilter) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const checkboxName = event.target.name;
+      setActiveFilters((previousState: ActiveFilter[]) =>
+        getFiltersWithUpdatedCheckboxValues(
+          activeFilter,
+          checkboxName,
+          previousState
+        )
+      );
+    };
 
   return (
     <Label>
