@@ -1,47 +1,27 @@
 import { ActiveFilter } from "../../../types/ActiveFilter";
+import { ActiveFilterValue } from "../../../types/ActiveFilterValue";
+
+const isEachFilterActive = (values: ActiveFilterValue[]): boolean =>
+  values.reduce((acc, value) => {
+    if (!value.isActive) {
+      acc = false;
+    }
+
+    return acc;
+  }, true);
 
 export const getToggledTextFilters = (
   previousState: ActiveFilter[],
   name: string
-): ActiveFilter[] => {
-  return previousState.map((filter) => {
-    if (filter.name === name && filter.values) {
-      let isEachFilterActive = true;
-
-      filter.values.forEach((value) => {
-        if (!value.isActive) {
-          isEachFilterActive = false;
-        }
-      });
-
-      let newValues;
-
-      if (isEachFilterActive) {
-        newValues = filter.values.map((value) => {
-          return {
+): ActiveFilter[] =>
+  previousState.map((filter) =>
+    filter.name === name && filter.values
+      ? {
+          ...filter,
+          values: filter.values.map((value) => ({
             ...value,
-            isActive: false,
-          };
-        });
-      } else {
-        newValues = filter.values.map((value) => {
-          if (value.isActive) {
-            return value;
-          } else {
-            return {
-              ...value,
-              isActive: true,
-            };
-          }
-        });
-      }
-
-      return {
-        ...filter,
-        values: newValues,
-      };
-    } else {
-      return filter;
-    }
-  });
-};
+            isActive: !isEachFilterActive(filter.values as ActiveFilterValue[]),
+          })),
+        }
+      : filter
+  );
